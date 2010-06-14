@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Miko" default="dist" basedir=".">
+	<property name="jre" location="${java.home}/lib"/>
+	<property name="src" location="src"/>
+	<property name="config" location="config"/>
+	<property name="lib" location="lib"/>
+	<property name="build" location="build"/>
+	<property name="build.classes" location="${build}/classes"/>
+	<property name="build.dist" location="${build}/dist"/>
+	<property name="build.dist.tg" location="${build.dist}/TrafficGenerator"/>
+
+	<path id="bootclasspath">
+		<fileset dir="${lib}">
+			<include name="jsr166.jar"/>
+		</fileset>
+		<fileset dir="${jre}">
+			<include name="rt.jar"/>
+			<include name="jce.jar"/>
+		</fileset>
+	</path>
+
+	<path id="classpath">
+		<fileset dir="${lib}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="clean"
+		description="Removes build directory.">
+		<delete dir="${build.dist}" file="${build}/*.*"/>
+	</target>
+
+	<target name="init" depends="clean"
+        description="Create the output directories.">
+		<mkdir dir="${build}"/>
+		<mkdir dir="${build.classes}"/>
+	</target>
+
+
+	<target name="compile"
+            depends="init"
+            description="Compile the source.">
+
+		<javac srcdir="${src}" destdir="${build.classes}" optimize="on" debug="on" 
+        	nowarn="off" 
+        	source="1.6"
+            target="1.6">
+
+			<src path="${src}"/>
+			<bootclasspath refid="bootclasspath"/>
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+
+	<target name="jar"
+            depends="compile"
+            description="Create the jar file">
+
+		<jar destfile="${build}/tg-win32-win32-x86.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.classes}"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.shaman.Main"/>
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/swt-win32-win32-x86.jar" />
+		</jar>
+		<jar destfile="${build}/tg-win32-win32-x86_64.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.classes}"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.shaman.Main"/>
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/swt-win32-win32-x86_64.jar" />
+		</jar>
+		<jar destfile="${build}/tg-wpf-win32-x86.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.classes}"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.shaman.Main"/>
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/swt-wpf-win32-x86.jar" />
+		</jar>
+		<jar destfile="${build}/tg-gtk-linux-ppc.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.classes}"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.shaman.Main"/>
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/swt-gtk-linux-ppc.jar" />
+		</jar>
+		<jar destfile="${build}/tg-gtk-linux-x86.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.classes}"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.shaman.Main"/>
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/swt-gtk-linux-x86.jar" />
+		</jar>
+		<jar destfile="${build}/tg-gtk-linux-x86_64.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.classes}"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.shaman.Main"/>
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/swt-gtk-linux-x86_64.jar" />
+		</jar>
+		<jar destfile="${build}/tg-gtk-solaris-sparc.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.classes}"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.shaman.Main"/>
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/swt-gtk-solaris-sparc.jar" />
+		</jar>
+		<jar destfile="${build}/tg-gtk-solaris-x86.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.classes}"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.shaman.Main"/>
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/swt-gtk-solaris-x86.jar" />
+		</jar>
+		<jar destfile="${build}/tg-carbon-macosx.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.classes}"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.shaman.Main"/>
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/swt-carbon-macosx.jar" />
+		</jar>
+		<jar destfile="${build}/tg-cocoa-macosx-x86.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.classes}"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.shaman.Main"/>
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/swt-cocoa-macosx.jar" />
+		</jar>
+		<jar destfile="${build}/tg-cocoa-macosx-x86_64.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.classes}"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.shaman.Main"/>
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/swt-cocoa-macosx-x86_64.jar" />
+		</jar>
+
+	</target>
+	<target name="dist" depends="jar">
+		<mkdir dir="${build.dist}" />
+		<mkdir dir="${build.dist.tg}" />
+		<mkdir dir="${build.dist.tg}/config" />
+
+		<move todir="${build.dist.tg}">
+			<fileset dir="${build}">
+				<include name="tg-win32-win32-x86.jar"/>
+				<include name="tg-win32-win32-x86_64.jar"/>
+				<include name="tg-wpf-win32-x86.jar"/>
+				<include name="tg-gtk-linux-ppc.jar"/>
+				<include name="tg-gtk-linux-x86.jar"/>
+				<include name="tg-gtk-linux-x86_64.jar"/>
+				<include name="tg-gtk-solaris-sparc.jar"/>
+				<include name="tg-gtk-solaris-x86.jar"/>
+				<include name="tg-carbon-macosx.jar"/>
+				<include name="tg-cocoa-macosx-x86.jar"/>
+				<include name="tg-cocoa-macosx-x86_64.jar"/>
+			</fileset>
+		</move>
+
+		<copy todir="${build.dist.tg}">
+			<fileset dir="dist">
+				<include name="*.*"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dist.tg}/config">
+			<fileset dir="config">
+				<include name="*.*"/>
+			</fileset>
+		</copy>
+		
+		<zip destfile="${build}/tg.zip" basedir="${build.dist}"/>
+	</target>
+
+</project>
