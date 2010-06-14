@@ -36,7 +36,7 @@ public class Config {
 	
 	public static int getGeneralRefrash()
 	{
-		return Integer.parseInt(cnfg.getProperty("general.refrash"));
+		return Integer.parseInt(cnfg.getProperty("general.refrash","1000"));
 	}
 	public static void setGeneralRefrash(int generalRefrash)
 	{
