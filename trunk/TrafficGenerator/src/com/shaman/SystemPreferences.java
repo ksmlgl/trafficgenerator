@@ -51,7 +51,7 @@ public class SystemPreferences {
 		sShell.setLayout(gridLayout);
 		sShell.setSize(new Point(232, 112));
 		refrashIntervalLabel = new Label(sShell, SWT.NONE);
-		refrashIntervalLabel.setText("Refrash Interval (ms)");
+		refrashIntervalLabel.setText("Refresh Interval (ms)");
 		refrashIntervalLabel.setLayoutData(gridData3);
 		refrashIntervalLabel.setToolTipText("");
 		refrashIntervalSpinner = new Spinner(sShell, SWT.BORDER);
