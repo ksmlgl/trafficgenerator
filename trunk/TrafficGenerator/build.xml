@@ -2,7 +2,6 @@
 <project name="Miko" default="dist" basedir=".">
 	<property name="jre" location="${java.home}/lib"/>
 	<property name="src" location="src"/>
-	<property name="config" location="config"/>
 	<property name="lib" location="lib"/>
 	<property name="build" location="build"/>
 	<property name="build.classes" location="${build}/classes"/>
@@ -138,7 +137,6 @@
 	<target name="dist" depends="jar">
 		<mkdir dir="${build.dist}" />
 		<mkdir dir="${build.dist.tg}" />
-		<mkdir dir="${build.dist.tg}/config" />
 
 		<move todir="${build.dist.tg}">
 			<fileset dir="${build}">
@@ -162,12 +160,6 @@
 			</fileset>
 		</copy>
 
-		<copy todir="${build.dist.tg}/config">
-			<fileset dir="config">
-				<include name="*.*"/>
-			</fileset>
-		</copy>
-		
 		<zip destfile="${build}/tg.zip" basedir="${build.dist}"/>
 	</target>
 
