@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Miko" default="dist" basedir=".">
+	<property name="jre" location="${java.home}/lib"/>
+	<property name="src" location="src"/>
+	<property name="lib" location="lib"/>
+	<property name="build" location="build"/>
+	<property name="build.classes" location="${build}/classes"/>
+	<property name="build.dist" location="${build}/dist"/>
+	<property name="build.dist.tg" location="${build.dist}/TrafficGenerator"/>
+
+	<path id="bootclasspath">
+		<fileset dir="${lib}">
+			<include name="jsr166.jar"/>
+		</fileset>
+		<fileset dir="${jre}">
+			<include name="rt.jar"/>
+			<include name="jce.jar"/>
+		</fileset>
+	</path>
+
+	<path id="classpath">
+		<fileset dir="${lib}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="clean"
+		description="Removes build directory.">
+		<delete dir="${build.dist}" file="${build}/*.*"/>
+	</target>
+
+	<target name="init" depends="clean"
+        description="Create the output directories.">
+		<mkdir dir="${build}"/>
+		<mkdir dir="${build.classes}"/>
+	</target>
+
+
+	<target name="compile"
+            depends="init"
+            description="Compile the source.">
+
+		<javac srcdir="${src}" destdir="${build.classes}" optimize="on" debug="on" 
+        	nowarn="off" 
+        	source="1.6"
+            target="1.6">
+
+			<src path="${src}"/>
+			<bootclasspath refid="bootclasspath"/>
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+
+	<target name="jar"
+            depends="compile"
+            description="Create the jar file">
+
+		<jar destfile="${build}/tg-win32-win32-x86.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.classes}"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.shaman.Main"/>
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/swt-win32-win32-x86.jar" />
+		</jar>
+	</target>
+	<target name="dist" depends="jar">
+		<mkdir dir="${build.dist}" />
+		<mkdir dir="${build.dist.tg}" />
+
+		<move todir="${build.dist.tg}">
+			<fileset dir="${build}">
+				<include name="tg-win32-win32-x86.jar"/>
+			</fileset>
+		</move>
+
+		<copy todir="${build.dist.tg}">
+			<fileset dir="dist">
+				<include name="*win32-x86.*"/>
+			</fileset>
+		</copy>
+		
+		<zip destfile="${build}/tg-win32-x86.zip" basedir="${build.dist}"/>
+	</target>
+
+</project>

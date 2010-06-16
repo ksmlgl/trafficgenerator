@@ -65,7 +65,6 @@ public class SystemPreferences {
 		saveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 				Config.setGeneralRefrash(refrashIntervalSpinner.getSelection());
-				Config.Store();
 			}
 		});
 		cancelButton = new Button(sShell, SWT.NONE);
