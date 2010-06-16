@@ -1,45 +1,17 @@
 package com.shaman.configs;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Properties;
+import java.util.prefs.Preferences;
 
 public class Config {
-	static Properties cnfg = new Properties();
-	static String filePath = "./config/config.properties";
-	static 
-	{
-		try
-		{
-			
-			cnfg.load(new FileInputStream(filePath));
-
-		}
-		catch (Exception e)
-		{
-			throw new Error("Can't load TNT configuration", e);
-		}
-	}
-	public static void Store()
-	{
-		
-		try {
-			cnfg.store(new FileOutputStream(filePath), "System Store");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	static Preferences pref = Preferences.userNodeForPackage(Config.class);
+	private static String GENERAL_REFRASH = "general.refrash";
 	
 	public static int getGeneralRefrash()
 	{
-		return Integer.parseInt(cnfg.getProperty("general.refrash","1000"));
+		return pref.getInt(GENERAL_REFRASH, 1000);
 	}
 	public static void setGeneralRefrash(int generalRefrash)
 	{
-		cnfg.setProperty("general.refrash", ""+generalRefrash);
+		pref.putInt(GENERAL_REFRASH, generalRefrash);
 	}
 }
