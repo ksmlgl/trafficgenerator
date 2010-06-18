@@ -590,7 +590,7 @@ public class Main {
 		sendPortText.setLayoutData(gridData2);
 		Label filler = new Label(sendGroup, SWT.NONE);
 		sendBufferSizeLabel = new Label(sendGroup, SWT.NONE);
-		sendBufferSizeLabel.setText("Buffer Size (Bytes)");
+		sendBufferSizeLabel.setText("Packet Data Size (Bytes)");
 		sendBufferSizeSpinner = new Spinner(sendGroup, SWT.BORDER);
 		sendBufferSizeSpinner.setMaximum(10000);
 		sendBufferSizeSpinner.setMinimum(0);
