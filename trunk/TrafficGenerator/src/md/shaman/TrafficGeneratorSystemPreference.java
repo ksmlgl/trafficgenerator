@@ -56,6 +56,7 @@ public class TrafficGeneratorSystemPreference extends javax.swing.JDialog {
         setName("Form"); // NOI18N
         setResizable(false);
 
+        refreshIntervalLabel.setLabelFor(refreshIntervalSpinner);
         refreshIntervalLabel.setText(resourceMap.getString("refreshIntervalLabel.text")); // NOI18N
         refreshIntervalLabel.setName("refreshIntervalLabel"); // NOI18N
 
