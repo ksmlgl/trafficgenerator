@@ -97,10 +97,11 @@ public class TrafficGeneratorMain extends FrameView {
         menuBar.add(helpMenu);
 
         componentPanel.setName("componentPanel"); // NOI18N
-        componentPanel.setLayout(new java.awt.GridLayout());
+        componentPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         sendScrollPane.setName("sendScrollPane"); // NOI18N
 
+        sendTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         sendTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -113,7 +114,7 @@ public class TrafficGeneratorMain extends FrameView {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, false, true
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -137,6 +138,7 @@ public class TrafficGeneratorMain extends FrameView {
 
         receiveScrollPane.setName("receiveScrollPane"); // NOI18N
 
+        receiveTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         receiveTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -149,7 +151,7 @@ public class TrafficGeneratorMain extends FrameView {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
