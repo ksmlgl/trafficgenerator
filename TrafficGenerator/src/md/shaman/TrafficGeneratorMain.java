@@ -19,6 +19,7 @@ public class TrafficGeneratorMain extends FrameView {
         super(app);
         initComponents();
         getFrame().setIconImages(PNGPacket.NetworkUtility.getImages());
+       
     }
 
     @Action
@@ -55,6 +56,12 @@ public class TrafficGeneratorMain extends FrameView {
         exitMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem1 = new javax.swing.JMenuItem();
+        componentPanel = new javax.swing.JPanel();
+        sendScrollPane = new javax.swing.JScrollPane();
+        sendTable = new javax.swing.JTable();
+        receiveScrollPane = new javax.swing.JScrollPane();
+        receiveTable = new javax.swing.JTable();
+        statusPanel = new javax.swing.JPanel();
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -64,7 +71,6 @@ public class TrafficGeneratorMain extends FrameView {
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(md.shaman.TrafficGeneratorApp.class).getContext().getActionMap(TrafficGeneratorMain.class, this);
         systemPreferencesMenuItem.setAction(actionMap.get("showSystemPreference")); // NOI18N
-        systemPreferencesMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         systemPreferencesMenuItem.setIcon(resourceMap.getIcon("systemPreferencesMenuItem.icon")); // NOI18N
         systemPreferencesMenuItem.setText(resourceMap.getString("systemPreferencesMenuItem.text")); // NOI18N
         systemPreferencesMenuItem.setName("systemPreferencesMenuItem"); // NOI18N
@@ -90,15 +96,100 @@ public class TrafficGeneratorMain extends FrameView {
 
         menuBar.add(helpMenu);
 
+        componentPanel.setName("componentPanel"); // NOI18N
+        componentPanel.setLayout(new java.awt.GridLayout());
+
+        sendScrollPane.setName("sendScrollPane"); // NOI18N
+
+        sendTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "PID", "Protocol", "IP:Port", "NIC:Port", "Progress", "Speed"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        sendTable.setName("sendTable"); // NOI18N
+        sendScrollPane.setViewportView(sendTable);
+        sendTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("sendTable.columnModel.title0")); // NOI18N
+        sendTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("sendTable.columnModel.title1")); // NOI18N
+        sendTable.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("sendTable.columnModel.title2")); // NOI18N
+        sendTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("sendTable.columnModel.title3")); // NOI18N
+        sendTable.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("sendTable.columnModel.title4")); // NOI18N
+        sendTable.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("sendTable.columnModel.title5")); // NOI18N
+
+        componentPanel.add(sendScrollPane);
+
+        receiveScrollPane.setName("receiveScrollPane"); // NOI18N
+
+        receiveTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "PID", "Protocol", "IP:Port", "NIC:Port", "Progress", "Speed"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        receiveTable.setName("receiveTable"); // NOI18N
+        receiveScrollPane.setViewportView(receiveTable);
+        receiveTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("receiveTable.columnModel.title0")); // NOI18N
+        receiveTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("receiveTable.columnModel.title1")); // NOI18N
+        receiveTable.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("receiveTable.columnModel.title2")); // NOI18N
+        receiveTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("receiveTable.columnModel.title3")); // NOI18N
+        receiveTable.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("receiveTable.columnModel.title4")); // NOI18N
+        receiveTable.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("receiveTable.columnModel.title5")); // NOI18N
+
+        componentPanel.add(receiveScrollPane);
+
+        statusPanel.setName("statusPanel"); // NOI18N
+
+        setComponent(componentPanel);
         setMenuBar(menuBar);
+        setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem1;
+    private javax.swing.JPanel componentPanel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JScrollPane receiveScrollPane;
+    private javax.swing.JTable receiveTable;
+    private javax.swing.JScrollPane sendScrollPane;
+    private javax.swing.JTable sendTable;
+    private javax.swing.JPanel statusPanel;
     private javax.swing.JMenuItem systemPreferencesMenuItem;
     // End of variables declaration//GEN-END:variables
     private JDialog aboutBox;
