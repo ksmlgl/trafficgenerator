@@ -9,6 +9,7 @@ import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import md.shaman.resources.icons.PNGPacket;
+import md.shaman.resources.icons.FilterCellRenderer;
 
 /**
  * The application's main frame.
@@ -19,7 +20,7 @@ public class TrafficGeneratorMain extends FrameView {
         super(app);
         initComponents();
         getFrame().setIconImages(PNGPacket.NetworkUtility.getImages());
-       
+        jList1.setCellRenderer(new FilterCellRenderer());
     }
 
     @Action
@@ -57,11 +58,18 @@ public class TrafficGeneratorMain extends FrameView {
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem1 = new javax.swing.JMenuItem();
         componentPanel = new javax.swing.JPanel();
-        sendScrollPane = new javax.swing.JScrollPane();
-        sendTable = new javax.swing.JTable();
-        receiveScrollPane = new javax.swing.JScrollPane();
-        receiveTable = new javax.swing.JTable();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jSplitPane2 = new javax.swing.JSplitPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        tabbedPane = new javax.swing.JTabbedPane();
+        generalPanel = new javax.swing.JPanel();
+        graphPanel = new javax.swing.JPanel();
+        logPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
         statusPanel = new javax.swing.JPanel();
+        toolBar = new javax.swing.JToolBar();
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -99,19 +107,27 @@ public class TrafficGeneratorMain extends FrameView {
         componentPanel.setName("componentPanel"); // NOI18N
         componentPanel.setLayout(new java.awt.GridLayout(1, 0));
 
-        sendScrollPane.setName("sendScrollPane"); // NOI18N
+        jSplitPane1.setDividerLocation(50);
+        jSplitPane1.setName("jSplitPane1"); // NOI18N
 
-        sendTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        sendTable.setModel(new javax.swing.table.DefaultTableModel(
+        jSplitPane2.setDividerLocation(200);
+        jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        jSplitPane2.setName("jSplitPane2"); // NOI18N
+
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "PID", "Protocol", "IP:Port", "NIC:Port", "Progress", "Speed"
+                "PID", "ProtocolType", "IP:Port", "NIC:Port", "Progress", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Long.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -125,74 +141,81 @@ public class TrafficGeneratorMain extends FrameView {
                 return canEdit [columnIndex];
             }
         });
-        sendTable.setName("sendTable"); // NOI18N
-        sendScrollPane.setViewportView(sendTable);
-        sendTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("sendTable.columnModel.title0")); // NOI18N
-        sendTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("sendTable.columnModel.title1")); // NOI18N
-        sendTable.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("sendTable.columnModel.title2")); // NOI18N
-        sendTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("sendTable.columnModel.title3")); // NOI18N
-        sendTable.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("sendTable.columnModel.title4")); // NOI18N
-        sendTable.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("sendTable.columnModel.title5")); // NOI18N
+        jTable1.setName("jTable1"); // NOI18N
+        jTable1.setShowHorizontalLines(false);
+        jTable1.setShowVerticalLines(false);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jTable1);
+        jTable1.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("jTable1.columnModel.title0")); // NOI18N
+        jTable1.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("jTable1.columnModel.title1")); // NOI18N
+        jTable1.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("jTable1.columnModel.title2")); // NOI18N
+        jTable1.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("jTable1.columnModel.title3")); // NOI18N
+        jTable1.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("jTable1.columnModel.title4")); // NOI18N
+        jTable1.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("jTable1.columnModel.title5")); // NOI18N
 
-        componentPanel.add(sendScrollPane);
+        jSplitPane2.setTopComponent(jScrollPane2);
 
-        receiveScrollPane.setName("receiveScrollPane"); // NOI18N
+        tabbedPane.setName("tabbedPane"); // NOI18N
 
-        receiveTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        receiveTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        generalPanel.setName("generalPanel"); // NOI18N
+        tabbedPane.addTab(resourceMap.getString("generalPanel.TabConstraints.tabTitle"), generalPanel); // NOI18N
 
-            },
-            new String [] {
-                "PID", "Protocol", "IP:Port", "NIC:Port", "Progress", "Speed"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
+        graphPanel.setName("graphPanel"); // NOI18N
+        tabbedPane.addTab(resourceMap.getString("graphPanel.TabConstraints.tabTitle"), graphPanel); // NOI18N
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
+        logPanel.setName("logPanel"); // NOI18N
+        tabbedPane.addTab(resourceMap.getString("logPanel.TabConstraints.tabTitle"), logPanel); // NOI18N
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
+        jSplitPane2.setRightComponent(tabbedPane);
+
+        jSplitPane1.setRightComponent(jSplitPane2);
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "---", "Item 3", "Item 4", "Item 5", "1234567890000" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
-        receiveTable.setName("receiveTable"); // NOI18N
-        receiveScrollPane.setViewportView(receiveTable);
-        receiveTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("receiveTable.columnModel.title0")); // NOI18N
-        receiveTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("receiveTable.columnModel.title1")); // NOI18N
-        receiveTable.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("receiveTable.columnModel.title2")); // NOI18N
-        receiveTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("receiveTable.columnModel.title3")); // NOI18N
-        receiveTable.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("receiveTable.columnModel.title4")); // NOI18N
-        receiveTable.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("receiveTable.columnModel.title5")); // NOI18N
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.setName("jList1"); // NOI18N
+        jScrollPane1.setViewportView(jList1);
 
-        componentPanel.add(receiveScrollPane);
+        jSplitPane1.setLeftComponent(jScrollPane1);
+
+        componentPanel.add(jSplitPane1);
 
         statusPanel.setName("statusPanel"); // NOI18N
+
+        toolBar.setRollover(true);
+        toolBar.setName("toolBar"); // NOI18N
 
         setComponent(componentPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
+        setToolBar(toolBar);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem1;
     private javax.swing.JPanel componentPanel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JPanel generalPanel;
+    private javax.swing.JPanel graphPanel;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JList jList1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JPanel logPanel;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JScrollPane receiveScrollPane;
-    private javax.swing.JTable receiveTable;
-    private javax.swing.JScrollPane sendScrollPane;
-    private javax.swing.JTable sendTable;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JMenuItem systemPreferencesMenuItem;
+    private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JToolBar toolBar;
     // End of variables declaration//GEN-END:variables
     private JDialog aboutBox;
     private JDialog preference;
