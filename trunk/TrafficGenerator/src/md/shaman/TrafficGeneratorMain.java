@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import md.shaman.resources.icons.PNGPacket;
 import md.shaman.resources.icons.FilterCellRenderer;
@@ -227,7 +228,11 @@ public class TrafficGeneratorMain extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void filterTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_filterTreeValueChanged
-        System.out.println(filterTree.getSelectionPath());
+        TreePath tp = filterTree.getSelectionPath();
+        if(tp.getPathCount() == 2 && tp.getLastPathComponent().equals("ALL"))
+        {
+        }
+        System.out.println(tp.getLastPathComponent());
     }//GEN-LAST:event_filterTreeValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
