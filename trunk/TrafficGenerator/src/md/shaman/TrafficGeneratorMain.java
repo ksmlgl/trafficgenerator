@@ -3,11 +3,15 @@
  */
 package md.shaman;
 
+import java.lang.Object;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.RowFilter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import md.shaman.resources.icons.PNGPacket;
 import md.shaman.resources.icons.FilterCellRenderer;
 
@@ -20,7 +24,7 @@ public class TrafficGeneratorMain extends FrameView {
         super(app);
         initComponents();
         getFrame().setIconImages(PNGPacket.NetworkUtility.getImages());
-        jList1.setCellRenderer(new FilterCellRenderer());
+        filterList.setCellRenderer(new FilterCellRenderer());
     }
 
     @Action
@@ -61,13 +65,13 @@ public class TrafficGeneratorMain extends FrameView {
         jSplitPane1 = new javax.swing.JSplitPane();
         jSplitPane2 = new javax.swing.JSplitPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        processTable = new javax.swing.JTable();
         tabbedPane = new javax.swing.JTabbedPane();
         generalPanel = new javax.swing.JPanel();
         graphPanel = new javax.swing.JPanel();
         logPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        filterList = new javax.swing.JList();
         statusPanel = new javax.swing.JPanel();
         toolBar = new javax.swing.JToolBar();
 
@@ -116,42 +120,39 @@ public class TrafficGeneratorMain extends FrameView {
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        processTable.setAutoCreateRowSorter(true);
+        processTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {new Long(1), "TCP", "192.168.1.1", "192.168.1.2", "95 %", "NEW"},
+                {new Long(2), "UDP", "192.168.1.1", "192.168.1.2", "4 %", "RUNNABLE"},
+                {new Long(3), "Multicast", "192.168.1.1", "192.168.1.2", "1 %", "TERMINATED"}
             },
             new String [] {
                 "PID", "ProtocolType", "IP:Port", "NIC:Port", "Progress", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
         });
-        jTable1.setName("jTable1"); // NOI18N
-        jTable1.setShowHorizontalLines(false);
-        jTable1.setShowVerticalLines(false);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("jTable1.columnModel.title0")); // NOI18N
-        jTable1.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("jTable1.columnModel.title1")); // NOI18N
-        jTable1.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("jTable1.columnModel.title2")); // NOI18N
-        jTable1.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("jTable1.columnModel.title3")); // NOI18N
-        jTable1.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("jTable1.columnModel.title4")); // NOI18N
-        jTable1.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("jTable1.columnModel.title5")); // NOI18N
+        processTable.setName("processTable"); // NOI18N
+        processTable.setShowHorizontalLines(false);
+        processTable.setShowVerticalLines(false);
+        processTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(processTable);
+        processTable.getColumnModel().getColumn(0).setMinWidth(35);
+        processTable.getColumnModel().getColumn(0).setPreferredWidth(35);
+        processTable.getColumnModel().getColumn(0).setMaxWidth(50);
+        processTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("processTable.columnModel.title0")); // NOI18N
+        processTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("processTable.columnModel.title1")); // NOI18N
+        processTable.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("processTable.columnModel.title2")); // NOI18N
+        processTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("processTable.columnModel.title3")); // NOI18N
+        processTable.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("processTable.columnModel.title4")); // NOI18N
+        processTable.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("processTable.columnModel.title5")); // NOI18N
 
         jSplitPane2.setTopComponent(jScrollPane2);
 
@@ -170,16 +171,22 @@ public class TrafficGeneratorMain extends FrameView {
 
         jSplitPane1.setRightComponent(jSplitPane2);
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "---", "Item 3", "Item 4", "Item 5", "1234567890000" };
+        filterList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "ALL", "NEW", "RUNNABLE", "BLOCKED", "WAITING", "TIMED_WAITING", "TERMINATED" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jList1.setName("jList1"); // NOI18N
-        jScrollPane1.setViewportView(jList1);
+        filterList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        filterList.setName("filterList"); // NOI18N
+        filterList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                filterListValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(filterList);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
 
@@ -195,23 +202,37 @@ public class TrafficGeneratorMain extends FrameView {
         setStatusBar(statusPanel);
         setToolBar(toolBar);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void filterListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_filterListValueChanged
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(processTable.getModel());
+        RowFilter<TableModel, Object> rf = null;
+        //If current expression doesn't parse, don't update.
+        try {
+            rf = RowFilter.regexFilter(filterList.getSelectedValue().toString(), 5);
+        } catch (java.util.regex.PatternSyntaxException e) {
+            return;
+        }
+        sorter.setRowFilter(rf);
+        processTable.setRowSorter(sorter);
+}//GEN-LAST:event_filterListValueChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem1;
     private javax.swing.JPanel componentPanel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JList filterList;
     private javax.swing.JPanel generalPanel;
     private javax.swing.JPanel graphPanel;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel logPanel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JTable processTable;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JMenuItem systemPreferencesMenuItem;
     private javax.swing.JTabbedPane tabbedPane;

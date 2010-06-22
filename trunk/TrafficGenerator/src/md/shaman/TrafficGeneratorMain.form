@@ -109,53 +109,78 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable1">
+                    <Component class="javax.swing.JTable" name="processTable">
                       <Properties>
+                        <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="6" rowCount="3">
-                            <Column editable="false" title="PID" type="java.lang.Long"/>
-                            <Column editable="false" title="ProtocolType" type="java.lang.Integer"/>
-                            <Column editable="false" title="IP:Port" type="java.lang.String"/>
-                            <Column editable="false" title="NIC:Port" type="java.lang.String"/>
-                            <Column editable="false" title="Progress" type="java.lang.String"/>
-                            <Column editable="false" title="Status" type="java.lang.String"/>
+                            <Column editable="true" title="PID" type="java.lang.Long">
+                              <Data value="1"/>
+                              <Data value="2"/>
+                              <Data value="3"/>
+                            </Column>
+                            <Column editable="true" title="ProtocolType" type="java.lang.String">
+                              <Data value="TCP"/>
+                              <Data value="UDP"/>
+                              <Data value="Multicast"/>
+                            </Column>
+                            <Column editable="true" title="IP:Port" type="java.lang.String">
+                              <Data value="192.168.1.1"/>
+                              <Data value="192.168.1.1"/>
+                              <Data value="192.168.1.1"/>
+                            </Column>
+                            <Column editable="true" title="NIC:Port" type="java.lang.String">
+                              <Data value="192.168.1.2"/>
+                              <Data value="192.168.1.2"/>
+                              <Data value="192.168.1.2"/>
+                            </Column>
+                            <Column editable="true" title="Progress" type="java.lang.String">
+                              <Data value="95 %"/>
+                              <Data value="4 %"/>
+                              <Data value="1 %"/>
+                            </Column>
+                            <Column editable="true" title="Status" type="java.lang.String">
+                              <Data value="NEW"/>
+                              <Data value="RUNNABLE"/>
+                              <Data value="TERMINATED"/>
+                            </Column>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title resourceKey="jTable1.columnModel.title0"/>
+                            <Column maxWidth="50" minWidth="35" prefWidth="35" resizable="true">
+                              <Title resourceKey="processTable.columnModel.title0"/>
                               <Editor/>
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title resourceKey="jTable1.columnModel.title1"/>
+                              <Title resourceKey="processTable.columnModel.title1"/>
                               <Editor/>
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title resourceKey="jTable1.columnModel.title2"/>
+                              <Title resourceKey="processTable.columnModel.title2"/>
                               <Editor/>
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title resourceKey="jTable1.columnModel.title3"/>
+                              <Title resourceKey="processTable.columnModel.title3"/>
                               <Editor/>
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title resourceKey="jTable1.columnModel.title4"/>
+                              <Title resourceKey="processTable.columnModel.title4"/>
                               <Editor/>
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title resourceKey="jTable1.columnModel.title5"/>
+                              <Title resourceKey="processTable.columnModel.title5"/>
                               <Editor/>
                               <Renderer/>
                             </Column>
                           </TableColumnModel>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="jTable1" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="processTable" noResource="true"/>
                         <Property name="showHorizontalLines" type="boolean" value="false"/>
                         <Property name="showVerticalLines" type="boolean" value="false"/>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -225,6 +250,7 @@
             </Container>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <Properties>
+                <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                 <Property name="name" type="java.lang.String" value="jScrollPane1" noResource="true"/>
               </Properties>
               <AuxValues>
@@ -238,22 +264,25 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JList" name="jList1">
+                <Component class="javax.swing.JList" name="filterList">
                   <Properties>
                     <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                       <StringArray count="7">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="---"/>
-                        <StringItem index="3" value="Item 3"/>
-                        <StringItem index="4" value="Item 4"/>
-                        <StringItem index="5" value="Item 5"/>
-                        <StringItem index="6" value="1234567890000"/>
+                        <StringItem index="0" value="ALL"/>
+                        <StringItem index="1" value="NEW"/>
+                        <StringItem index="2" value="RUNNABLE"/>
+                        <StringItem index="3" value="BLOCKED"/>
+                        <StringItem index="4" value="WAITING"/>
+                        <StringItem index="5" value="TIMED_WAITING"/>
+                        <StringItem index="6" value="TERMINATED"/>
                       </StringArray>
                     </Property>
                     <Property name="selectionMode" type="int" value="0"/>
-                    <Property name="name" type="java.lang.String" value="jList1" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="filterList" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="filterListValueChanged"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
