@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.tree.TreeSelectionModel;
 import md.shaman.resources.icons.PNGPacket;
 import md.shaman.resources.icons.FilterCellRenderer;
 
@@ -24,7 +25,7 @@ public class TrafficGeneratorMain extends FrameView {
         super(app);
         initComponents();
         getFrame().setIconImages(PNGPacket.NetworkUtility.getImages());
-        filterList.setCellRenderer(new FilterCellRenderer());
+        //filterList.setCellRenderer(new FilterCellRenderer());
     }
 
     @Action
@@ -71,7 +72,7 @@ public class TrafficGeneratorMain extends FrameView {
         graphPanel = new javax.swing.JPanel();
         logPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        filterList = new javax.swing.JList();
+        filterTree = new javax.swing.JTree();
         statusPanel = new javax.swing.JPanel();
         toolBar = new javax.swing.JToolBar();
 
@@ -125,7 +126,7 @@ public class TrafficGeneratorMain extends FrameView {
             new Object [][] {
                 {new Long(1), "TCP", "192.168.1.1", "192.168.1.2", "95 %", "NEW"},
                 {new Long(2), "UDP", "192.168.1.1", "192.168.1.2", "4 %", "RUNNABLE"},
-                {new Long(3), "Multicast", "192.168.1.1", "192.168.1.2", "1 %", "TERMINATED"}
+                {new Long(3), "MULTICAST", "192.168.1.1", "192.168.1.2", "1 %", "TERMINATED"}
             },
             new String [] {
                 "PID", "ProtocolType", "IP:Port", "NIC:Port", "Progress", "Status"
@@ -174,19 +175,41 @@ public class TrafficGeneratorMain extends FrameView {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        filterList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "ALL", "NEW", "RUNNABLE", "BLOCKED", "WAITING", "TIMED_WAITING", "TERMINATED" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        filterList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        filterList.setName("filterList"); // NOI18N
-        filterList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                filterListValueChanged(evt);
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("ALL");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("STATUS");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("NEW");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("RUNNABLE");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("BLOCKED");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("WAITING");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("TIMED_WAITING");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("TERMINATED");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("PROTOCOL");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("TCP");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("UDP");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("MULTICAST");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        filterTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        filterTree.setName("filterTree"); // NOI18N
+        filterTree.setRootVisible(false);
+        filterTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        filterTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                filterTreeValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(filterList);
+        jScrollPane1.setViewportView(filterTree);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
 
@@ -203,25 +226,16 @@ public class TrafficGeneratorMain extends FrameView {
         setToolBar(toolBar);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void filterListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_filterListValueChanged
-        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(processTable.getModel());
-        RowFilter<TableModel, Object> rf = null;
-        //If current expression doesn't parse, don't update.
-        try {
-            rf = RowFilter.regexFilter(filterList.getSelectedValue().toString(), 5);
-        } catch (java.util.regex.PatternSyntaxException e) {
-            return;
-        }
-        sorter.setRowFilter(rf);
-        processTable.setRowSorter(sorter);
-}//GEN-LAST:event_filterListValueChanged
+    private void filterTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_filterTreeValueChanged
+        System.out.println(filterTree.getSelectionPath());
+    }//GEN-LAST:event_filterTreeValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem1;
     private javax.swing.JPanel componentPanel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JList filterList;
+    private javax.swing.JTree filterTree;
     private javax.swing.JPanel generalPanel;
     private javax.swing.JPanel graphPanel;
     private javax.swing.JMenu helpMenu;
