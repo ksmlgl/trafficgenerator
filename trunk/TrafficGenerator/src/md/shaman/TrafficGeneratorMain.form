@@ -295,11 +295,23 @@
     </Container>
     <Container class="javax.swing.JToolBar" name="toolBar">
       <Properties>
+        <Property name="floatable" type="boolean" value="false"/>
         <Property name="rollover" type="boolean" value="true"/>
         <Property name="name" type="java.lang.String" value="toolBar" noResource="true"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="addButton">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="addButton.icon"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="addButton.toolTipText"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="label" type="java.lang.String" resourceKey="addButton.label"/>
+            <Property name="name" type="java.lang.String" value="addButton" noResource="true"/>
+          </Properties>
+        </Component>
+      </SubComponents>
     </Container>
   </NonVisualComponents>
   <Properties>

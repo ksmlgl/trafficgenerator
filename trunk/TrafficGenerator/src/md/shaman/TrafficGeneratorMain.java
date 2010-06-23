@@ -77,6 +77,7 @@ public class TrafficGeneratorMain extends FrameView {
         filterTree = new javax.swing.JTree();
         statusPanel = new javax.swing.JPanel();
         toolBar = new javax.swing.JToolBar();
+        addButton = new javax.swing.JButton();
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -219,8 +220,16 @@ public class TrafficGeneratorMain extends FrameView {
 
         statusPanel.setName("statusPanel"); // NOI18N
 
+        toolBar.setFloatable(false);
         toolBar.setRollover(true);
         toolBar.setName("toolBar"); // NOI18N
+
+        addButton.setIcon(resourceMap.getIcon("addButton.icon")); // NOI18N
+        addButton.setToolTipText(resourceMap.getString("addButton.toolTipText")); // NOI18N
+        addButton.setFocusable(false);
+        addButton.setLabel(resourceMap.getString("addButton.label")); // NOI18N
+        addButton.setName("addButton"); // NOI18N
+        toolBar.add(addButton);
 
         setComponent(componentPanel);
         setMenuBar(menuBar);
@@ -265,6 +274,7 @@ public class TrafficGeneratorMain extends FrameView {
     }//GEN-LAST:event_filterTreeValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem1;
+    private javax.swing.JButton addButton;
     private javax.swing.JPanel componentPanel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
