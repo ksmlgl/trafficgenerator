@@ -4,6 +4,7 @@
 package md.shaman;
 
 import java.lang.Object;
+import java.lang.Thread.State;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
@@ -14,8 +15,8 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
+import md.shaman.protocols.Protocol;
 import md.shaman.resources.icons.PNGPacket;
-import md.shaman.resources.icons.FilterCellRenderer;
 
 /**
  * The application's main frame.
@@ -229,12 +230,39 @@ public class TrafficGeneratorMain extends FrameView {
 
     private void filterTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_filterTreeValueChanged
         TreePath tp = filterTree.getSelectionPath();
-        if(tp.getPathCount() == 2 && tp.getLastPathComponent().equals("ALL"))
-        {
-        }
-        System.out.println(tp.getLastPathComponent());
-    }//GEN-LAST:event_filterTreeValueChanged
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(processTable.getModel());
+        RowFilter<TableModel, Object> rf = null;
+        
+        //If current expression doesn't parse, don't update.
+        if (tp.getPathCount() == 2 && tp.getLastPathComponent().toString().equals("ALL")) {
+            //processTable.setRowSorter(null);
+            //return;
+        }else if(tp.getPathCount() == 3){
+            if(tp.getPathComponent(1).toString().equals("STATUS"))
+            {
+                switch(Thread.State.valueOf(tp.getLastPathComponent().toString()))
+                {
+                    case NEW: rf = RowFilter.regexFilter(Thread.State.NEW.toString(), 5); break;
+                    case RUNNABLE: rf = RowFilter.regexFilter(Thread.State.RUNNABLE.toString(), 5);break;
+                    case BLOCKED: rf = RowFilter.regexFilter(Thread.State.BLOCKED.toString(), 5);break;
+                    case WAITING: rf = RowFilter.regexFilter(Thread.State.WAITING.toString(), 5);break;
+                    case TIMED_WAITING: rf = RowFilter.regexFilter(Thread.State.TIMED_WAITING.toString(), 5);break;
+                    case TERMINATED: rf = RowFilter.regexFilter(Thread.State.TERMINATED.toString(), 5);break;
+                }
+            }else if (tp.getPathComponent(1).toString().equals("PROTOCOL"))
+            {
+                switch(Protocol.ProtocolType.valueOf(tp.getLastPathComponent().toString()))
+                {
+                    case UDP: rf = RowFilter.regexFilter(Protocol.ProtocolType.UDP.toString(), 1); break;
+                    case TCP: rf = RowFilter.regexFilter(Protocol.ProtocolType.TCP.toString(), 1);break;
+                    case MULTICAST: rf = RowFilter.regexFilter(Protocol.ProtocolType.MULTICAST.toString(), 1);break;
+                }
+            }
 
+        }
+        sorter.setRowFilter(rf);
+        processTable.setRowSorter(sorter);
+    }//GEN-LAST:event_filterTreeValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem1;
     private javax.swing.JPanel componentPanel;
