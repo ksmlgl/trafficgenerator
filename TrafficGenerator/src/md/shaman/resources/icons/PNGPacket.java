@@ -7,10 +7,10 @@ import javax.swing.ImageIcon;
 
 public class PNGPacket {
 
-    public static PNGPacket NetworkUtility = new PNGPacket("NetworkUtility");
-    public static PNGPacket iSync = new PNGPacket("iSync");
-    public static PNGPacket SystemPreferences = new PNGPacket("SystemPreferences");
-
+    public static PNGPacket Network = new PNGPacket("network");
+    public static PNGPacket Plus = new PNGPacket("plus");
+    public static PNGPacket Settings = new PNGPacket("settings");
+    public static PNGPacket Info = new PNGPacket("info");
     
     private List<ImageIcon> images = new LinkedList<ImageIcon>();
 
@@ -38,24 +38,19 @@ public class PNGPacket {
         return images.get(2);
     }
 
-    public ImageIcon getX128() {
+    public ImageIcon getX64() {
         return images.get(3);
-    }
-
-    public ImageIcon getX256() {
-        return images.get(4);
     }
 
     public PNGPacket(final String name) {
         images.add(new ImageIcon(PNGPacket.class.getResource(name + "_16.png")));
         images.add(new ImageIcon(PNGPacket.class.getResource(name + "_32.png")));
         images.add(new ImageIcon(PNGPacket.class.getResource(name + "_48.png")));
-        images.add(new ImageIcon(PNGPacket.class.getResource(name + "_128.png")));
-        images.add(new ImageIcon(PNGPacket.class.getResource(name + "_256.png")));
+        images.add(new ImageIcon(PNGPacket.class.getResource(name + "_64.png")));
     }
 
     public static void main(String[] args) {
-        PNGPacket pp = PNGPacket.NetworkUtility;
+        PNGPacket pp = PNGPacket.Network;
         for (ImageIcon img : pp.getImageIcons()) {
             System.out.println(img.getIconHeight());
         }

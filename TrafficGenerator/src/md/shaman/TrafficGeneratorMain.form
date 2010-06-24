@@ -54,6 +54,7 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="md.shaman.TrafficGeneratorMain" id="showAboutBox" methodName="showAboutBox"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="aboutMenuItem1.icon"/>
                 <Property name="text" type="java.lang.String" resourceKey="aboutMenuItem1.text"/>
                 <Property name="name" type="java.lang.String" value="aboutMenuItem1" noResource="true"/>
               </Properties>

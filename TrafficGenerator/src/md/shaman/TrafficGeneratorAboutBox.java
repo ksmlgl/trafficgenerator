@@ -4,6 +4,7 @@
 
 package md.shaman;
 
+import md.shaman.resources.icons.PNGPacket;
 import org.jdesktop.application.Action;
 
 public class TrafficGeneratorAboutBox extends javax.swing.JDialog {
@@ -33,11 +34,11 @@ public class TrafficGeneratorAboutBox extends javax.swing.JDialog {
         javax.swing.JLabel homepageLabel = new javax.swing.JLabel();
         javax.swing.JLabel appHomepageLabel = new javax.swing.JLabel();
         javax.swing.JLabel appDescLabel = new javax.swing.JLabel();
-        imgLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(md.shaman.TrafficGeneratorApp.class).getContext().getResourceMap(TrafficGeneratorAboutBox.class);
         setTitle(resourceMap.getString("title")); // NOI18N
+        setIconImages(PNGPacket.Info.getImages());
         setModal(true);
         setName("aboutBox"); // NOI18N
         setResizable(false);
@@ -67,17 +68,12 @@ public class TrafficGeneratorAboutBox extends javax.swing.JDialog {
         appDescLabel.setText(resourceMap.getString("appDescLabel.text")); // NOI18N
         appDescLabel.setName("appDescLabel"); // NOI18N
 
-        imgLabel.setIcon(resourceMap.getIcon("imgLabel.icon")); // NOI18N
-        imgLabel.setText(resourceMap.getString("imgLabel.text")); // NOI18N
-        imgLabel.setName("imgLabel"); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(imgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(148, 148, 148)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(versionLabel)
@@ -108,10 +104,9 @@ public class TrafficGeneratorAboutBox extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(homepageLabel)
                     .addComponent(appHomepageLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(closeButton)
                 .addContainerGap())
-            .addComponent(imgLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
         );
 
         pack();
@@ -119,7 +114,6 @@ public class TrafficGeneratorAboutBox extends javax.swing.JDialog {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
-    private javax.swing.JLabel imgLabel;
     // End of variables declaration//GEN-END:variables
     
 }

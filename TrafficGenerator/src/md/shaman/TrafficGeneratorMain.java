@@ -3,8 +3,6 @@
  */
 package md.shaman;
 
-import java.lang.Object;
-import java.lang.Thread.State;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
@@ -26,7 +24,7 @@ public class TrafficGeneratorMain extends FrameView {
     public TrafficGeneratorMain(SingleFrameApplication app) {
         super(app);
         initComponents();
-        getFrame().setIconImages(PNGPacket.NetworkUtility.getImages());
+        getFrame().setIconImages(PNGPacket.Network.getImages());
         //filterList.setCellRenderer(new FilterCellRenderer());
     }
 
@@ -106,6 +104,7 @@ public class TrafficGeneratorMain extends FrameView {
         helpMenu.setName("helpMenu"); // NOI18N
 
         aboutMenuItem1.setAction(actionMap.get("showAboutBox")); // NOI18N
+        aboutMenuItem1.setIcon(resourceMap.getIcon("aboutMenuItem1.icon")); // NOI18N
         aboutMenuItem1.setText(resourceMap.getString("aboutMenuItem1.text")); // NOI18N
         aboutMenuItem1.setName("aboutMenuItem1"); // NOI18N
         helpMenu.add(aboutMenuItem1);
