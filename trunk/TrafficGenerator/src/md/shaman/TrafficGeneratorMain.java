@@ -76,6 +76,10 @@ public class TrafficGeneratorMain extends FrameView {
         statusPanel = new javax.swing.JPanel();
         toolBar = new javax.swing.JToolBar();
         addButton = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        playButton = new javax.swing.JButton();
+        pauseButton = new javax.swing.JButton();
+        stopButton = new javax.swing.JButton();
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -162,13 +166,13 @@ public class TrafficGeneratorMain extends FrameView {
         tabbedPane.setName("tabbedPane"); // NOI18N
 
         generalPanel.setName("generalPanel"); // NOI18N
-        tabbedPane.addTab(resourceMap.getString("generalPanel.TabConstraints.tabTitle"), generalPanel); // NOI18N
+        tabbedPane.addTab(resourceMap.getString("generalPanel.TabConstraints.tabTitle"), resourceMap.getIcon("generalPanel.TabConstraints.tabIcon"), generalPanel, resourceMap.getString("generalPanel.TabConstraints.tabToolTip")); // NOI18N
 
         graphPanel.setName("graphPanel"); // NOI18N
-        tabbedPane.addTab(resourceMap.getString("graphPanel.TabConstraints.tabTitle"), graphPanel); // NOI18N
+        tabbedPane.addTab(resourceMap.getString("graphPanel.TabConstraints.tabTitle"), resourceMap.getIcon("graphPanel.TabConstraints.tabIcon"), graphPanel, resourceMap.getString("graphPanel.TabConstraints.tabToolTip")); // NOI18N
 
         logPanel.setName("logPanel"); // NOI18N
-        tabbedPane.addTab(resourceMap.getString("logPanel.TabConstraints.tabTitle"), logPanel); // NOI18N
+        tabbedPane.addTab(resourceMap.getString("logPanel.TabConstraints.tabTitle"), resourceMap.getIcon("logPanel.TabConstraints.tabIcon"), logPanel, resourceMap.getString("logPanel.TabConstraints.tabToolTip")); // NOI18N
 
         jSplitPane2.setRightComponent(tabbedPane);
 
@@ -202,6 +206,8 @@ public class TrafficGeneratorMain extends FrameView {
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("MULTICAST");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("LABEL");
+        treeNode1.add(treeNode2);
         filterTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         filterTree.setName("filterTree"); // NOI18N
         filterTree.setRootVisible(false);
@@ -229,6 +235,36 @@ public class TrafficGeneratorMain extends FrameView {
         addButton.setLabel(resourceMap.getString("addButton.label")); // NOI18N
         addButton.setName("addButton"); // NOI18N
         toolBar.add(addButton);
+
+        jSeparator2.setName("jSeparator2"); // NOI18N
+        toolBar.add(jSeparator2);
+
+        playButton.setIcon(resourceMap.getIcon("playButton.icon")); // NOI18N
+        playButton.setText(resourceMap.getString("playButton.text")); // NOI18N
+        playButton.setToolTipText(resourceMap.getString("playButton.toolTipText")); // NOI18N
+        playButton.setFocusable(false);
+        playButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        playButton.setName("playButton"); // NOI18N
+        playButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        toolBar.add(playButton);
+
+        pauseButton.setIcon(resourceMap.getIcon("pauseButton.icon")); // NOI18N
+        pauseButton.setText(resourceMap.getString("pauseButton.text")); // NOI18N
+        pauseButton.setToolTipText(resourceMap.getString("pauseButton.toolTipText")); // NOI18N
+        pauseButton.setFocusable(false);
+        pauseButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pauseButton.setName("pauseButton"); // NOI18N
+        pauseButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        toolBar.add(pauseButton);
+
+        stopButton.setIcon(resourceMap.getIcon("stopButton.icon")); // NOI18N
+        stopButton.setText(resourceMap.getString("stopButton.text")); // NOI18N
+        stopButton.setToolTipText(resourceMap.getString("stopButton.toolTipText")); // NOI18N
+        stopButton.setFocusable(false);
+        stopButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        stopButton.setName("stopButton"); // NOI18N
+        stopButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        toolBar.add(stopButton);
 
         setComponent(componentPanel);
         setMenuBar(menuBar);
@@ -284,12 +320,16 @@ public class TrafficGeneratorMain extends FrameView {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JPanel logPanel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JButton pauseButton;
+    private javax.swing.JButton playButton;
     private javax.swing.JTable processTable;
     private javax.swing.JPanel statusPanel;
+    private javax.swing.JButton stopButton;
     private javax.swing.JMenuItem systemPreferencesMenuItem;
     private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JToolBar toolBar;
