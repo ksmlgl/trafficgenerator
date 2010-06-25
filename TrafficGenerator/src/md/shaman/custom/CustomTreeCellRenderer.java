@@ -33,9 +33,9 @@ public class CustomTreeCellRenderer extends DefaultTreeCellRenderer {
 // TCP
 // UDP
 // MULTICAST
-            put("ALL", PNGPacket.Network.getX16());
-            put("LABEL", PNGPacket.Label.getX16());
-            put("NO LABEL", PNGPacket.LabelDisabled.getX16());
+            //put("ALL", PNGPacket.Network.getX16());
+            //put("LABEL", PNGPacket.Label.getX16());
+            //put("NO LABEL", PNGPacket.LabelDisabled.getX16());
         }
     };
 

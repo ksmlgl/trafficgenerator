@@ -51,7 +51,7 @@ public class TrafficGeneratorSystemPreference extends javax.swing.JDialog {
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(md.shaman.TrafficGeneratorApp.class).getContext().getResourceMap(TrafficGeneratorSystemPreference.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setIconImages(PNGPacket.Settings.getImages());
+        setIconImages(PNGPacket.Preferences.getImages());
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setName("Form"); // NOI18N
         setResizable(false);

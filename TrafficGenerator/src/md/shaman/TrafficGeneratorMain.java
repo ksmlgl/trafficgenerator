@@ -14,7 +14,6 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import md.shaman.custom.CustomTreeCellRenderer;
-import md.shaman.protocols.Protocol;
 import md.shaman.resources.icons.PNGPacket;
 
 /**
@@ -26,7 +25,6 @@ public class TrafficGeneratorMain extends FrameView {
         super(app);
         initComponents();
         getFrame().setIconImages(PNGPacket.Network.getImages());
-        //filterList.setCellRenderer(new FilterCellRenderer());
     }
 
     @Action
@@ -99,6 +97,7 @@ public class TrafficGeneratorMain extends FrameView {
         fileMenu.add(jSeparator1);
 
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
+        exitMenuItem.setIcon(resourceMap.getIcon("exitMenuItem.icon")); // NOI18N
         exitMenuItem.setText(resourceMap.getString("exitMenuItem.text")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
