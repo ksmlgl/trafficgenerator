@@ -6,13 +6,11 @@ import java.util.List;
 import javax.swing.ImageIcon;
 
 public class PNGPacket {
-
-    public static PNGPacket Network = new PNGPacket("network");
-    public static PNGPacket Plus = new PNGPacket("plus");
-    public static PNGPacket Settings = new PNGPacket("settings");
-    public static PNGPacket Info = new PNGPacket("info");
-    public static PNGPacket Label = new PNGPacket("label");
-    public static PNGPacket LabelDisabled = new PNGPacket("label_disabled");
+    String fileseparator = System.getProperty("file.separator");
+    public static PNGPacket Add = new PNGPacket("list-add");
+    public static PNGPacket Network = new PNGPacket("network-wired");
+    public static PNGPacket HelpAbout = new PNGPacket("help-about");
+    public static PNGPacket Preferences = new PNGPacket("preferences-system");
     
     private List<ImageIcon> images = new LinkedList<ImageIcon>();
 
@@ -40,19 +38,24 @@ public class PNGPacket {
         return images.get(2);
     }
 
-    public ImageIcon getX64() {
+    public ImageIcon getX72() {
+        return images.get(3);
+    }
+    
+    public ImageIcon getX128() {
         return images.get(3);
     }
 
     public PNGPacket(final String name) {
-        images.add(new ImageIcon(PNGPacket.class.getResource(name + "_16.png")));
-        images.add(new ImageIcon(PNGPacket.class.getResource(name + "_32.png")));
-        images.add(new ImageIcon(PNGPacket.class.getResource(name + "_48.png")));
-        images.add(new ImageIcon(PNGPacket.class.getResource(name + "_64.png")));
+        images.add(new ImageIcon(PNGPacket.class.getResource(fileseparator+"16"+fileseparator+name+".png")));
+        images.add(new ImageIcon(PNGPacket.class.getResource(fileseparator+"32"+fileseparator+name+".png")));
+        images.add(new ImageIcon(PNGPacket.class.getResource(fileseparator+"48"+fileseparator+name+".png")));
+        images.add(new ImageIcon(PNGPacket.class.getResource(fileseparator+"72"+fileseparator+name+".png")));
+        images.add(new ImageIcon(PNGPacket.class.getResource(fileseparator+"128"+fileseparator+name+".png")));
     }
 
     public static void main(String[] args) {
-        PNGPacket pp = PNGPacket.Network;
+        PNGPacket pp = PNGPacket.Add;
         for (ImageIcon img : pp.getImageIcons()) {
             System.out.println(img.getIconHeight());
         }
