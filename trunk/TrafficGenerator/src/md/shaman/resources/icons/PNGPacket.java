@@ -12,6 +12,7 @@ public class PNGPacket {
     public static PNGPacket Settings = new PNGPacket("settings");
     public static PNGPacket Info = new PNGPacket("info");
     public static PNGPacket Label = new PNGPacket("label");
+    public static PNGPacket LabelDisabled = new PNGPacket("label_disabled");
     
     private List<ImageIcon> images = new LinkedList<ImageIcon>();
 
