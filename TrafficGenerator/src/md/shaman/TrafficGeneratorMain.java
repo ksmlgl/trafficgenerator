@@ -13,6 +13,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
+import md.shaman.custom.CustomTreeCellRenderer;
 import md.shaman.protocols.Protocol;
 import md.shaman.resources.icons.PNGPacket;
 
@@ -130,16 +131,16 @@ public class TrafficGeneratorMain extends FrameView {
         processTable.setAutoCreateRowSorter(true);
         processTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {new Long(1), "TCP", "192.168.1.1", "192.168.1.2", "95 %", "NEW"},
-                {new Long(2), "UDP", "192.168.1.1", "192.168.1.2", "4 %", "RUNNABLE"},
-                {new Long(3), "MULTICAST", "192.168.1.1", "192.168.1.2", "1 %", "TERMINATED"}
+                {new Long(1), "TCP", "192.168.1.1", "192.168.1.2", "95 %", "NEW", "tt"},
+                {new Long(2), "UDP", "192.168.1.1", "192.168.1.2", "4 %", "RUNNABLE", "mm"},
+                {new Long(3), "MULTICAST", "192.168.1.1", "192.168.1.2", "1 %", "TERMINATED", null}
             },
             new String [] {
-                "PID", "ProtocolType", "IP:Port", "NIC:Port", "Progress", "Status"
+                "PID", "ProtocolType", "IP:Port", "NIC:Port", "Progress", "Status", "Label"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -160,6 +161,7 @@ public class TrafficGeneratorMain extends FrameView {
         processTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("processTable.columnModel.title3")); // NOI18N
         processTable.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("processTable.columnModel.title4")); // NOI18N
         processTable.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("processTable.columnModel.title5")); // NOI18N
+        processTable.getColumnModel().getColumn(6).setHeaderValue(resourceMap.getString("processTable.columnModel.title6")); // NOI18N
 
         jSplitPane2.setTopComponent(jScrollPane2);
 
@@ -207,8 +209,12 @@ public class TrafficGeneratorMain extends FrameView {
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("LABEL");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("NO LABEL");
+        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         filterTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        filterTree.setToolTipText(resourceMap.getString("filterTree.toolTipText")); // NOI18N
+        filterTree.setCellRenderer(new CustomTreeCellRenderer());
         filterTree.setName("filterTree"); // NOI18N
         filterTree.setRootVisible(false);
         filterTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
@@ -276,36 +282,28 @@ public class TrafficGeneratorMain extends FrameView {
         TreePath tp = filterTree.getSelectionPath();
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(processTable.getModel());
         RowFilter<TableModel, Object> rf = null;
-        
+
         //If current expression doesn't parse, don't update.
         if (tp.getPathCount() == 2 && tp.getLastPathComponent().toString().equals("ALL")) {
-            //processTable.setRowSorter(null);
-            //return;
-        }else if(tp.getPathCount() == 3){
-            if(tp.getPathComponent(1).toString().equals("STATUS"))
-            {
-                switch(Thread.State.valueOf(tp.getLastPathComponent().toString()))
-                {
-                    case NEW: rf = RowFilter.regexFilter(Thread.State.NEW.toString(), 5); break;
-                    case RUNNABLE: rf = RowFilter.regexFilter(Thread.State.RUNNABLE.toString(), 5);break;
-                    case BLOCKED: rf = RowFilter.regexFilter(Thread.State.BLOCKED.toString(), 5);break;
-                    case WAITING: rf = RowFilter.regexFilter(Thread.State.WAITING.toString(), 5);break;
-                    case TIMED_WAITING: rf = RowFilter.regexFilter(Thread.State.TIMED_WAITING.toString(), 5);break;
-                    case TERMINATED: rf = RowFilter.regexFilter(Thread.State.TERMINATED.toString(), 5);break;
+            sorter.setRowFilter(rf);
+            processTable.setRowSorter(sorter);
+            return;
+        } else if (tp.getPathCount() == 3) {
+            if (tp.getPathComponent(1).toString().equals("STATUS")) {
+                rf = RowFilter.regexFilter(tp.getLastPathComponent().toString(), 5);
+            } else if (tp.getPathComponent(1).toString().equals("PROTOCOL")) {
+                rf = RowFilter.regexFilter(tp.getLastPathComponent().toString(), 1);
+            } else if (tp.getPathComponent(1).toString().equals("LABEL")) {
+                String rs = "^$";
+                if (!tp.getLastPathComponent().toString().equals("NO LABEL")) {
+                    rs = tp.getLastPathComponent().toString();
                 }
-            }else if (tp.getPathComponent(1).toString().equals("PROTOCOL"))
-            {
-                switch(Protocol.ProtocolType.valueOf(tp.getLastPathComponent().toString()))
-                {
-                    case UDP: rf = RowFilter.regexFilter(Protocol.ProtocolType.UDP.toString(), 1); break;
-                    case TCP: rf = RowFilter.regexFilter(Protocol.ProtocolType.TCP.toString(), 1);break;
-                    case MULTICAST: rf = RowFilter.regexFilter(Protocol.ProtocolType.MULTICAST.toString(), 1);break;
-                }
+                rf = RowFilter.regexFilter(rs, 6);
             }
-
+            sorter.setRowFilter(rf);
+            processTable.setRowSorter(sorter);
         }
-        sorter.setRowFilter(rf);
-        processTable.setRowSorter(sorter);
+
     }//GEN-LAST:event_filterTreeValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem1;
