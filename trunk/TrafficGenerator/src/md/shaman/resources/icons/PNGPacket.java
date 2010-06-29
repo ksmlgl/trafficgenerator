@@ -47,11 +47,11 @@ public class PNGPacket {
     }
 
     public PNGPacket(final String name) {
-        images.add(new ImageIcon(PNGPacket.class.getResource(fileseparator+"16"+fileseparator+name+".png")));
-        images.add(new ImageIcon(PNGPacket.class.getResource(fileseparator+"32"+fileseparator+name+".png")));
-        images.add(new ImageIcon(PNGPacket.class.getResource(fileseparator+"48"+fileseparator+name+".png")));
-        images.add(new ImageIcon(PNGPacket.class.getResource(fileseparator+"72"+fileseparator+name+".png")));
-        images.add(new ImageIcon(PNGPacket.class.getResource(fileseparator+"128"+fileseparator+name+".png")));
+        images.add(new ImageIcon(PNGPacket.class.getResource("16/"+name+".png")));
+        images.add(new ImageIcon(PNGPacket.class.getResource("32/"+name+".png")));
+        images.add(new ImageIcon(PNGPacket.class.getResource("48/"+name+".png")));
+        images.add(new ImageIcon(PNGPacket.class.getResource("72/"+name+".png")));
+        images.add(new ImageIcon(PNGPacket.class.getResource("128/"+name+".png")));
     }
 
     public static void main(String[] args) {
