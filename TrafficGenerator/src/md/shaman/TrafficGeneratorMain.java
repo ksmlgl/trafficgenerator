@@ -33,8 +33,10 @@ public class TrafficGeneratorMain extends FrameView {
     @Action
     public void showWizard()
     {
-        Wizard wizard = new Wizard();
+        JFrame mainFrame = TrafficGeneratorApp.getApplication().getMainFrame();
+        Wizard wizard = new Wizard(mainFrame);
         wizard.getDialog().setTitle("Test Wizard Dialog");
+        wizard.getDialog().setLocationRelativeTo(mainFrame);
         WizardPanelDescriptor descriptor1 = new GeneralWizardDescriptor();
         wizard.registerWizardPanel(GeneralWizardDescriptor.IDENTIFIER, descriptor1);
         wizard.setCurrentPanel(GeneralWizardDescriptor.IDENTIFIER);
