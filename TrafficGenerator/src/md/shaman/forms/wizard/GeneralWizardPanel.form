@@ -1,10 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
-  <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="ProtocolTypeButtonGroup">
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
   </Properties>
@@ -23,73 +19,81 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="93" pref="93" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="mcRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tcpRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="udpRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="0" attributes="1">
+                      <Component id="sendReceiveLabel" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="sendReceiveComboBox" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
+                      <Component id="protocolTypeLabel" min="-2" pref="125" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" pref="323" max="32767" attributes="0"/>
+                      <Component id="protocolTypeComboBox" min="-2" pref="114" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="122" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="protocolTypeComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="protocolTypeLabel" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="32" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Component id="udpRadioButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="tcpRadioButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="mcRadioButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="101" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="sendReceiveLabel" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="sendReceiveComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="169" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JRadioButton" name="udpRadioButton">
+    <Component class="javax.swing.JLabel" name="protocolTypeLabel">
       <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="ProtocolTypeButtonGroup"/>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="protocolTypeComboBox"/>
         </Property>
-        <Property name="text" type="java.lang.String" resourceKey="udpRadioButton.text"/>
-        <Property name="name" type="java.lang.String" value="udpRadioButton" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="protocolTypeLabel.text"/>
+        <Property name="name" type="java.lang.String" value="protocolTypeLabel" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="tcpRadioButton">
+    <Component class="javax.swing.JComboBox" name="protocolTypeComboBox">
       <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="ProtocolTypeButtonGroup"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" resourceKey="tcpRadioButton.text"/>
-        <Property name="name" type="java.lang.String" value="tcpRadioButton" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="protocolTypeComboBox" noResource="true"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="for(Protocol.ProtocolType s : Protocol.ProtocolType.values())&#xa;    protocolTypeComboBox.addItem(s.toString());"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="sendReceiveLabel">
+      <Properties>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="sendReceiveLabel"/>
+        </Property>
+        <Property name="text" type="java.lang.String" resourceKey="sendReceiveLabel.text"/>
+        <Property name="name" type="java.lang.String" value="sendReceiveLabel" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="mcRadioButton">
+    <Component class="javax.swing.JComboBox" name="sendReceiveComboBox">
       <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="ProtocolTypeButtonGroup"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Send"/>
+            <StringItem index="1" value="Receive"/>
+          </StringArray>
         </Property>
-        <Property name="text" type="java.lang.String" resourceKey="mcRadioButton.text"/>
-        <Property name="name" type="java.lang.String" value="mcRadioButton" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel1.text"/>
-        <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="sendReceiveComboBox" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

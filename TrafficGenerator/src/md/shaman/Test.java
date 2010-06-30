@@ -6,6 +6,7 @@
 package md.shaman;
 
 import java.lang.Thread.State;
+import md.shaman.protocols.Protocol;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.lang.Thread.State;
 public class Test {
 
     public static void main(String args[]){
-        for(State s : Thread.State.values())
+        for(Protocol.ProtocolType s : Protocol.ProtocolType.values())
             System.out.println(s.toString());
     }
 }
