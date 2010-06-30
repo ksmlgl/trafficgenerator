@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTree;
 import javax.swing.UIManager;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import md.shaman.resources.icons.PNGPacket;
+import md.shaman.icons.PNGPacket;
 
 /**
  *

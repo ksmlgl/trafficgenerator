@@ -4,7 +4,7 @@
 
 package md.shaman;
 
-import md.shaman.resources.icons.PNGPacket;
+import md.shaman.icons.PNGPacket;
 import org.jdesktop.application.Action;
 
 public class TrafficGeneratorAboutBox extends javax.swing.JDialog {
