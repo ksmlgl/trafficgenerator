@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import md.shaman.wizard.*;
+import md.shaman.custom.wizard.*;
 
 
 public class TestPanel2 extends JPanel {
