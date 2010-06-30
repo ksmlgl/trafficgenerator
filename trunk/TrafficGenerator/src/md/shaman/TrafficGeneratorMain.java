@@ -14,6 +14,9 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import md.shaman.custom.CustomTreeCellRenderer;
+import md.shaman.custom.wizard.Wizard;
+import md.shaman.custom.wizard.WizardPanelDescriptor;
+import md.shaman.forms.wizard.GeneralWizardDescriptor;
 import md.shaman.icons.PNGPacket;
 
 /**
@@ -25,6 +28,17 @@ public class TrafficGeneratorMain extends FrameView {
         super(app);
         initComponents();
         getFrame().setIconImages(PNGPacket.Network.getImages());
+    }
+
+    @Action
+    public void showWizard()
+    {
+        Wizard wizard = new Wizard();
+        wizard.getDialog().setTitle("Test Wizard Dialog");
+        WizardPanelDescriptor descriptor1 = new GeneralWizardDescriptor();
+        wizard.registerWizardPanel(GeneralWizardDescriptor.IDENTIFIER, descriptor1);
+        wizard.setCurrentPanel(GeneralWizardDescriptor.IDENTIFIER);
+        wizard.showModalDialog();
     }
 
     @Action
@@ -105,7 +119,6 @@ public class TrafficGeneratorMain extends FrameView {
         menuBar.add(fileMenu);
 
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
-        helpMenu.setName("helpMenu"); // NOI18N
 
         aboutMenuItem1.setAction(actionMap.get("showAboutBox")); // NOI18N
         aboutMenuItem1.setIcon(resourceMap.getIcon("aboutMenuItem1.icon")); // NOI18N
@@ -234,10 +247,10 @@ public class TrafficGeneratorMain extends FrameView {
         toolBar.setRollover(true);
         toolBar.setName("toolBar"); // NOI18N
 
+        addButton.setAction(actionMap.get("showWizard")); // NOI18N
         addButton.setIcon(resourceMap.getIcon("addButton.icon")); // NOI18N
         addButton.setToolTipText(resourceMap.getString("addButton.toolTipText")); // NOI18N
         addButton.setFocusable(false);
-        addButton.setLabel(resourceMap.getString("addButton.label")); // NOI18N
         addButton.setName("addButton"); // NOI18N
         toolBar.add(addButton);
 
@@ -264,7 +277,6 @@ public class TrafficGeneratorMain extends FrameView {
 
         stopButton.setIcon(resourceMap.getIcon("stopButton.icon")); // NOI18N
         stopButton.setText(resourceMap.getString("stopButton.text")); // NOI18N
-        stopButton.setToolTipText(resourceMap.getString("stopButton.toolTipText")); // NOI18N
         stopButton.setFocusable(false);
         stopButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         stopButton.setName("stopButton"); // NOI18N
