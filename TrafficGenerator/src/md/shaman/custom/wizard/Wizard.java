@@ -359,7 +359,7 @@ public class Wizard extends WindowAdapter implements PropertyChangeListener {
         cardLayout = new CardLayout(); 
         cardPanel.setLayout(cardLayout);
         
-        backButton = new JButton(new ImageIcon("md/shaman/custom/wizard/backIcon.gif"));
+        backButton = new JButton(new ImageIcon("/md/shaman/custom/wizard/backIcon.gif"));
         nextButton = new JButton();
         cancelButton = new JButton();
         

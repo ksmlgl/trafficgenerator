@@ -47,7 +47,6 @@
         <Menu class="javax.swing.JMenu" name="helpMenu">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="helpMenu.text"/>
-            <Property name="name" type="java.lang.String" value="helpMenu" noResource="true"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="aboutMenuItem1">
@@ -326,10 +325,12 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="addButton">
           <Properties>
+            <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+              <action class="md.shaman.TrafficGeneratorMain" id="showWizard" methodName="showWizard"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" resourceKey="addButton.icon"/>
             <Property name="toolTipText" type="java.lang.String" resourceKey="addButton.toolTipText"/>
             <Property name="focusable" type="boolean" value="false"/>
-            <Property name="label" type="java.lang.String" resourceKey="addButton.label"/>
             <Property name="name" type="java.lang.String" value="addButton" noResource="true"/>
           </Properties>
         </Component>
@@ -364,7 +365,6 @@
           <Properties>
             <Property name="icon" type="javax.swing.Icon" resourceKey="stopButton.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="stopButton.text"/>
-            <Property name="toolTipText" type="java.lang.String" resourceKey="stopButton.toolTipText"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="name" type="java.lang.String" value="stopButton" noResource="true"/>
