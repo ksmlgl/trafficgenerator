@@ -1,6 +1,8 @@
 package md.shaman.test;
 
-import md.shaman.wizard.*;
+import md.shaman.custom.wizard.Wizard;
+import md.shaman.custom.wizard.WizardPanelDescriptor;
+import md.shaman.custom.wizard.*;
 
 import javax.swing.*;
 
