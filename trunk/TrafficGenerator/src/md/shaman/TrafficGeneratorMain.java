@@ -14,7 +14,7 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import md.shaman.custom.CustomTreeCellRenderer;
-import md.shaman.resources.icons.PNGPacket;
+import md.shaman.icons.PNGPacket;
 
 /**
  * The application's main frame.
