@@ -16,7 +16,7 @@ import javax.swing.tree.TreeSelectionModel;
 import md.shaman.custom.CustomTreeCellRenderer;
 import md.shaman.custom.wizard.Wizard;
 import md.shaman.custom.wizard.WizardPanelDescriptor;
-import md.shaman.forms.wizard.GeneralWizardDescriptor;
+import md.shaman.forms.wizard.*;
 import md.shaman.icons.PNGPacket;
 
 /**
@@ -35,10 +35,14 @@ public class TrafficGeneratorMain extends FrameView {
     {
         JFrame mainFrame = TrafficGeneratorApp.getApplication().getMainFrame();
         Wizard wizard = new Wizard(mainFrame);
-        wizard.getDialog().setTitle("Test Wizard Dialog");
+        wizard.getDialog().setTitle("Traffic Generator Wizard");
         wizard.getDialog().setLocationRelativeTo(mainFrame);
-        WizardPanelDescriptor descriptor1 = new GeneralWizardDescriptor();
-        wizard.registerWizardPanel(GeneralWizardDescriptor.IDENTIFIER, descriptor1);
+        //Wizard Forms Register
+        wizard.registerWizardPanel(GeneralWizardDescriptor.IDENTIFIER, new GeneralWizardDescriptor());
+        wizard.registerWizardPanel(GeneralSendReceiveWizardDescriptor.IDENTIFIER, new GeneralSendReceiveWizardDescriptor());
+        
+
+        //Wizard Config
         wizard.setCurrentPanel(GeneralWizardDescriptor.IDENTIFIER);
         wizard.showModalDialog();
     }
