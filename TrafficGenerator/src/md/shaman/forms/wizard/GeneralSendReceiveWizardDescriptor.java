@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package md.shaman.forms.wizard;
 
 import java.awt.event.ActionEvent;
@@ -15,9 +14,11 @@ import md.shaman.custom.wizard.WizardPanelDescriptor;
  *
  * @author AlexandruC
  */
-public class GeneralSendReceiveWizardDescriptor extends WizardPanelDescriptor implements KeyListener{
+public class GeneralSendReceiveWizardDescriptor extends WizardPanelDescriptor implements KeyListener {
+
     public static final String IDENTIFIER = "GENERAL_SEND_RECEIVE_PANEL";
     GeneralSendReceiveWizardPanel gsrwp;
+
     public GeneralSendReceiveWizardDescriptor() {
         gsrwp = new GeneralSendReceiveWizardPanel();
 
@@ -25,13 +26,20 @@ public class GeneralSendReceiveWizardDescriptor extends WizardPanelDescriptor im
 
         setPanelDescriptorIdentifier(IDENTIFIER);
         setPanelComponent(gsrwp);
-        
+
     }
-    public void displayingPanel() {getWizard().setNextFinishButtonEnabled(gsrwp.isValidate());}
+
+    @Override
+    public void displayingPanel() {
+        getWizard().setNextFinishButtonEnabled(gsrwp.isValidate());
+    }
+
+    @Override
     public Object getNextPanelDescriptor() {
         return FINISH;
     }
 
+    @Override
     public Object getBackPanelDescriptor() {
         return GeneralWizardDescriptor.IDENTIFIER;
     }
