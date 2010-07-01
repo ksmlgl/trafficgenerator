@@ -19,7 +19,7 @@ public class GeneralWizardDescriptor extends WizardPanelDescriptor{
     }
 
     public Object getNextPanelDescriptor() {
-        return FINISH;
+        return GeneralSendReceiveWizardDescriptor.IDENTIFIER;
     }
 
     public Object getBackPanelDescriptor() {

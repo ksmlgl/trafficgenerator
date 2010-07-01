@@ -1,0 +1,193 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
+  </Properties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="2"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="ipLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ipPortLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="ipPortTextField" pref="215" max="32767" attributes="1"/>
+                          <Component id="ipTextField" alignment="0" pref="215" max="32767" attributes="1"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="nicPortLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="306" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="nicLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="nicComboBox" pref="215" max="32767" attributes="1"/>
+                          <Component id="nicPortTextField" alignment="0" pref="215" max="32767" attributes="1"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="nicRefreshButton" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="ipAlertLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="ipPortAlertLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="nicPortAlertLabel" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="ipLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ipTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ipAlertLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="ipPortLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ipPortTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="nicLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nicComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="1">
+                      <Component id="ipPortAlertLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="nicRefreshButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="nicPortLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nicPortTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="nicPortAlertLabel" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="160" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="ipLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="ipLabel.text"/>
+        <Property name="name" type="java.lang.String" value="ipLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="nicLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="nicLabel.text"/>
+        <Property name="name" type="java.lang.String" value="nicLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="ipTextField">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="ipTextField.text"/>
+        <Property name="name" type="java.lang.String" value="ipTextField" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ipTextFieldKeyReleased"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="nicComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="nicComboBox" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="nicRefreshButton">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" resourceKey="nicRefreshButton.icon"/>
+        <Property name="text" type="java.lang.String" resourceKey="nicRefreshButton.text"/>
+        <Property name="name" type="java.lang.String" value="nicRefreshButton" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ipPortLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="ipPortLabel.text"/>
+        <Property name="name" type="java.lang.String" value="ipPortLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="ipPortTextField">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="ipPortTextField" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ipPortTextFieldKeyReleased"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="nicPortLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="nicPortLabel.text"/>
+        <Property name="name" type="java.lang.String" value="nicPortLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nicPortTextField">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="nicPortTextField.text"/>
+        <Property name="name" type="java.lang.String" value="nicPortTextField" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nicPortTextFieldKeyReleased"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ipAlertLabel">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" resourceKey="ipAlertLabel.icon"/>
+        <Property name="text" type="java.lang.String" resourceKey="ipAlertLabel.text"/>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="ipAlertLabel.toolTipText"/>
+        <Property name="name" type="java.lang.String" value="ipAlertLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ipPortAlertLabel">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" resourceKey="ipPortAlertLabel.icon"/>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="ipPortAlertLabel.toolTipText"/>
+        <Property name="name" type="java.lang.String" value="ipPortAlertLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="nicPortAlertLabel">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" resourceKey="nicPortAlertLabel.icon"/>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="nicPortAlertLabel.toolTipText"/>
+        <Property name="name" type="java.lang.String" value="nicPortAlertLabel" noResource="true"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="nicPortAlertLabel.setVisible(false);"/>
+      </AuxValues>
+    </Component>
+  </SubComponents>
+</Form>
