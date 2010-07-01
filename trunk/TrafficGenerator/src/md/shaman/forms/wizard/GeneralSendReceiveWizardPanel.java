@@ -53,7 +53,6 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
         nicLabel = new javax.swing.JLabel();
         ipTextField = new javax.swing.JTextField();
         nicComboBox = new javax.swing.JComboBox();
-        nicRefreshButton = new javax.swing.JButton();
         ipPortLabel = new javax.swing.JLabel();
         ipPortTextField = new javax.swing.JTextField();
         nicPortLabel = new javax.swing.JLabel();
@@ -80,10 +79,6 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
         });
 
         nicComboBox.setName("nicComboBox"); // NOI18N
-
-        nicRefreshButton.setIcon(resourceMap.getIcon("nicRefreshButton.icon")); // NOI18N
-        nicRefreshButton.setText(resourceMap.getString("nicRefreshButton.text")); // NOI18N
-        nicRefreshButton.setName("nicRefreshButton"); // NOI18N
 
         ipPortLabel.setText(resourceMap.getString("ipPortLabel.text")); // NOI18N
         ipPortLabel.setName("ipPortLabel"); // NOI18N
@@ -146,11 +141,10 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
                             .addComponent(nicPortTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nicRefreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ipAlertLabel)
                     .addComponent(ipPortAlertLabel)
                     .addComponent(nicPortAlertLabel))
-                .addGap(49, 49, 49))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +155,7 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
                     .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ipAlertLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ipPortLabel)
@@ -170,17 +164,14 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nicLabel)
                             .addComponent(nicComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ipPortAlertLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nicRefreshButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(ipPortAlertLabel))
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(nicPortLabel)
                         .addComponent(nicPortTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(nicPortAlertLabel))
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -215,7 +206,6 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
     private javax.swing.JLabel nicPortAlertLabel;
     private javax.swing.JLabel nicPortLabel;
     private javax.swing.JTextField nicPortTextField;
-    private javax.swing.JButton nicRefreshButton;
     // End of variables declaration//GEN-END:variables
 
 }
