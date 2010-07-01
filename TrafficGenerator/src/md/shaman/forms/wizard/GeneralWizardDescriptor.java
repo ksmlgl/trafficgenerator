@@ -18,10 +18,12 @@ public class GeneralWizardDescriptor extends WizardPanelDescriptor{
         super(IDENTIFIER, new GeneralWizardPanel());
     }
 
+    @Override
     public Object getNextPanelDescriptor() {
         return GeneralSendReceiveWizardDescriptor.IDENTIFIER;
     }
 
+    @Override
     public Object getBackPanelDescriptor() {
         return null;
     }
