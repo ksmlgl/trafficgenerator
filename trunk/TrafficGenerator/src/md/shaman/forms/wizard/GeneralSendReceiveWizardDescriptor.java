@@ -35,6 +35,11 @@ public class GeneralSendReceiveWizardDescriptor extends WizardPanelDescriptor im
     }
 
     @Override
+    public void aboutToDisplayPanel()
+    {
+
+    }
+    @Override
     public Object getNextPanelDescriptor() {
         return GeneralTrafficWizardDescriptor.IDENTIFIER;
     }
@@ -43,7 +48,6 @@ public class GeneralSendReceiveWizardDescriptor extends WizardPanelDescriptor im
     public Object getBackPanelDescriptor() {
         return GeneralWizardDescriptor.IDENTIFIER;
     }
-
 
     public void keyPressed(KeyEvent e) {
     }
