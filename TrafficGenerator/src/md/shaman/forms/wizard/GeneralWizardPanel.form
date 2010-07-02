@@ -21,19 +21,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="0" attributes="1">
-                      <Component id="sendReceiveLabel" min="-2" pref="125" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="sendReceiveComboBox" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="protocolTypeLabel" min="-2" pref="125" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="protocolTypeComboBox" min="-2" pref="114" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="protocolTypeLabel" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="directionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="122" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="directionComboBox" max="32767" attributes="1"/>
+                  <Component id="protocolTypeComboBox" alignment="0" pref="150" max="32767" attributes="1"/>
+              </Group>
+              <EmptySpace pref="86" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,10 +44,10 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="sendReceiveLabel" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="sendReceiveComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="directionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="directionComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="169" max="32767" attributes="0"/>
+              <EmptySpace pref="181" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,25 +73,22 @@
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="for(Protocol.ProtocolType s : Protocol.ProtocolType.values())&#xa;    protocolTypeComboBox.addItem(s.toString());"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="sendReceiveLabel">
+    <Component class="javax.swing.JLabel" name="directionLabel">
       <Properties>
-        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="sendReceiveLabel"/>
-        </Property>
-        <Property name="text" type="java.lang.String" resourceKey="sendReceiveLabel.text"/>
-        <Property name="name" type="java.lang.String" value="sendReceiveLabel" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="directionLabel.text"/>
+        <Property name="name" type="java.lang.String" value="directionLabel" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="sendReceiveComboBox">
+    <Component class="javax.swing.JComboBox" name="directionComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="Send"/>
-            <StringItem index="1" value="Receive"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
-        <Property name="name" type="java.lang.String" value="sendReceiveComboBox" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="directionComboBox" noResource="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="for(Protocol.Direction s : Protocol.Direction.values())&#xa;    directionComboBox.addItem(s.toString());"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

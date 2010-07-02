@@ -36,7 +36,7 @@ public class GeneralSendReceiveWizardDescriptor extends WizardPanelDescriptor im
 
     @Override
     public Object getNextPanelDescriptor() {
-        return FINISH;
+        return GeneralTrafficWizardDescriptor.IDENTIFIER;
     }
 
     @Override
@@ -44,13 +44,14 @@ public class GeneralSendReceiveWizardDescriptor extends WizardPanelDescriptor im
         return GeneralWizardDescriptor.IDENTIFIER;
     }
 
-    public void keyTyped(KeyEvent e) {
-    }
 
     public void keyPressed(KeyEvent e) {
     }
 
     public void keyReleased(KeyEvent e) {
         getWizard().setNextFinishButtonEnabled(gsrwp.isValidate());
+    }
+
+    public void keyTyped(KeyEvent e) {
     }
 }

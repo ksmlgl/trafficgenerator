@@ -38,9 +38,12 @@ public class TrafficGeneratorMain extends FrameView {
         wizard.getDialog().setTitle("Traffic Generator Wizard");
         wizard.getDialog().setLocationRelativeTo(mainFrame);
         //Wizard Forms Register
-        wizard.registerWizardPanel(GeneralWizardDescriptor.IDENTIFIER, new GeneralWizardDescriptor());
-        wizard.registerWizardPanel(GeneralSendReceiveWizardDescriptor.IDENTIFIER, new GeneralSendReceiveWizardDescriptor());
-        
+        GeneralWizardDescriptor gwd = new GeneralWizardDescriptor();
+        wizard.registerWizardPanel(GeneralWizardDescriptor.IDENTIFIER, gwd);
+        GeneralSendReceiveWizardDescriptor gsrwd = new GeneralSendReceiveWizardDescriptor();
+        wizard.registerWizardPanel(GeneralSendReceiveWizardDescriptor.IDENTIFIER, gsrwd);
+        GeneralTrafficWizardDescriptor gtwd = new GeneralTrafficWizardDescriptor();
+        wizard.registerWizardPanel(GeneralTrafficWizardDescriptor.IDENTIFIER, gtwd);
 
         //Wizard Config
         wizard.setCurrentPanel(GeneralWizardDescriptor.IDENTIFIER);

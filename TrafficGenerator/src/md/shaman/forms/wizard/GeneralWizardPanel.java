@@ -11,7 +11,10 @@
 
 package md.shaman.forms.wizard;
 
+import java.awt.event.ActionListener;
 import md.shaman.protocols.Protocol;
+import md.shaman.protocols.Protocol.Direction;
+import md.shaman.protocols.Protocol.ProtocolType;
 
 /**
  *
@@ -22,6 +25,11 @@ public class GeneralWizardPanel extends javax.swing.JPanel {
     /** Creates new form GeneralWizardForm */
     public GeneralWizardPanel() {
         initComponents();
+    }
+
+    public ProtocolType getProtocolType()
+    {
+        return ProtocolType.valueOf(protocolTypeComboBox.getSelectedItem().toString());
     }
 
     /** This method is called from within the constructor to
@@ -35,8 +43,8 @@ public class GeneralWizardPanel extends javax.swing.JPanel {
 
         protocolTypeLabel = new javax.swing.JLabel();
         protocolTypeComboBox = new javax.swing.JComboBox();
-        sendReceiveLabel = new javax.swing.JLabel();
-        sendReceiveComboBox = new javax.swing.JComboBox();
+        directionLabel = new javax.swing.JLabel();
+        directionComboBox = new javax.swing.JComboBox();
 
         setName("Form"); // NOI18N
 
@@ -49,12 +57,12 @@ public class GeneralWizardPanel extends javax.swing.JPanel {
         protocolTypeComboBox.addItem(s.toString());
         protocolTypeComboBox.setName("protocolTypeComboBox"); // NOI18N
 
-        sendReceiveLabel.setLabelFor(sendReceiveLabel);
-        sendReceiveLabel.setText(resourceMap.getString("sendReceiveLabel.text")); // NOI18N
-        sendReceiveLabel.setName("sendReceiveLabel"); // NOI18N
+        directionLabel.setText(resourceMap.getString("directionLabel.text")); // NOI18N
+        directionLabel.setName("directionLabel"); // NOI18N
 
-        sendReceiveComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Send", "Receive" }));
-        sendReceiveComboBox.setName("sendReceiveComboBox"); // NOI18N
+        for(Protocol.Direction s : Protocol.Direction.values())
+        directionComboBox.addItem(s.toString());
+        directionComboBox.setName("directionComboBox"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,16 +70,14 @@ public class GeneralWizardPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(protocolTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(directionLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(sendReceiveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sendReceiveComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(protocolTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(protocolTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(122, Short.MAX_VALUE))
+                    .addComponent(directionComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(protocolTypeComboBox, 0, 150, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,18 +88,18 @@ public class GeneralWizardPanel extends javax.swing.JPanel {
                     .addComponent(protocolTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sendReceiveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sendReceiveComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(169, Short.MAX_VALUE))
+                    .addComponent(directionLabel)
+                    .addComponent(directionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox directionComboBox;
+    private javax.swing.JLabel directionLabel;
     private javax.swing.JComboBox protocolTypeComboBox;
     private javax.swing.JLabel protocolTypeLabel;
-    private javax.swing.JComboBox sendReceiveComboBox;
-    private javax.swing.JLabel sendReceiveLabel;
     // End of variables declaration//GEN-END:variables
 
 }
