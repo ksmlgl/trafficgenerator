@@ -3,10 +3,14 @@ package md.shaman.protocols;
 public class Protocol {
 
     public enum ProtocolType {
-
         UDP,
         TCP,
         MULTICAST
+    }
+
+    public enum Direction{
+        SEND,
+        RECEIVE
     }
 
     public static boolean isInetAddress(String str) {

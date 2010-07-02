@@ -18,10 +18,13 @@ public class Test {
 
     public static void main(String args[]) throws UnknownHostException{
 
-        //Protocol.isInetAddress("192.168.140.5");
-        //System.out.println("192.18.140.556".matches("^*(([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\\.){3}([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])*$"));
-        InetAddress ad = InetAddress.getByName("001.002.003.004");
-        System.out.println(ad);
-
+        String s1 = "aaaa";
+        String s2 = s1;
+        System.out.println(s1);
+        System.out.println(s2);
+        System.out.println("Editing .....");
+        s1= "bbbbb";
+        System.out.println(s1);
+        System.out.println(s2);
     }
 }

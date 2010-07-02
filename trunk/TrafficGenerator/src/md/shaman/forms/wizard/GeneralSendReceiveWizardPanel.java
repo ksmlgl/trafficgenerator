@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import javax.swing.border.LineBorder;
 import md.shaman.protocols.Protocol;
+import md.shaman.protocols.Protocol.Direction;
 
 /**
  *
@@ -35,6 +36,7 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
         if(nicPortAlertLabel.isVisible()) return false;
         return true;
     }
+
     public void addValidateEvent(KeyListener l){
         ipTextField.addKeyListener(l);
         ipPortTextField.addKeyListener(l);
@@ -113,7 +115,6 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
         nicPortAlertLabel.setIcon(resourceMap.getIcon("nicPortAlertLabel.icon")); // NOI18N
         nicPortAlertLabel.setToolTipText(resourceMap.getString("nicPortAlertLabel.toolTipText")); // NOI18N
         nicPortAlertLabel.setName("nicPortAlertLabel"); // NOI18N
-        nicPortAlertLabel.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -149,7 +150,7 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ipLabel)
                     .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,25 +172,19 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
                         .addComponent(nicPortLabel)
                         .addComponent(nicPortTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(nicPortAlertLabel))
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void ipTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ipTextFieldKeyReleased
-        // TODO add your handling code here:
         ipAlertLabel.setVisible(!Protocol.isInetAddress(ipTextField.getText()));
     }//GEN-LAST:event_ipTextFieldKeyReleased
 
     private void ipPortTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ipPortTextFieldKeyReleased
-        // TODO add your handling code here:
         ipPortAlertLabel.setVisible(!Protocol.isInetAddressPort(ipPortTextField.getText()));
     }//GEN-LAST:event_ipPortTextFieldKeyReleased
 
     private void nicPortTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nicPortTextFieldKeyReleased
-        // TODO add your handling code here:
-        if(nicPortTextField.getText().isEmpty())
-            nicPortAlertLabel.setVisible(false);
-        else
             nicPortAlertLabel.setVisible(!Protocol.isInetAddressPort(nicPortTextField.getText()));
     }//GEN-LAST:event_nicPortTextFieldKeyReleased
 

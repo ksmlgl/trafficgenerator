@@ -5,6 +5,8 @@
 
 package md.shaman.forms.wizard;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import md.shaman.custom.wizard.WizardPanelDescriptor;
 
 /**
@@ -13,9 +15,15 @@ import md.shaman.custom.wizard.WizardPanelDescriptor;
  */
 public class GeneralWizardDescriptor extends WizardPanelDescriptor{
     public static final String IDENTIFIER = "GENERAL_PANEL";
-
+    Object NEXT_IDENTIFIER;
+    GeneralWizardPanel gwp;
     public GeneralWizardDescriptor() {
-        super(IDENTIFIER, new GeneralWizardPanel());
+        gwp = new GeneralWizardPanel();
+
+        NEXT_IDENTIFIER = GeneralSendReceiveWizardDescriptor.IDENTIFIER;
+
+        setPanelDescriptorIdentifier(IDENTIFIER);
+        setPanelComponent(gwp);
     }
 
     @Override
@@ -27,5 +35,4 @@ public class GeneralWizardDescriptor extends WizardPanelDescriptor{
     public Object getBackPanelDescriptor() {
         return null;
     }
-
 }
