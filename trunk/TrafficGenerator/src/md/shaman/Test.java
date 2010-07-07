@@ -18,13 +18,9 @@ public class Test {
 
     public static void main(String args[]) throws UnknownHostException{
 
-        String s1 = "aaaa";
-        String s2 = s1;
-        System.out.println(s1);
-        System.out.println(s2);
-        System.out.println("Editing .....");
-        s1= "bbbbb";
-        System.out.println(s1);
-        System.out.println(s2);
+        for(Protocol.Type pt : Protocol.Type.values())
+        {
+            System.out.println(pt.ordinal());
+        }
     }
 }

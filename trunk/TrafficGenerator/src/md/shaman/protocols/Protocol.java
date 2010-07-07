@@ -2,7 +2,7 @@ package md.shaman.protocols;
 
 public class Protocol {
 
-    public enum ProtocolType {
+    public enum Type {
         UDP,
         TCP,
         MULTICAST

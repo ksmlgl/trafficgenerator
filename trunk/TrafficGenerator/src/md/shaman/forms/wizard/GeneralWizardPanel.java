@@ -14,7 +14,6 @@ package md.shaman.forms.wizard;
 import java.awt.event.ActionListener;
 import md.shaman.protocols.Protocol;
 import md.shaman.protocols.Protocol.Direction;
-import md.shaman.protocols.Protocol.ProtocolType;
 
 /**
  *
@@ -27,9 +26,9 @@ public class GeneralWizardPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    public ProtocolType getProtocolType()
+    public Protocol.Type getProtocolType()
     {
-        return ProtocolType.valueOf(protocolTypeComboBox.getSelectedItem().toString());
+        return Protocol.Type.valueOf(protocolTypeComboBox.getSelectedItem().toString());
     }
 
     /** This method is called from within the constructor to
@@ -53,7 +52,7 @@ public class GeneralWizardPanel extends javax.swing.JPanel {
         protocolTypeLabel.setText(resourceMap.getString("protocolTypeLabel.text")); // NOI18N
         protocolTypeLabel.setName("protocolTypeLabel"); // NOI18N
 
-        for(Protocol.ProtocolType s : Protocol.ProtocolType.values())
+        for(Protocol.Type s : Protocol.Type.values())
         protocolTypeComboBox.addItem(s.toString());
         protocolTypeComboBox.setName("protocolTypeComboBox"); // NOI18N
 
@@ -96,9 +95,9 @@ public class GeneralWizardPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox directionComboBox;
+    protected javax.swing.JComboBox directionComboBox;
     private javax.swing.JLabel directionLabel;
-    private javax.swing.JComboBox protocolTypeComboBox;
+    protected javax.swing.JComboBox protocolTypeComboBox;
     private javax.swing.JLabel protocolTypeLabel;
     // End of variables declaration//GEN-END:variables
 

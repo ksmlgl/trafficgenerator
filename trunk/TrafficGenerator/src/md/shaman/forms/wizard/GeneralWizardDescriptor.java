@@ -5,9 +5,8 @@
 
 package md.shaman.forms.wizard;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import md.shaman.custom.wizard.WizardPanelDescriptor;
+import md.shaman.protocols.ProtocolConfig;
 
 /**
  *
@@ -15,12 +14,9 @@ import md.shaman.custom.wizard.WizardPanelDescriptor;
  */
 public class GeneralWizardDescriptor extends WizardPanelDescriptor{
     public static final String IDENTIFIER = "GENERAL_PANEL";
-    Object NEXT_IDENTIFIER;
     GeneralWizardPanel gwp;
     public GeneralWizardDescriptor() {
         gwp = new GeneralWizardPanel();
-
-        NEXT_IDENTIFIER = GeneralSendReceiveWizardDescriptor.IDENTIFIER;
 
         setPanelDescriptorIdentifier(IDENTIFIER);
         setPanelComponent(gwp);
@@ -34,5 +30,9 @@ public class GeneralWizardDescriptor extends WizardPanelDescriptor{
     @Override
     public Object getBackPanelDescriptor() {
         return null;
+    }
+    public void aboutToHidePanel() {
+        ProtocolConfig.setDirection(gwp.directionComboBox.getSelectedItem().toString());
+        ProtocolConfig.setType(gwp.protocolTypeComboBox.getSelectedItem().toString());
     }
 }

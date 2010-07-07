@@ -8,7 +8,6 @@
  *
  * Created on 30.06.2010, 23:21:08
  */
-
 package md.shaman.forms.wizard;
 
 import java.awt.Color;
@@ -16,7 +15,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import javax.swing.border.LineBorder;
 import md.shaman.protocols.Protocol;
-import md.shaman.protocols.Protocol.Direction;
 
 /**
  *
@@ -29,19 +27,19 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    public boolean isValidate()
-    {
-        if(ipAlertLabel.isVisible()) return false;
-        if(ipPortAlertLabel.isVisible()) return false;
-        if(nicPortAlertLabel.isVisible()) return false;
+    public boolean isValidate() {
+        if (ipAlertLabel.isVisible() || ipPortAlertLabel.isVisible() || nicPortAlertLabel.isVisible()) {
+            return false;
+        }
         return true;
     }
 
-    public void addValidateEvent(KeyListener l){
+    public void addValidateEvent(KeyListener l) {
         ipTextField.addKeyListener(l);
         ipPortTextField.addKeyListener(l);
         nicPortTextField.addKeyListener(l);
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -185,22 +183,19 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ipPortTextFieldKeyReleased
 
     private void nicPortTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nicPortTextFieldKeyReleased
-            nicPortAlertLabel.setVisible(!Protocol.isInetAddressPort(nicPortTextField.getText()));
+        nicPortAlertLabel.setVisible(!Protocol.isInetAddressPort(nicPortTextField.getText()));
     }//GEN-LAST:event_nicPortTextFieldKeyReleased
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ipAlertLabel;
     private javax.swing.JLabel ipLabel;
     private javax.swing.JLabel ipPortAlertLabel;
     private javax.swing.JLabel ipPortLabel;
-    private javax.swing.JTextField ipPortTextField;
-    private javax.swing.JTextField ipTextField;
-    private javax.swing.JComboBox nicComboBox;
+    protected javax.swing.JTextField ipPortTextField;
+    protected javax.swing.JTextField ipTextField;
+    protected javax.swing.JComboBox nicComboBox;
     private javax.swing.JLabel nicLabel;
     private javax.swing.JLabel nicPortAlertLabel;
     private javax.swing.JLabel nicPortLabel;
-    private javax.swing.JTextField nicPortTextField;
+    protected javax.swing.JTextField nicPortTextField;
     // End of variables declaration//GEN-END:variables
-
 }
