@@ -18,6 +18,7 @@ import md.shaman.custom.wizard.Wizard;
 import md.shaman.custom.wizard.WizardPanelDescriptor;
 import md.shaman.forms.wizard.*;
 import md.shaman.icons.PNGPacket;
+import md.shaman.protocols.Protocol.Direction;
 
 /**
  * The application's main frame.
@@ -44,7 +45,7 @@ public class TrafficGeneratorMain extends FrameView {
         wizard.registerWizardPanel(GeneralSendReceiveWizardDescriptor.IDENTIFIER, gsrwd);
         GeneralTrafficWizardDescriptor gtwd = new GeneralTrafficWizardDescriptor();
         wizard.registerWizardPanel(GeneralTrafficWizardDescriptor.IDENTIFIER, gtwd);
-
+        
         //Wizard Config
         wizard.setCurrentPanel(GeneralWizardDescriptor.IDENTIFIER);
         wizard.showModalDialog();
