@@ -12,14 +12,14 @@ import md.shaman.protocols.ProtocolConfig;
  *
  * @author AlexandruC
  */
-public class GeneralWizardDescriptor extends WizardPanelDescriptor{
-    public static final String IDENTIFIER = "GENERAL_PANEL";
-    GeneralWizardPanel gwp;
-    public GeneralWizardDescriptor() {
-        gwp = new GeneralWizardPanel();
+public class GeneralStartWizardDescriptor extends WizardPanelDescriptor{
+    public static final String IDENTIFIER = "GENERAL_START_PANEL";
+    GeneralStartWizardPanel gswp;
+    public GeneralStartWizardDescriptor() {
+        gswp = new GeneralStartWizardPanel();
 
         setPanelDescriptorIdentifier(IDENTIFIER);
-        setPanelComponent(gwp);
+        setPanelComponent(gswp);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class GeneralWizardDescriptor extends WizardPanelDescriptor{
         return null;
     }
     public void aboutToHidePanel() {
-        ProtocolConfig.setDirection(gwp.directionComboBox.getSelectedItem().toString());
-        ProtocolConfig.setType(gwp.protocolTypeComboBox.getSelectedItem().toString());
+        ProtocolConfig.setDirection(gswp.directionComboBox.getSelectedItem().toString());
+        ProtocolConfig.setType(gswp.protocolTypeComboBox.getSelectedItem().toString());
     }
 }

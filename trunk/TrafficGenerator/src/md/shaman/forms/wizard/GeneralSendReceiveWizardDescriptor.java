@@ -82,7 +82,7 @@ public class GeneralSendReceiveWizardDescriptor extends WizardPanelDescriptor im
 
     @Override
     public Object getBackPanelDescriptor() {
-        return GeneralWizardDescriptor.IDENTIFIER;
+        return GeneralStartWizardDescriptor.IDENTIFIER;
     }
 
     public void keyPressed(KeyEvent e) {

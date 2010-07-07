@@ -19,10 +19,10 @@ import md.shaman.protocols.Protocol.Direction;
  *
  * @author AlexandruC
  */
-public class GeneralWizardPanel extends javax.swing.JPanel {
+public class GeneralStartWizardPanel extends javax.swing.JPanel {
 
     /** Creates new form GeneralWizardForm */
-    public GeneralWizardPanel() {
+    public GeneralStartWizardPanel() {
         initComponents();
     }
 
@@ -48,7 +48,7 @@ public class GeneralWizardPanel extends javax.swing.JPanel {
         setName("Form"); // NOI18N
 
         protocolTypeLabel.setLabelFor(protocolTypeComboBox);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(md.shaman.TrafficGeneratorApp.class).getContext().getResourceMap(GeneralWizardPanel.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(md.shaman.TrafficGeneratorApp.class).getContext().getResourceMap(GeneralStartWizardPanel.class);
         protocolTypeLabel.setText(resourceMap.getString("protocolTypeLabel.text")); // NOI18N
         protocolTypeLabel.setName("protocolTypeLabel"); // NOI18N
 
