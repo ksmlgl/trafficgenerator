@@ -3,8 +3,9 @@ package md.shaman.protocols.udp;
 import java.net.*;
 import java.security.SecureRandom;
 import java.io.*;
+import md.shaman.protocols.ProtocolThread;
 
-public class EchoClient extends Thread{
+public class EchoClient extends ProtocolThread{
 
 	DatagramSocket socket; // How we send packets
 	DatagramPacket packet; // what we send it in

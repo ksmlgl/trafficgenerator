@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package md.shaman.protocols;
 
 /**
@@ -10,6 +9,7 @@ package md.shaman.protocols;
  * @author AlexandruC
  */
 public class ProtocolConfig {
+
     private static Protocol.Type type;
     private static Protocol.Direction direction;
     //Remote
@@ -18,28 +18,30 @@ public class ProtocolConfig {
     //Local
     private static String nic;
     private static int nicPort;
-
     //Traffic Sender
     private static int dataSize;
     private static int delay;
 
+    static {
+        clean();
+    }
 
-    static{clean();}
+    public static void clean() {
+        type = null;
+        direction = null;
+        //Remote
+        ip = "";
+        ipPort = 0;
+        //Local
+        nic = "";
+        nicPort = 0;
 
-    public static void clean()
-    {
-    type = null;
-    direction = null;
-    //Remote
-    ip = "";
-    ipPort = 0;
-    //Local
-    nic = "";
-    nicPort = 0;
+        //Traffic Sender
+        dataSize = 1024;
+        delay = 1000;
+    }
 
-    //Traffic Sender
-    dataSize = 1024;
-    delay = 1000;
+    public static void execute() {
     }
 
     /**
@@ -55,6 +57,7 @@ public class ProtocolConfig {
     public static void setType(Protocol.Type aType) {
         type = aType;
     }
+
     public static void setType(String aType) {
         type = Protocol.Type.valueOf(aType);
     }
@@ -72,9 +75,11 @@ public class ProtocolConfig {
     public static void setDirection(Protocol.Direction aDirection) {
         direction = aDirection;
     }
+
     public static void setDirection(String aDirection) {
         direction = Protocol.Direction.valueOf(aDirection);
     }
+
     /**
      * @return the ip
      */
@@ -102,10 +107,13 @@ public class ProtocolConfig {
     public static void setIpPort(int aIpPort) {
         ipPort = aIpPort;
     }
+
     public static void setIpPort(String aIpPort) {
-        if(!aIpPort.isEmpty())
+        if (!aIpPort.isEmpty()) {
             ipPort = Integer.parseInt(aIpPort);
+        }
     }
+
     /**
      * @return the nic
      */
@@ -133,9 +141,11 @@ public class ProtocolConfig {
     public static void setNicPort(int aNicPort) {
         nicPort = aNicPort;
     }
+
     public static void setNicPort(String aNicPort) {
-        if(!aNicPort.isEmpty())
+        if (!aNicPort.isEmpty()) {
             nicPort = Integer.parseInt(aNicPort);
+        }
     }
 
     /**
@@ -151,9 +161,11 @@ public class ProtocolConfig {
     public static void setDataSize(int aDataSize) {
         dataSize = aDataSize;
     }
+
     public static void setDataSize(String aDataSize) {
         dataSize = Integer.parseInt(aDataSize);
     }
+
     /**
      * @return the delay
      */
@@ -167,9 +179,8 @@ public class ProtocolConfig {
     public static void setDelay(int aDelay) {
         delay = aDelay;
     }
+
     public static void setDelay(String aDelay) {
         delay = Integer.parseInt(aDelay);
     }
-  
-
 }
