@@ -2,8 +2,9 @@ package md.shaman.protocols.udp;
 
 import java.net.*;
 import java.io.*;
+import md.shaman.protocols.ProtocolThread;
 
-public class EchoServer extends Thread{
+public class EchoServer extends ProtocolThread{
 
 	// Initialize Port number and Packet Size
 	DatagramPacket packet;

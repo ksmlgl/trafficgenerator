@@ -19,6 +19,7 @@ import md.shaman.custom.wizard.WizardPanelDescriptor;
 import md.shaman.forms.wizard.*;
 import md.shaman.icons.PNGPacket;
 import md.shaman.protocols.Protocol.Direction;
+import md.shaman.protocols.ProtocolConfig;
 
 /**
  * The application's main frame.
@@ -52,9 +53,9 @@ public class TrafficGeneratorMain extends FrameView {
         wizard.setCurrentPanel(GeneralStartWizardDescriptor.IDENTIFIER);
         switch(wizard.showModalDialog())
         {
-            case Wizard.FINISH_RETURN_CODE: break;
-            case Wizard.CANCEL_RETURN_CODE: break;
-            case Wizard.ERROR_RETURN_CODE: break;
+            case Wizard.FINISH_RETURN_CODE: ProtocolConfig.execute();break;
+            case Wizard.CANCEL_RETURN_CODE: ProtocolConfig.clean();break;
+            case Wizard.ERROR_RETURN_CODE: ProtocolConfig.clean();break;
         };
     }
 
