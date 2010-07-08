@@ -29,6 +29,7 @@
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="trafficEstimateValueLabel" pref="167" max="32767" attributes="0"/>
                   <Component id="packetDelaySpinner" pref="167" max="32767" attributes="0"/>
                   <Component id="packetDataSizeSpinner" pref="167" max="32767" attributes="1"/>
                   <Component id="packetNoSpinner" pref="167" max="32767" attributes="1"/>
@@ -56,7 +57,10 @@
                   <Component id="packetDelaySpinner" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="trafficEstimateLabel" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="trafficEstimateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="trafficEstimateValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="183" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -89,17 +93,38 @@
     </Component>
     <Component class="javax.swing.JSpinner" name="packetDataSizeSpinner">
       <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="1024" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
         <Property name="name" type="java.lang.String" value="packetDataSizeSpinner" noResource="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="packetDataSizeSpinner.addChangeListener(bitrateCalculatorChangeListener);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JSpinner" name="packetNoSpinner">
       <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="100" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
         <Property name="name" type="java.lang.String" value="packetNoSpinner" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="packetDelaySpinner">
       <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="1000" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
         <Property name="name" type="java.lang.String" value="packetDelaySpinner" noResource="true"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="packetDelaySpinner.addChangeListener(bitrateCalculatorChangeListener);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="trafficEstimateValueLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="trafficEstimateValueLabel.text"/>
+        <Property name="name" type="java.lang.String" value="trafficEstimateValueLabel" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

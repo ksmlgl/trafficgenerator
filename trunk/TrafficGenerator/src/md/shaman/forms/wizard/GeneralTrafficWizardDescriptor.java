@@ -20,7 +20,7 @@ public class GeneralTrafficWizardDescriptor extends WizardPanelDescriptor{
     }
     @Override
     public Object getNextPanelDescriptor() {
-        return FINISH;
+        return GeneralFinishWizardDescriptor.IDENTIFIER;
     }
 
     @Override

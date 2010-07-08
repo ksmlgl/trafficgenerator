@@ -11,6 +11,10 @@
 
 package md.shaman.forms.wizard;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import md.shaman.utils.Unit;
+
 /**
  *
  * @author Shaman
@@ -38,6 +42,7 @@ public class GeneralTrafficWizardPanel extends javax.swing.JPanel {
         packetDataSizeSpinner = new javax.swing.JSpinner();
         packetNoSpinner = new javax.swing.JSpinner();
         packetDelaySpinner = new javax.swing.JSpinner();
+        trafficEstimateValueLabel = new javax.swing.JLabel();
 
         setName("Form"); // NOI18N
 
@@ -54,11 +59,19 @@ public class GeneralTrafficWizardPanel extends javax.swing.JPanel {
         trafficEstimateLabel.setText(resourceMap.getString("trafficEstimateLabel.text")); // NOI18N
         trafficEstimateLabel.setName("trafficEstimateLabel"); // NOI18N
 
+        packetDataSizeSpinner.addChangeListener(bitrateCalculatorChangeListener);
+        packetDataSizeSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1024), Integer.valueOf(0), null, Integer.valueOf(1)));
         packetDataSizeSpinner.setName("packetDataSizeSpinner"); // NOI18N
 
+        packetNoSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(100), Integer.valueOf(0), null, Integer.valueOf(1)));
         packetNoSpinner.setName("packetNoSpinner"); // NOI18N
 
+        packetDelaySpinner.addChangeListener(bitrateCalculatorChangeListener);
+        packetDelaySpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1000), Integer.valueOf(1), null, Integer.valueOf(1)));
         packetDelaySpinner.setName("packetDelaySpinner"); // NOI18N
+
+        trafficEstimateValueLabel.setText(resourceMap.getString("trafficEstimateValueLabel.text")); // NOI18N
+        trafficEstimateValueLabel.setName("trafficEstimateValueLabel"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -73,6 +86,7 @@ public class GeneralTrafficWizardPanel extends javax.swing.JPanel {
                     .addComponent(packetDelayLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(trafficEstimateValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                     .addComponent(packetDelaySpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                     .addComponent(packetDataSizeSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                     .addComponent(packetNoSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
@@ -94,7 +108,9 @@ public class GeneralTrafficWizardPanel extends javax.swing.JPanel {
                     .addComponent(packetDelayLabel)
                     .addComponent(packetDelaySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(trafficEstimateLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(trafficEstimateLabel)
+                    .addComponent(trafficEstimateValueLabel))
                 .addContainerGap(183, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -108,6 +124,13 @@ public class GeneralTrafficWizardPanel extends javax.swing.JPanel {
     private javax.swing.JLabel packetNoLabel;
     private javax.swing.JSpinner packetNoSpinner;
     private javax.swing.JLabel trafficEstimateLabel;
+    private javax.swing.JLabel trafficEstimateValueLabel;
     // End of variables declaration//GEN-END:variables
+    ChangeListener  bitrateCalculatorChangeListener  = new ChangeListener () {
 
+        public void stateChanged(ChangeEvent e) {
+            Double d = (0.0+(Integer)packetDataSizeSpinner.getValue())/(Integer)packetDelaySpinner.getValue();
+            trafficEstimateValueLabel.setText(Unit.CapacityConvertor(d)+"ps");
+        }
+    };
 }
