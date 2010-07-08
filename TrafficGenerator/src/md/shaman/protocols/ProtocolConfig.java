@@ -10,18 +10,37 @@ package md.shaman.protocols;
  * @author AlexandruC
  */
 public class ProtocolConfig {
-    private static Protocol.Type type = null;
-    private static Protocol.Direction direction = null;
+    private static Protocol.Type type;
+    private static Protocol.Direction direction;
     //Remote
-    private static String ip = "";
-    private static int ipPort = 0;
+    private static String ip;
+    private static int ipPort;
     //Local
-    private static String nic = "";
-    private static int nicPort = 0;
+    private static String nic;
+    private static int nicPort;
 
     //Traffic Sender
-    private static int dataSize = 1024;
-    private static int delay = 1000;
+    private static int dataSize;
+    private static int delay;
+
+
+    static{clean();}
+
+    public static void clean()
+    {
+    type = null;
+    direction = null;
+    //Remote
+    ip = "";
+    ipPort = 0;
+    //Local
+    nic = "";
+    nicPort = 0;
+
+    //Traffic Sender
+    dataSize = 1024;
+    delay = 1000;
+    }
 
     /**
      * @return the type

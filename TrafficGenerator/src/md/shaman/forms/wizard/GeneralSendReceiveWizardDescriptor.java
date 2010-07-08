@@ -74,9 +74,9 @@ public class GeneralSendReceiveWizardDescriptor extends WizardPanelDescriptor im
             case SEND:
                 return GeneralTrafficWizardDescriptor.IDENTIFIER;
             case RECEIVE:
-                return FINISH;
+                return GeneralFinishWizardDescriptor.IDENTIFIER;
             default:
-                return FINISH;
+                return GeneralFinishWizardDescriptor.IDENTIFIER;
         }
     }
 
