@@ -12,19 +12,26 @@ import java.net.InetAddress;
  */
 public class ProtocolThread extends Thread {
 
-    private Protocol.Type type = null;
-    private InetAddress ipAddress;
-    private int ipPort;
-    private InetAddress nicAddress;
-    private int nicPort;
-    private long packetNo;
-    private long trafficSize;
+    protected Protocol.Type type = null;
+    protected InetAddress ipAddress;//Internet Protocol address
+    protected int ipPort;//Internet Protocol port
+    protected InetAddress nicAddress;//Network Interface Address
+    protected int nicPort;//Network Interface Card port
+    protected long packetNo = 0;//How meny packets need to send
+    protected long packetSendReceive = 0; //How meny packets are Send/Receive {Statistic}
+    protected  int packetSize;//Packet Size
+    protected long trafficSize;//Calculate Send/Receive Traffic {Statistic}
+    protected int delay;//Delay between packets
 
 //    public ProtocolThread(Protocol.Type t)
 //    {
 //        type = t;
 //    }
-
+    public void resetStatistic()
+    {
+        packetSendReceive = 0;
+        trafficSize = 0;
+    }
     /**
      * @return the type
      */
@@ -100,5 +107,40 @@ public class ProtocolThread extends Thread {
      */
     public long getTrafficSize() {
         return trafficSize;
+    }
+
+    /**
+     * @return the packetSize
+     */
+    public int getPacketSize() {
+        return packetSize;
+    }
+
+    /**
+     * @param packetSize the packetSize to set
+     */
+    public void setPacketSize(int packetSize) {
+        this.packetSize = packetSize;
+    }
+
+    /**
+     * @return the delay
+     */
+    public int getDelay() {
+        return delay;
+    }
+
+    /**
+     * @param delay the delay to set
+     */
+    public void setDelay(int delay) {
+        this.delay = delay;
+    }
+
+    /**
+     * @return the packetSendReceive
+     */
+    public long getPacketSendReceive() {
+        return packetSendReceive;
     }
 }

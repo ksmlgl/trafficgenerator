@@ -2,14 +2,13 @@ package md.shaman.protocols.tcp;
 
 import java.net.*;
 import java.io.*;
+import md.shaman.protocols.ProtocolThread;
 import md.shaman.utils.StringUtils;
 
-public class TCPServer extends Thread {
+public class TCPServer extends ProtocolThread {
 
 	ServerSocket sersock;
 	Socket sock;
-	InetAddress localAddr;
-	int localPort;
 
 	public static void main(String args[]) throws IOException {
 		TCPServer s = new TCPServer("192.168.140.56", 5000);
@@ -17,22 +16,15 @@ public class TCPServer extends Thread {
 	}
 
 	public TCPServer(String localAddr, int localPort) throws IOException {
-		this.localPort = localPort;
+		this.nicPort = localPort;
 		try {
-			this.localAddr = InetAddress.getByName(localAddr);
+			this.nicAddress = InetAddress.getByName(localAddr);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
-		sersock = new ServerSocket(this.localPort, 1, this.localAddr);
+		sersock = new ServerSocket(this.nicPort, 1, this.nicAddress);
 	}
 
-	public InetAddress getLocalAddr() {
-		return localAddr;
-	}
-
-	public int getLocalPort() {
-		return localPort;
-	}
 
 	public void exit() {
 		try {

@@ -2,48 +2,30 @@ package md.shaman.protocols.multicast;
 
 import java.net.*;
 import java.io.*;
+import md.shaman.protocols.ProtocolThread;
 
-public class BroadcastClient extends Thread{
+public class BroadcastClient extends ProtocolThread{
 	MulticastSocket socket;
 	DatagramPacket packet;
-	InetAddress localAddr;
-	InetAddress address;
-	int localPort;
-	long recieveNoPacket = 0;
 	
-	public InetAddress getLocalAddr() {
-		return localAddr;
-	}
-
-	public int getLocalPort() {
-		return localPort;
-	}
-
-	public long getRecieveNoPacket() {
-		return recieveNoPacket;
-	}
-
 	public static void main(String args[]) throws Exception {
 
 
 	} // main
 	
 	public BroadcastClient(String address, String localAddr, int localPort) throws IOException {
-		this.localPort = localPort;
+		this.nicPort = localPort;
 		try {
-			this.localAddr = InetAddress.getByName(localAddr);
-			this.address = InetAddress.getByName(address);
+			this.nicAddress = InetAddress.getByName(localAddr);
+			this.ipAddress = InetAddress.getByName(address);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
 		socket = new MulticastSocket(localPort);
-		socket.setInterface(this.localAddr);
-		socket.joinGroup(this.address);
+		socket.setInterface(this.nicAddress);
+		socket.joinGroup(this.ipAddress);
 	}
 	
-	public InetAddress getAddress() {
-		return address;
-	}
 
 	
 	public void exit()
@@ -54,14 +36,14 @@ public class BroadcastClient extends Thread{
 	}
 	public void run() {
 		
-		byte[] data = new byte[1024];
+		byte[] data = new byte[packetSize];
 		packet = new DatagramPacket(data, data.length);
 
 		for (;;) {
 			// receive the packets
 			try {
 				socket.receive(packet);
-				recieveNoPacket ++;
+				packetSendReceive ++;
 				String str = new String(packet.getData());
 				System.out.println(" Time signal received from"
 						+ packet.getAddress() + " Time is : " + str);
