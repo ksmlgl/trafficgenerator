@@ -4,80 +4,58 @@ import java.net.*;
 import java.io.*;
 import md.shaman.protocols.ProtocolThread;
 
-public class EchoServer extends ProtocolThread{
+public class EchoServer extends ProtocolThread {
 
-	// Initialize Port number and Packet Size
-	DatagramPacket packet;
-	DatagramSocket socket;
-	static final int packetSize = 1024;
-	
-	int localPort;
-	InetAddress localAddr ;
-	long recievNoPacket = 0;
-	
-	
-	@SuppressWarnings("deprecation")
-	public static void main(String args[]) throws InterruptedException, SocketException {
-			EchoServer es = new EchoServer("127.0.0.1",5000);
-			es.start();
-			es.sleep(1000);
-			es.exit();
-			System.out.println("3");
-	}
-	
-	public EchoServer(String localAddr,int localPort) throws SocketException{
-		this.localPort = localPort;
-		try {
-			this.localAddr = InetAddress.getByName(localAddr);
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		socket = new DatagramSocket(this.localPort,this.localAddr);
-	}
-		public void exit()
-		{
-			socket.close();
-			stop();
-			
-		}
-		public void run(){
-		byte[] data; // For data to be Sent in packets
+    // Initialize Port number and Packet Size
+    DatagramPacket packet;
+    DatagramSocket socket;
 
-		for (;;) {
-			
-			data = new byte[packetSize];
+    @SuppressWarnings("deprecation")
+    public static void main(String args[]) throws InterruptedException, SocketException {
+        EchoServer es = new EchoServer("127.0.0.1", 5000);
+        es.start();
+        es.sleep(1000);
+        es.exit();
+        System.out.println("3");
+    }
 
-			// Create packets to receive the message
+    public EchoServer(String localAddr, int localPort) throws SocketException {
+        nicPort = localPort;
+        try {
+            nicAddress = InetAddress.getByName(localAddr);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        socket = new DatagramSocket(nicPort, nicAddress);
+    }
 
-			packet = new DatagramPacket(data, packetSize);
-			System.out.println("Waiting to receive the packets");
+    public void exit() {
+        socket.close();
+        stop();
 
-			try {
-				// wait infinetely for arrive of the packet
-				socket.receive(packet);
-				recievNoPacket ++;
+    }
 
-			} catch (IOException ie) {
-				System.out.println(" Could not Receive :" + ie.getMessage());
-				System.exit(0);
-			}
+    public void run() {
+        byte[] data; // For data to be Sent in packets
 
+        for (;;) {
 
-		} // for loop
+            data = new byte[packetSize];
 
-	} // main
+            // Create packets to receive the message
 
-		public long getRecievNoPacket() {
-			return recievNoPacket;
-		}
+            packet = new DatagramPacket(data, getPacketSize());
+            System.out.println("Waiting to receive the packets");
 
-		public int getLocalPort() {
-			return localPort;
-		}
-
-		public InetAddress getLocalAddr() {
-			return localAddr;
-		}
-
+            try {
+                // wait infinetely for arrive of the packet
+                socket.receive(packet);
+                packetSendReceive++;
+            } catch (IOException ie) {
+                System.out.println(" Could not Receive :" + ie.getMessage());
+                System.exit(0);
+            }
+        } // for loop
+    } // main
 } // class EchoServer
 

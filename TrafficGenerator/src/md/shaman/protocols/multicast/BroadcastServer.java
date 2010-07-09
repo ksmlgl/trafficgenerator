@@ -4,94 +4,60 @@ import java.net.*;
 import java.io.*;
 import java.security.SecureRandom;
 import java.util.*;
+import md.shaman.protocols.ProtocolThread;
 
-public class BroadcastServer extends Thread{
-	MulticastSocket socket;
-	DatagramPacket packet;
-	InetAddress address;
-	InetAddress localAddr;
-	byte[] data;
-	int port;
-	int localPort;
-	int packNo;
-	int sendNoPack = 0;
-	int timer;
-	int packetSize;
-	
-	public static void main(String args[]) throws Exception {
-		
-		
-	} // main
-	
-	public BroadcastServer(String address, int port, String localAddr,int localPort, int packetSize, int packNo, int timer) throws IOException {
-		this.port = port;
-		this.localPort = localPort;
-		this.packNo = packNo;
-		this.packetSize = packetSize;
-		this.timer = timer;
-		try {
-			this.address = InetAddress.getByName(address);
-			this.localAddr = InetAddress.getByName(localAddr);
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		socket = new MulticastSocket(this.localPort);
-		socket.setInterface(this.localAddr);
-		// join a Multicast group and send the group salutations
-		socket.joinGroup(this.address);
-	}
-	
-	public void exit()
-	{
-		socket.close();
-		stop();
-		
-	}
-	
-	public void run() {
-		SecureRandom random = new SecureRandom();
-		while(sendNoPack  != packNo){
-			try {
-				//data = random.generateSeed(packetSize);
-				Thread.sleep(timer);
-				System.out.println("Sending ");
-				String str = (new Date()).toString();
-				data = str.getBytes();
-				packet = new DatagramPacket(data, str.length(), address, port);
-				// Sends the packet 
-				socket.send(packet);
-				sendNoPack ++;
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		}
-	}
+public class BroadcastServer extends ProtocolThread {
 
-	public InetAddress getAddress() {
-		return address;
-	}
+    MulticastSocket socket;
+    DatagramPacket packet;
+    byte[] data;
 
-	public InetAddress getLocalAddr() {
-		return localAddr;
-	}
+    public static void main(String args[]) throws Exception {
+    } // main
 
-	public int getPort() {
-		return port;
-	}
+    public BroadcastServer(String address, int port, String localAddr, int localPort, int packetSize, int packNo, int timer) throws IOException {
+        this.ipPort = port;
+        this.nicPort = localPort;
+        this.packetNo = packNo;
+        this.packetSize = packetSize;
+        this.delay = timer;
+        try {
+            this.ipAddress = InetAddress.getByName(address);
+            this.nicAddress = InetAddress.getByName(localAddr);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        socket = new MulticastSocket(this.nicPort);
+        socket.setInterface(this.nicAddress);
+        // join a Multicast group and send the group salutations
+        socket.joinGroup(this.ipAddress);
+    }
 
-	public int getLocalPort() {
-		return localPort;
-	}
+    public void exit() {
+        socket.close();
+        stop();
 
-	public int getPackNo() {
-		return packNo;
-	}
+    }
 
-	public int getSendNoPack() {
-		return sendNoPack;
-	}
-	
+    public void run() {
+        SecureRandom random = new SecureRandom();
+        while (packetSendReceive != packetNo) {
+            try {
+                //data = random.generateSeed(packetSize);
+                Thread.sleep(delay);
+                System.out.println("Sending ");
+                String str = (new Date()).toString();
+                data = str.getBytes();
+                packet = new DatagramPacket(data, str.length(), ipAddress, ipPort);
+                // Sends the packet
+                socket.send(packet);
+                packetSendReceive++;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 } // class BroadcastServer
+
