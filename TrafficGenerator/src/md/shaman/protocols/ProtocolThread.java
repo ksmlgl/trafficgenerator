@@ -32,13 +32,6 @@ public class ProtocolThread extends Thread {
         packetSendReceive = 0;
         trafficSize = 0;
     }
-    public void restart()
-    {
-        resetStatistic();
-    }
-    public void start()
-    {
-    }
     /**
      * @return the type
      */
