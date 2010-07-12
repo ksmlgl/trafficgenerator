@@ -3,14 +3,13 @@ package md.shaman.protocols.udp;
 import java.net.*;
 import java.security.SecureRandom;
 import java.io.*;
+import md.shaman.protocols.Protocol.Type;
 import md.shaman.protocols.ProtocolThread;
 
 public class EchoClient extends ProtocolThread {
 
     DatagramSocket socket; // How we send packets
     DatagramPacket packet; // what we send it in
-    NetworkInterface nif; // NIC to send
-    String messageReturn; // What we get back from the Server
 
     byte[] data;
 
@@ -25,15 +24,16 @@ public class EchoClient extends ProtocolThread {
         e.start();
     }
 
-    public EchoClient(String address, int port, String localAddr, int localPort, int packetSize, int packNo, int timer) throws SocketException {
-        this.ipPort = port;
-        this.nicPort = localPort;
-        this.delay = timer;
-        this.packetNo = packNo;
+    public EchoClient(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, int packetNo, int delay) throws SocketException {
+        this.ipPort = ipPort;
+        this.nicPort = nicPort;
+        this.delay = delay;
+        this.packetNo = packetNo;
         this.packetSize = packetSize;
+        type = Type.UDP;
         try {
-            this.ipAddress = InetAddress.getByName(address);
-            this.nicAddress = InetAddress.getByName(localAddr);
+            this.ipAddress = InetAddress.getByName(ipAddress);
+            this.nicAddress = InetAddress.getByName(nicAddress);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -44,7 +44,9 @@ public class EchoClient extends ProtocolThread {
         socket.disconnect();
         socket.close();
         stop();
+    }
 
+    public void pause(){
     }
 
     public void run() {
