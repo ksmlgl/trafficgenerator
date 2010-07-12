@@ -21,12 +21,9 @@ public class ProtocolThread extends Thread {
     protected long packetSendReceive = 0; //How meny packets are Send/Receive {Statistic}
     protected  int packetSize;//Packet Size
     protected long trafficSize;//Calculate Send/Receive Traffic {Statistic}
-    protected int delay;//Delay between packets
+    protected long delay;//Delay between packets
+    protected boolean randomMessage = true;
 
-//    public ProtocolThread(Protocol.Type t)
-//    {
-//        type = t;
-//    }
     public void resetStatistic()
     {
         packetSendReceive = 0;
@@ -126,14 +123,14 @@ public class ProtocolThread extends Thread {
     /**
      * @return the delay
      */
-    public int getDelay() {
+    public long getDelay() {
         return delay;
     }
 
     /**
      * @param delay the delay to set
      */
-    public void setDelay(int delay) {
+    public void setDelay(long delay) {
         this.delay = delay;
     }
 

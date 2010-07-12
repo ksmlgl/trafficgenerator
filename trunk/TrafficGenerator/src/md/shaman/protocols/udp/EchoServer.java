@@ -19,14 +19,14 @@ public class EchoServer extends ProtocolThread {
         System.out.println("3");
     }
 
-    public EchoServer(String localAddr, int localPort) throws SocketException {
-        nicPort = localPort;
+    public EchoServer(String nicAddress, int nicPort) throws SocketException {
+        this.nicPort = nicPort;
         try {
-            nicAddress = InetAddress.getByName(localAddr);
+            this.nicAddress = InetAddress.getByName(nicAddress);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-        socket = new DatagramSocket(nicPort, nicAddress);
+        socket = new DatagramSocket(this.nicPort, this.ipAddress);
     }
 
     public void exit() {
