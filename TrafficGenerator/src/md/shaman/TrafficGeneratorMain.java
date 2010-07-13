@@ -51,11 +51,8 @@ public class TrafficGeneratorMain extends FrameView {
 
         //Wizard Config
         wizard.setCurrentPanel(GeneralStartWizardDescriptor.IDENTIFIER);
-        switch(wizard.showModalDialog())
+        if(Wizard.FINISH_RETURN_CODE == wizard.showModalDialog())
         {
-            case Wizard.FINISH_RETURN_CODE: ProtocolConfig.execute();break;
-            case Wizard.CANCEL_RETURN_CODE: ProtocolConfig.clean();break;
-            case Wizard.ERROR_RETURN_CODE: ProtocolConfig.clean();break;
         };
     }
 
