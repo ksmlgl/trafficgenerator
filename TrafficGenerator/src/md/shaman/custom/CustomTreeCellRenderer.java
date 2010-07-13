@@ -9,9 +9,7 @@ import java.util.Hashtable;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTree;
-import javax.swing.UIManager;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import md.shaman.icons.PNGPacket;
 
 /**
  *

@@ -9,6 +9,7 @@ import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.tree.TreePath;
@@ -53,6 +54,8 @@ public class TrafficGeneratorMain extends FrameView {
         wizard.setCurrentPanel(GeneralStartWizardDescriptor.IDENTIFIER);
         if(Wizard.FINISH_RETURN_CODE == wizard.showModalDialog())
         {
+            Object[] rowData = {1,ProtocolConfig.getType(),ProtocolConfig.getIpAddress(),ProtocolConfig.getNicAddress(),"","",""};
+            ((DefaultTableModel)processTable.getModel()).addRow(rowData);
         };
     }
 

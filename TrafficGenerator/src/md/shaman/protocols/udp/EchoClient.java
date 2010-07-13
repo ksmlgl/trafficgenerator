@@ -3,6 +3,9 @@ package md.shaman.protocols.udp;
 import java.net.*;
 import java.security.SecureRandom;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import md.shaman.protocols.Protocol.Direction;
 import md.shaman.protocols.Protocol.Type;
 import md.shaman.protocols.ProtocolThread;
 
@@ -10,32 +13,30 @@ public class EchoClient extends ProtocolThread {
 
     DatagramSocket socket; // How we send packets
     DatagramPacket packet; // what we send it in
-
     byte[] data;
-
 
     public static void main(String[] args) {
         EchoClient e = null;
         try {
             e = new EchoClient("192.168.140.14", 5000, "192.168.140.56", 5000, 1024, 1000, 1000);
-        } catch (SocketException e1) {
-            e1.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(EchoClient.class.getName()).log(Level.SEVERE, null, ex);
         }
         e.start();
     }
 
-    public EchoClient(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, int packetNo, int delay) throws SocketException {
+    public EchoClient(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, int packetNo, int delay) throws IOException {
         this.ipPort = ipPort;
         this.nicPort = nicPort;
         this.delay = delay;
         this.packetNo = packetNo;
         this.packetSize = packetSize;
-        type = Type.UDP;
+        this.type = Type.UDP;
+        this.direction = Direction.SEND;
         try {
             this.ipAddress = InetAddress.getByName(ipAddress);
             this.nicAddress = InetAddress.getByName(nicAddress);
         } catch (UnknownHostException e) {
-            e.printStackTrace();
         }
         socket = new DatagramSocket(this.nicPort, this.nicAddress);
     }
@@ -46,7 +47,7 @@ public class EchoClient extends ProtocolThread {
         stop();
     }
 
-    public void pause(){
+    public void pause() {
     }
 
     public void run() {

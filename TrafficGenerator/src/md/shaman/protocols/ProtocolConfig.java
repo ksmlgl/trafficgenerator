@@ -4,6 +4,14 @@
  */
 package md.shaman.protocols;
 
+import java.io.IOException;
+import md.shaman.protocols.multicast.BroadcastClient;
+import md.shaman.protocols.multicast.BroadcastServer;
+import md.shaman.protocols.tcp.TCPClient;
+import md.shaman.protocols.tcp.TCPServer;
+import md.shaman.protocols.udp.EchoClient;
+import md.shaman.protocols.udp.EchoServer;
+
 /**
  *
  * @author AlexandruC
@@ -13,12 +21,13 @@ public class ProtocolConfig {
     private static Protocol.Type type;
     private static Protocol.Direction direction;
     //Remote
-    private static String ip;
+    private static String ipAddress;
     private static int ipPort;
     //Local
-    private static String nic;
+    private static String nicAddress;
     private static int nicPort;
     //Traffic Sender
+    private static int packetNo;
     private static int dataSize;
     private static int delay;
 
@@ -30,10 +39,10 @@ public class ProtocolConfig {
         type = null;
         direction = null;
         //Remote
-        ip = "";
+        ipAddress = "";
         ipPort = 0;
         //Local
-        nic = "";
+        nicAddress = "";
         nicPort = 0;
 
         //Traffic Sender
@@ -41,7 +50,30 @@ public class ProtocolConfig {
         delay = 1000;
     }
 
-    public static void execute() {
+    public static long execute() throws IOException {
+        switch (direction) {
+            case SEND: {
+                switch (type) {
+                    case UDP:
+                        return new EchoClient(ipAddress, ipPort, nicAddress, nicPort, packetNo, packetNo, delay).getId();
+                    case TCP:
+                        return new TCPClient(ipAddress, ipPort, nicAddress, nicPort, packetNo, packetNo, delay).getId();
+                    case MULTICAST:
+                        return new BroadcastServer(ipAddress, ipPort, nicAddress, nicPort, packetNo, packetNo, delay).getId();
+                }
+            }
+            case RECEIVE: {
+                switch (type) {
+                    case UDP:
+                        return new EchoServer(nicAddress, nicPort).getId();
+                    case TCP:
+                        return new TCPServer(nicAddress, nicPort).getId();
+                    case MULTICAST:
+                        return new BroadcastClient(ipAddress, nicAddress, nicPort).getId();
+                }
+            }
+        }
+        return -1;
     }
 
     /**
@@ -81,17 +113,17 @@ public class ProtocolConfig {
     }
 
     /**
-     * @return the ip
+     * @return the ipAddress
      */
-    public static String getIp() {
-        return ip;
+    public static String getIpAddress() {
+        return ipAddress;
     }
 
     /**
-     * @param aIp the ip to set
+     * @param aIp the ipAddress to set
      */
-    public static void setIp(String aIp) {
-        ip = aIp;
+    public static void setIpAddress(String aIpAddress) {
+        ipAddress = aIpAddress;
     }
 
     /**
@@ -115,17 +147,17 @@ public class ProtocolConfig {
     }
 
     /**
-     * @return the nic
+     * @return the nicAddress
      */
-    public static String getNic() {
-        return nic;
+    public static String getNicAddress() {
+        return nicAddress;
     }
 
     /**
-     * @param aNic the nic to set
+     * @param aNic the nicAddress to set
      */
-    public static void setNic(String aNic) {
-        nic = aNic;
+    public static void setNicAddress(String aNicAddress) {
+        nicAddress = aNicAddress;
     }
 
     /**
@@ -182,5 +214,19 @@ public class ProtocolConfig {
 
     public static void setDelay(String aDelay) {
         delay = Integer.parseInt(aDelay);
+    }
+
+    /**
+     * @return the packetNo
+     */
+    public static int getPacketNo() {
+        return packetNo;
+    }
+
+    /**
+     * @param aPacketNo the packetNo to set
+     */
+    public static void setPacketNo(int aPacketNo) {
+        packetNo = aPacketNo;
     }
 }
