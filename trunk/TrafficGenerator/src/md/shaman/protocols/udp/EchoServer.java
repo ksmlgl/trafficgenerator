@@ -2,6 +2,8 @@ package md.shaman.protocols.udp;
 
 import java.net.*;
 import java.io.*;
+import md.shaman.protocols.Protocol.Direction;
+import md.shaman.protocols.Protocol.Type;
 import md.shaman.protocols.ProtocolThread;
 
 public class EchoServer extends ProtocolThread {
@@ -11,7 +13,7 @@ public class EchoServer extends ProtocolThread {
     DatagramSocket socket;
 
     @SuppressWarnings("deprecation")
-    public static void main(String args[]) throws InterruptedException, SocketException {
+    public static void main(String args[]) throws InterruptedException, SocketException, IOException {
         EchoServer es = new EchoServer("127.0.0.1", 5000);
         es.start();
         es.sleep(1000);
@@ -19,12 +21,13 @@ public class EchoServer extends ProtocolThread {
         System.out.println("3");
     }
 
-    public EchoServer(String nicAddress, int nicPort) throws SocketException {
+    public EchoServer(String nicAddress, int nicPort) throws IOException {
         this.nicPort = nicPort;
+        this.type = Type.UDP;
+        this.direction = Direction.RECEIVE;
         try {
             this.nicAddress = InetAddress.getByName(nicAddress);
         } catch (UnknownHostException e) {
-            e.printStackTrace();
         }
         socket = new DatagramSocket(this.nicPort, this.ipAddress);
     }
@@ -32,7 +35,6 @@ public class EchoServer extends ProtocolThread {
     public void exit() {
         socket.close();
         stop();
-
     }
 
     public void run() {

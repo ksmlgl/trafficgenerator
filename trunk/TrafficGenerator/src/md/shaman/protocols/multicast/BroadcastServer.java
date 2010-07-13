@@ -4,6 +4,8 @@ import java.net.*;
 import java.io.*;
 import java.security.SecureRandom;
 import java.util.*;
+import md.shaman.protocols.Protocol.Direction;
+import md.shaman.protocols.Protocol.Type;
 import md.shaman.protocols.ProtocolThread;
 
 public class BroadcastServer extends ProtocolThread {
@@ -15,17 +17,18 @@ public class BroadcastServer extends ProtocolThread {
     public static void main(String args[]) throws Exception {
     } // main
 
-    public BroadcastServer(String address, int port, String localAddr, int localPort, int packetSize, int packNo, int timer) throws IOException {
-        this.ipPort = port;
-        this.nicPort = localPort;
-        this.packetNo = packNo;
+    public BroadcastServer(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, int packetNo, int delay) throws IOException {
+        this.ipPort = ipPort;
+        this.nicPort = nicPort;
+        this.packetNo = packetNo;
         this.packetSize = packetSize;
-        this.delay = timer;
+        this.delay = delay;
+        this.type = Type.MULTICAST;
+        this.direction = Direction.SEND;
         try {
-            this.ipAddress = InetAddress.getByName(address);
-            this.nicAddress = InetAddress.getByName(localAddr);
+            this.ipAddress = InetAddress.getByName(ipAddress);
+            this.nicAddress = InetAddress.getByName(nicAddress);
         } catch (UnknownHostException e) {
-            e.printStackTrace();
         }
         socket = new MulticastSocket(this.nicPort);
         socket.setInterface(this.nicAddress);

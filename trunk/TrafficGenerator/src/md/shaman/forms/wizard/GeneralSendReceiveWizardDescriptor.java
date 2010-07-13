@@ -38,9 +38,9 @@ public class GeneralSendReceiveWizardDescriptor extends WizardPanelDescriptor im
 
     @Override
     public void aboutToHidePanel() {
-        ProtocolConfig.setIp(gsrwp.ipTextField.getText());
+        ProtocolConfig.setIpAddress(gsrwp.ipTextField.getText());
         ProtocolConfig.setIpPort(gsrwp.ipPortTextField.getText());
-        ProtocolConfig.setNic(gsrwp.nicComboBox.getSelectedItem().toString());
+        ProtocolConfig.setNicAddress(gsrwp.nicComboBox.getSelectedItem().toString());
         ProtocolConfig.setNicPort(gsrwp.nicPortTextField.getText());
     }
 
@@ -63,8 +63,8 @@ public class GeneralSendReceiveWizardDescriptor extends WizardPanelDescriptor im
         } catch (SocketException e) {
         }
 
-        if (!ProtocolConfig.getNic().isEmpty()) {
-            gsrwp.nicComboBox.setSelectedItem(ProtocolConfig.getNic());
+        if (!ProtocolConfig.getNicAddress().isEmpty()) {
+            gsrwp.nicComboBox.setSelectedItem(ProtocolConfig.getNicAddress());
         }
     }
 

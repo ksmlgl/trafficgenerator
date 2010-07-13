@@ -13,6 +13,7 @@ import java.net.InetAddress;
 public class ProtocolThread extends Thread {
 
     protected Protocol.Type type = null;
+    protected Protocol.Direction direction = null;
     protected InetAddress ipAddress;//Internet Protocol address
     protected int ipPort;//Internet Protocol port
     protected InetAddress nicAddress;//Network Interface Address
@@ -139,5 +140,26 @@ public class ProtocolThread extends Thread {
      */
     public long getPacketSendReceive() {
         return packetSendReceive;
+    }
+
+    /**
+     * @return the direction
+     */
+    public Protocol.Direction getDirection() {
+        return direction;
+    }
+
+    /**
+     * @return the randomMessage
+     */
+    public boolean isRandomMessage() {
+        return randomMessage;
+    }
+
+    /**
+     * @param randomMessage the randomMessage to set
+     */
+    public void setRandomMessage(boolean randomMessage) {
+        this.randomMessage = randomMessage;
     }
 }

@@ -2,56 +2,56 @@ package md.shaman.protocols.multicast;
 
 import java.net.*;
 import java.io.*;
+import md.shaman.protocols.Protocol.Direction;
+import md.shaman.protocols.Protocol.Type;
 import md.shaman.protocols.ProtocolThread;
 
-public class BroadcastClient extends ProtocolThread{
-	MulticastSocket socket;
-	DatagramPacket packet;
-	
-	public static void main(String args[]) throws Exception {
+public class BroadcastClient extends ProtocolThread {
 
+    MulticastSocket socket;
+    DatagramPacket packet;
 
-	} // main
-	
-	public BroadcastClient(String address, String localAddr, int localPort) throws IOException {
-		this.nicPort = localPort;
-		try {
-			this.nicAddress = InetAddress.getByName(localAddr);
-			this.ipAddress = InetAddress.getByName(address);
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		socket = new MulticastSocket(localPort);
-		socket.setInterface(this.nicAddress);
-		socket.joinGroup(this.ipAddress);
-	}
-	
+    public static void main(String args[]) throws Exception {
+    } // main
 
-	
-	public void exit()
-	{
-		socket.close();
-		stop();
-		
-	}
-	public void run() {
-		
-		byte[] data = new byte[packetSize];
-		packet = new DatagramPacket(data, data.length);
+    public BroadcastClient(String ipAddress, String nicAddress, int nicPort) throws IOException {
+        this.nicPort = nicPort;
+        this.type = Type.MULTICAST;
+        this.direction = Direction.RECEIVE;
+        try {
+            this.nicAddress = InetAddress.getByName(nicAddress);
+            this.ipAddress = InetAddress.getByName(ipAddress);
+        } catch (UnknownHostException e) {
+        }
+        socket = new MulticastSocket(this.nicPort);
+        socket.setInterface(this.nicAddress);
+        socket.joinGroup(this.ipAddress);
+    }
 
-		for (;;) {
-			// receive the packets
-			try {
-				socket.receive(packet);
-				packetSendReceive ++;
-				String str = new String(packet.getData());
-				System.out.println(" Time signal received from"
-						+ packet.getAddress() + " Time is : " + str);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		} // for
-	}
+    public void exit() {
+        socket.close();
+        stop();
 
+    }
+
+    public void run() {
+
+        byte[] data = new byte[packetSize];
+        packet = new DatagramPacket(data, data.length);
+
+        for (;;) {
+            // receive the packets
+            try {
+                socket.receive(packet);
+                packetSendReceive++;
+                String str = new String(packet.getData());
+                System.out.println(" Time signal received from"
+                        + packet.getAddress() + " Time is : " + str);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } // for
+    }
 } // class Broadcast
+
