@@ -56,7 +56,7 @@ public class TrafficGeneratorMain extends FrameView {
         {
             Object[] rowData = {1,ProtocolConfig.getType(),ProtocolConfig.getIpAddress(),ProtocolConfig.getNicAddress(),"","",""};
             ((DefaultTableModel)processTable.getModel()).addRow(rowData);
-        };
+        }
     }
 
     @Action

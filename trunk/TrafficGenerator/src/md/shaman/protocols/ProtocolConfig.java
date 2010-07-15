@@ -30,6 +30,8 @@ public class ProtocolConfig {
     private static int packetNo;
     private static int dataSize;
     private static int delay;
+    //Configuration
+    private static boolean startNow;
 
     static {
         clean();
