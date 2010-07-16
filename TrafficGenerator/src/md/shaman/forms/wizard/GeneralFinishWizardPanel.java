@@ -59,7 +59,7 @@ public class GeneralFinishWizardPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox startNowCheckBox;
+    protected javax.swing.JCheckBox startNowCheckBox;
     // End of variables declaration//GEN-END:variables
 
 }

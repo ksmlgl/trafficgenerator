@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import md.shaman.protocols.Protocol.Direction;
 import md.shaman.protocols.Protocol.Type;
 import md.shaman.protocols.ProtocolThread;
+import md.shaman.utils.ThreadUtilities;
 
 public class EchoClient extends ProtocolThread {
 
@@ -16,13 +17,19 @@ public class EchoClient extends ProtocolThread {
     byte[] data;
 
     public static void main(String[] args) {
-        EchoClient e = null;
+        ProtocolThread e = null;
         try {
-            e = new EchoClient("192.168.140.14", 5000, "192.168.140.56", 5000, 1024, 1000, 1000);
+            e = new EchoClient("192.168.140.14", 5000, "192.168.140.25", 5000, 1024, 1000, 1000);
         } catch (IOException ex) {
             Logger.getLogger(EchoClient.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(e.getId());
+        System.out.println(e.getClass());
         e.start();
+        EchoClient pt = (EchoClient) ThreadUtilities.getThread(e.getId());
+        pt.exit();
+        System.out.println(pt.getId());
+        System.out.println(pt.getClass());
     }
 
     public EchoClient(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, int packetNo, int delay) throws IOException {

@@ -5,6 +5,8 @@
 
 package md.shaman.forms.wizard;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import md.shaman.custom.wizard.WizardPanelDescriptor;
 import md.shaman.protocols.ProtocolConfig;
 
@@ -12,7 +14,7 @@ import md.shaman.protocols.ProtocolConfig;
  *
  * @author AlexandruC
  */
-public class GeneralFinishWizardDescriptor extends WizardPanelDescriptor{
+public class GeneralFinishWizardDescriptor extends WizardPanelDescriptor implements ActionListener{
     public static final String IDENTIFIER = "GENERAL_FINISH_PANEL";
     GeneralFinishWizardPanel gfwp;
     public GeneralFinishWizardDescriptor() {
@@ -21,6 +23,7 @@ public class GeneralFinishWizardDescriptor extends WizardPanelDescriptor{
         
         setPanelDescriptorIdentifier(IDENTIFIER);
         setPanelComponent(gfwp);
+        gfwp.startNowCheckBox.addActionListener(this);
     }
 
     @Override
@@ -38,5 +41,9 @@ public class GeneralFinishWizardDescriptor extends WizardPanelDescriptor{
             default:
                 return GeneralSendReceiveWizardDescriptor.IDENTIFIER;
         }
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        ProtocolConfig.setStartNow(gfwp.startNowCheckBox.isSelected());
     }
 }
