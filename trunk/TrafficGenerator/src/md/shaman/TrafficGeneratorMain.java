@@ -3,24 +3,27 @@
  */
 package md.shaman;
 
+import java.io.IOException;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
+import md.shaman.configs.Config;
 import md.shaman.custom.CustomTreeCellRenderer;
 import md.shaman.custom.wizard.Wizard;
-import md.shaman.custom.wizard.WizardPanelDescriptor;
 import md.shaman.forms.wizard.*;
 import md.shaman.icons.PNGPacket;
-import md.shaman.protocols.Protocol.Direction;
 import md.shaman.protocols.ProtocolConfig;
+import md.shaman.protocols.ProtocolThread;
+import md.shaman.utils.ThreadUtilities;
 
 /**
  * The application's main frame.
@@ -31,11 +34,30 @@ public class TrafficGeneratorMain extends FrameView {
         super(app);
         initComponents();
         getFrame().setIconImages(PNGPacket.Network.getImages());
+
+        Thread t = new Thread(new Runnable() {
+        public void run() {
+            while (true) {
+                    try {
+                        Thread.sleep(Config.getGeneralRefrash());
+                        DefaultTableModel dtm = (DefaultTableModel) processTable.getModel();
+//                        for(int i = 0; i<dtm.getRowCount(); i++){
+//                            ProtocolThread pt = (ProtocolThread) ThreadUtilities.getThread((Long)dtm.getValueAt(i, 0));
+//                            //Progress
+//                            dtm.setValueAt(pt.getPacketSendReceive(), i, 4);
+//                            //Status
+//                            dtm.setValueAt(pt.getState(), i, 5);
+//                        }
+                    } catch (Exception e) {
+                    }
+                }
+        }
+        });
+        t.start();
     }
 
     @Action
-    public void showWizard()
-    {
+    public void showWizard() {
         JFrame mainFrame = TrafficGeneratorApp.getApplication().getMainFrame();
         Wizard wizard = new Wizard(mainFrame);
         wizard.getDialog().setTitle("Traffic Generator Wizard");
@@ -52,10 +74,16 @@ public class TrafficGeneratorMain extends FrameView {
 
         //Wizard Config
         wizard.setCurrentPanel(GeneralStartWizardDescriptor.IDENTIFIER);
-        if(Wizard.FINISH_RETURN_CODE == wizard.showModalDialog())
-        {
-            Object[] rowData = {1,ProtocolConfig.getType(),ProtocolConfig.getIpAddress(),ProtocolConfig.getNicAddress(),"","",""};
-            ((DefaultTableModel)processTable.getModel()).addRow(rowData);
+        if (Wizard.FINISH_RETURN_CODE == wizard.showModalDialog()) {
+            try {
+                ProtocolThread pt = (ProtocolThread) ProtocolConfig.execute();
+                if (ProtocolConfig.isStartNow()) {
+                    pt.start();
+                }
+                Object[] rowData = {pt.getId(), pt.getType(), pt.getIpAddress().toString().substring(1) + ":" + pt.getIpPort(), pt.getNicAddress().toString().substring(1) + ":" + pt.getNicPort(), pt.getPacketSendReceive(), pt.getState(), ProtocolConfig.isStartNow()};
+                ((DefaultTableModel) processTable.getModel()).addRow(rowData);
+            } catch (IOException ex) {
+            }
         }
     }
 
@@ -161,9 +189,7 @@ public class TrafficGeneratorMain extends FrameView {
         processTable.setAutoCreateRowSorter(true);
         processTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {new Long(1), "TCP", "192.168.1.1", "192.168.1.2", "95 %", "NEW", "tt"},
-                {new Long(2), "UDP", "192.168.1.1", "192.168.1.2", "4 %", "RUNNABLE", "mm"},
-                {new Long(3), "MULTICAST", "192.168.1.1", "192.168.1.2", "1 %", "TERMINATED", null}
+
             },
             new String [] {
                 "PID", "ProtocolType", "IP:Port", "NIC:Port", "Progress", "Status", "Label"

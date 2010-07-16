@@ -52,26 +52,27 @@ public class ProtocolConfig {
         delay = 1000;
     }
 
-    public static long execute() throws IOException {
+    public static Object execute() throws IOException {
+        Object obj;
         switch (direction) {
             case SEND: {
                 switch (type) {
                     case UDP:
-                        return new EchoClient(ipAddress, ipPort, nicAddress, nicPort, packetNo, packetNo, delay).getId();
+                        return new EchoClient(ipAddress, ipPort, nicAddress, nicPort, packetNo, packetNo, delay);
                     case TCP:
-                        return new TCPClient(ipAddress, ipPort, nicAddress, nicPort, packetNo, packetNo, delay).getId();
+                        return new TCPClient(ipAddress, ipPort, nicAddress, nicPort, packetNo, packetNo, delay);
                     case MULTICAST:
-                        return new BroadcastServer(ipAddress, ipPort, nicAddress, nicPort, packetNo, packetNo, delay).getId();
+                        return new BroadcastServer(ipAddress, ipPort, nicAddress, nicPort, packetNo, packetNo, delay);
                 }
             }
             case RECEIVE: {
                 switch (type) {
                     case UDP:
-                        return new EchoServer(nicAddress, nicPort).getId();
+                        return new EchoServer(nicAddress, nicPort);
                     case TCP:
-                        return new TCPServer(nicAddress, nicPort).getId();
+                        return new TCPServer(nicAddress, nicPort);
                     case MULTICAST:
-                        return new BroadcastClient(ipAddress, nicAddress, nicPort).getId();
+                        return new BroadcastClient(ipAddress, nicAddress, nicPort);
                 }
             }
         }
@@ -230,5 +231,19 @@ public class ProtocolConfig {
      */
     public static void setPacketNo(int aPacketNo) {
         packetNo = aPacketNo;
+    }
+
+    /**
+     * @return the startNow
+     */
+    public static boolean isStartNow() {
+        return startNow;
+    }
+
+    /**
+     * @param aStartNow the startNow to set
+     */
+    public static void setStartNow(boolean aStartNow) {
+        startNow = aStartNow;
     }
 }

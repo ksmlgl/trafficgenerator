@@ -19,29 +19,7 @@ import md.shaman.protocols.Protocol;
 public class Test {
 
     public static void main(String args[]) throws UnknownHostException{
-
-        Thread t = new Thread(){
-            @Override
-            public void run() {
-                super.run();
-                int i = 0;
-                ///try {
-                    while (true) {
-                        //wait(0);
-                        System.out.println("Thread");
-                    }
-                    
-                    
-                    
-                //} catch (InterruptedException ex) {
-                   // System.out.println("Error");
-               // }
-            }
-        };
-        t.start();
-        for(int i = 0; i < 100; i++)
-        {
-            System.out.println(t.getState());
-        }
+           InetAddress i = InetAddress.getByName("192.168.140.25");
+           System.out.println(i.toString().substring(1));
     }
 }

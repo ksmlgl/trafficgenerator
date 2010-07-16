@@ -30,6 +30,7 @@ public class ProtocolThread extends Thread {
         packetSendReceive = 0;
         trafficSize = 0;
     }
+
     /**
      * @return the type
      */
