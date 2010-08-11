@@ -4,6 +4,7 @@
 package md.shaman;
 
 import java.io.IOException;
+import java.util.HashMap;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
@@ -23,12 +24,15 @@ import md.shaman.forms.wizard.*;
 import md.shaman.icons.PNGPacket;
 import md.shaman.protocols.ProtocolConfig;
 import md.shaman.protocols.ProtocolThread;
+import md.shaman.protocols.ProtocolThreadUtilities;
 import md.shaman.utils.ThreadUtilities;
 
 /**
  * The application's main frame.
  */
 public class TrafficGeneratorMain extends FrameView {
+
+    HashMap<Long, ProtocolThread> ptMap = new HashMap<Long, ProtocolThread>();
 
     public TrafficGeneratorMain(SingleFrameApplication app) {
         super(app);
@@ -41,13 +45,13 @@ public class TrafficGeneratorMain extends FrameView {
                     try {
                         Thread.sleep(Config.getGeneralRefrash());
                         DefaultTableModel dtm = (DefaultTableModel) processTable.getModel();
-//                        for(int i = 0; i<dtm.getRowCount(); i++){
-//                            ProtocolThread pt = (ProtocolThread) ThreadUtilities.getThread((Long)dtm.getValueAt(i, 0));
-//                            //Progress
-//                            dtm.setValueAt(pt.getPacketSendReceive(), i, 4);
-//                            //Status
-//                            dtm.setValueAt(pt.getState(), i, 5);
-//                        }
+                        for(int i = 0; i<dtm.getRowCount(); i++){
+                            ProtocolThread pt = ptMap.get((Long)dtm.getValueAt(i, 0));
+                            //Progress
+                            dtm.setValueAt(pt.getPacketSendReceive(), i, 4);
+                            //Status
+                            dtm.setValueAt(pt.getState(), i, 5);
+                        }
                     } catch (Exception e) {
                     }
                 }
@@ -79,8 +83,10 @@ public class TrafficGeneratorMain extends FrameView {
                 ProtocolThread pt = (ProtocolThread) ProtocolConfig.execute();
                 if (ProtocolConfig.isStartNow()) {
                     pt.start();
+                    System.out.println("Process is started");
                 }
-                Object[] rowData = {pt.getId(), pt.getType(), pt.getIpAddress().toString().substring(1) + ":" + pt.getIpPort(), pt.getNicAddress().toString().substring(1) + ":" + pt.getNicPort(), pt.getPacketSendReceive(), pt.getState(), ProtocolConfig.isStartNow()};
+                ptMap.put(pt.getId(), pt);
+                Object[] rowData = {pt.getId(), pt.getType(), pt.getIpAddress().toString().substring(1) + ":" + pt.getIpPort(), pt.getNicAddress().toString().substring(1) + ":" + pt.getNicPort(), pt.getPacketSendReceive(), pt.getState(), ""};
                 ((DefaultTableModel) processTable.getModel()).addRow(rowData);
             } catch (IOException ex) {
             }
@@ -128,6 +134,12 @@ public class TrafficGeneratorMain extends FrameView {
         processTable = new javax.swing.JTable();
         tabbedPane = new javax.swing.JTabbedPane();
         generalPanel = new javax.swing.JPanel();
+        protocolTypeLabel = new javax.swing.JLabel();
+        ipPortLabel = new javax.swing.JLabel();
+        nicPortLabel = new javax.swing.JLabel();
+        protocolTypeValue = new javax.swing.JLabel();
+        ipPortValue = new javax.swing.JLabel();
+        nicPortValue = new javax.swing.JLabel();
         graphPanel = new javax.swing.JPanel();
         logPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -203,6 +215,7 @@ public class TrafficGeneratorMain extends FrameView {
                 return types [columnIndex];
             }
         });
+        processTable.setColumnSelectionAllowed(true);
         processTable.setName("processTable"); // NOI18N
         processTable.setShowHorizontalLines(false);
         processTable.setShowVerticalLines(false);
@@ -224,12 +237,90 @@ public class TrafficGeneratorMain extends FrameView {
         tabbedPane.setName("tabbedPane"); // NOI18N
 
         generalPanel.setName("generalPanel"); // NOI18N
+
+        protocolTypeLabel.setText(resourceMap.getString("protocolTypeLabel.text")); // NOI18N
+        protocolTypeLabel.setName("protocolTypeLabel"); // NOI18N
+
+        ipPortLabel.setText(resourceMap.getString("ipPortLabel.text")); // NOI18N
+        ipPortLabel.setName("ipPortLabel"); // NOI18N
+
+        nicPortLabel.setText(resourceMap.getString("nicPortLabel.text")); // NOI18N
+        nicPortLabel.setName("nicPortLabel"); // NOI18N
+
+        protocolTypeValue.setText(resourceMap.getString("protocolTypeValue.text")); // NOI18N
+        protocolTypeValue.setName("protocolTypeValue"); // NOI18N
+
+        ipPortValue.setText(resourceMap.getString("ipPortValue.text")); // NOI18N
+        ipPortValue.setName("ipPortValue"); // NOI18N
+
+        nicPortValue.setText(resourceMap.getString("nicPortValue.text")); // NOI18N
+        nicPortValue.setName("nicPortValue"); // NOI18N
+
+        javax.swing.GroupLayout generalPanelLayout = new javax.swing.GroupLayout(generalPanel);
+        generalPanel.setLayout(generalPanelLayout);
+        generalPanelLayout.setHorizontalGroup(
+            generalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(generalPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(generalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(protocolTypeLabel)
+                    .addComponent(ipPortLabel)
+                    .addComponent(nicPortLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(generalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nicPortValue, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ipPortValue, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(protocolTypeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(379, Short.MAX_VALUE))
+        );
+        generalPanelLayout.setVerticalGroup(
+            generalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(generalPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(generalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(protocolTypeLabel)
+                    .addComponent(protocolTypeValue))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(generalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ipPortLabel)
+                    .addComponent(ipPortValue))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(generalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nicPortLabel)
+                    .addComponent(nicPortValue))
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+
         tabbedPane.addTab(resourceMap.getString("generalPanel.TabConstraints.tabTitle"), resourceMap.getIcon("generalPanel.TabConstraints.tabIcon"), generalPanel, resourceMap.getString("generalPanel.TabConstraints.tabToolTip")); // NOI18N
 
         graphPanel.setName("graphPanel"); // NOI18N
+
+        javax.swing.GroupLayout graphPanelLayout = new javax.swing.GroupLayout(graphPanel);
+        graphPanel.setLayout(graphPanelLayout);
+        graphPanelLayout.setHorizontalGroup(
+            graphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 585, Short.MAX_VALUE)
+        );
+        graphPanelLayout.setVerticalGroup(
+            graphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 107, Short.MAX_VALUE)
+        );
+
         tabbedPane.addTab(resourceMap.getString("graphPanel.TabConstraints.tabTitle"), resourceMap.getIcon("graphPanel.TabConstraints.tabIcon"), graphPanel, resourceMap.getString("graphPanel.TabConstraints.tabToolTip")); // NOI18N
 
         logPanel.setName("logPanel"); // NOI18N
+
+        javax.swing.GroupLayout logPanelLayout = new javax.swing.GroupLayout(logPanel);
+        logPanel.setLayout(logPanelLayout);
+        logPanelLayout.setHorizontalGroup(
+            logPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 585, Short.MAX_VALUE)
+        );
+        logPanelLayout.setVerticalGroup(
+            logPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 107, Short.MAX_VALUE)
+        );
+
         tabbedPane.addTab(resourceMap.getString("logPanel.TabConstraints.tabTitle"), resourceMap.getIcon("logPanel.TabConstraints.tabIcon"), logPanel, resourceMap.getString("logPanel.TabConstraints.tabToolTip")); // NOI18N
 
         jSplitPane2.setRightComponent(tabbedPane);
@@ -345,9 +436,9 @@ public class TrafficGeneratorMain extends FrameView {
             return;
         } else if (tp.getPathCount() == 3) {
             if (tp.getPathComponent(1).toString().equals("STATUS")) {
-                rf = RowFilter.regexFilter(tp.getLastPathComponent().toString(), 5);
+                rf = RowFilter.regexFilter("^"+tp.getLastPathComponent().toString()+"$", 5);
             } else if (tp.getPathComponent(1).toString().equals("PROTOCOL")) {
-                rf = RowFilter.regexFilter(tp.getLastPathComponent().toString(), 1);
+                rf = RowFilter.regexFilter("^"+tp.getLastPathComponent().toString()+"$", 1);
             } else if (tp.getPathComponent(1).toString().equals("LABEL")) {
                 String rs = "^$";
                 if (!tp.getLastPathComponent().toString().equals("NO LABEL")) {
@@ -370,6 +461,8 @@ public class TrafficGeneratorMain extends FrameView {
     private javax.swing.JPanel generalPanel;
     private javax.swing.JPanel graphPanel;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JLabel ipPortLabel;
+    private javax.swing.JLabel ipPortValue;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -378,9 +471,13 @@ public class TrafficGeneratorMain extends FrameView {
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JPanel logPanel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JLabel nicPortLabel;
+    private javax.swing.JLabel nicPortValue;
     private javax.swing.JButton pauseButton;
     private javax.swing.JButton playButton;
     private javax.swing.JTable processTable;
+    private javax.swing.JLabel protocolTypeLabel;
+    private javax.swing.JLabel protocolTypeValue;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JButton stopButton;
     private javax.swing.JMenuItem systemPreferencesMenuItem;

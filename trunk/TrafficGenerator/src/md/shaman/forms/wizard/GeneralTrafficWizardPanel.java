@@ -60,10 +60,10 @@ public class GeneralTrafficWizardPanel extends javax.swing.JPanel {
         trafficEstimateLabel.setName("trafficEstimateLabel"); // NOI18N
 
         packetDataSizeSpinner.addChangeListener(bitrateCalculatorChangeListener);
-        packetDataSizeSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1024), Integer.valueOf(0), null, Integer.valueOf(1)));
+        packetDataSizeSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1024), Integer.valueOf(1), null, Integer.valueOf(1)));
         packetDataSizeSpinner.setName("packetDataSizeSpinner"); // NOI18N
 
-        packetNoSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(100), Integer.valueOf(0), null, Integer.valueOf(1)));
+        packetNoSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(100), Integer.valueOf(-1), null, Integer.valueOf(1)));
         packetNoSpinner.setName("packetNoSpinner"); // NOI18N
 
         packetDelaySpinner.addChangeListener(bitrateCalculatorChangeListener);
@@ -118,11 +118,11 @@ public class GeneralTrafficWizardPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel packetDataSizeLabel;
-    private javax.swing.JSpinner packetDataSizeSpinner;
+    protected javax.swing.JSpinner packetDataSizeSpinner;
     private javax.swing.JLabel packetDelayLabel;
-    private javax.swing.JSpinner packetDelaySpinner;
+    protected javax.swing.JSpinner packetDelaySpinner;
     private javax.swing.JLabel packetNoLabel;
-    private javax.swing.JSpinner packetNoSpinner;
+    protected javax.swing.JSpinner packetNoSpinner;
     private javax.swing.JLabel trafficEstimateLabel;
     private javax.swing.JLabel trafficEstimateValueLabel;
     // End of variables declaration//GEN-END:variables

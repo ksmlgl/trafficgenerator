@@ -52,17 +52,16 @@ public class ProtocolConfig {
         delay = 1000;
     }
 
-    public static Object execute() throws IOException {
-        Object obj;
+    public static ProtocolThread execute() throws IOException {
         switch (direction) {
             case SEND: {
                 switch (type) {
                     case UDP:
-                        return new EchoClient(ipAddress, ipPort, nicAddress, nicPort, packetNo, packetNo, delay);
+                        return new EchoClient(ipAddress, ipPort, nicAddress, nicPort, dataSize, packetNo, delay);
                     case TCP:
-                        return new TCPClient(ipAddress, ipPort, nicAddress, nicPort, packetNo, packetNo, delay);
+                        return new TCPClient(ipAddress, ipPort, nicAddress, nicPort, dataSize, packetNo, delay);
                     case MULTICAST:
-                        return new BroadcastServer(ipAddress, ipPort, nicAddress, nicPort, packetNo, packetNo, delay);
+                        return new BroadcastServer(ipAddress, ipPort, nicAddress, nicPort, dataSize, packetNo, delay);
                 }
             }
             case RECEIVE: {
@@ -76,7 +75,7 @@ public class ProtocolConfig {
                 }
             }
         }
-        return -1;
+        return null;
     }
 
     /**
@@ -231,6 +230,9 @@ public class ProtocolConfig {
      */
     public static void setPacketNo(int aPacketNo) {
         packetNo = aPacketNo;
+    }
+    public static void setPacketNo(String aPacketNo) {
+        packetNo = Integer.parseInt(aPacketNo);
     }
 
     /**
