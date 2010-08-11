@@ -6,6 +6,7 @@
 package md.shaman.forms.wizard;
 
 import md.shaman.custom.wizard.WizardPanelDescriptor;
+import md.shaman.protocols.ProtocolConfig;
 
 /**
  *
@@ -13,10 +14,12 @@ import md.shaman.custom.wizard.WizardPanelDescriptor;
  */
 public class GeneralTrafficWizardDescriptor extends WizardPanelDescriptor{
     public static final String IDENTIFIER = "GENERAL_TRAFFIC_PANEL";
-
+    GeneralTrafficWizardPanel gtwp;
     public GeneralTrafficWizardDescriptor()
     {
-        super(IDENTIFIER, new GeneralTrafficWizardPanel());
+        gtwp = new GeneralTrafficWizardPanel();
+        setPanelDescriptorIdentifier(IDENTIFIER);
+        setPanelComponent(gtwp);
     }
     @Override
     public Object getNextPanelDescriptor() {
@@ -26,5 +29,12 @@ public class GeneralTrafficWizardDescriptor extends WizardPanelDescriptor{
     @Override
     public Object getBackPanelDescriptor() {
         return GeneralSendReceiveWizardDescriptor.IDENTIFIER;
+    }
+
+    @Override
+    public void aboutToHidePanel() {
+        ProtocolConfig.setPacketNo(gtwp.packetNoSpinner.getValue().toString());
+        ProtocolConfig.setDataSize(gtwp.packetDataSizeSpinner.getValue().toString());
+        ProtocolConfig.setDelay(gtwp.packetDelaySpinner.getValue().toString());
     }
 }
