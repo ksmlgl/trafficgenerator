@@ -81,11 +81,11 @@ public class TrafficGeneratorMain extends FrameView {
         if (Wizard.FINISH_RETURN_CODE == wizard.showModalDialog()) {
             try {
                 ProtocolThread pt = (ProtocolThread) ProtocolConfig.execute();
+                ptMap.put(pt.getId(), pt);
                 if (ProtocolConfig.isStartNow()) {
                     pt.start();
                     System.out.println("Process is started");
                 }
-                ptMap.put(pt.getId(), pt);
                 Object[] rowData = {pt.getId(), pt.getType(), pt.getIpAddress().toString().substring(1) + ":" + pt.getIpPort(), pt.getNicAddress().toString().substring(1) + ":" + pt.getNicPort(), pt.getPacketSendReceive(), pt.getState(), ""};
                 ((DefaultTableModel) processTable.getModel()).addRow(rowData);
             } catch (IOException ex) {
