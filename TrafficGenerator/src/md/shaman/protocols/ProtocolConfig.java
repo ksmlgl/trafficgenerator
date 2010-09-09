@@ -27,9 +27,9 @@ public class ProtocolConfig {
     private static String nicAddress;
     private static int nicPort;
     //Traffic Sender
-    private static int packetNo;
+    private static Long packetNo;
     private static int dataSize;
-    private static int delay;
+    private static Long delay;
     //Configuration
     private static boolean startNow;
 
@@ -49,7 +49,7 @@ public class ProtocolConfig {
 
         //Traffic Sender
         dataSize = 1024;
-        delay = 1000;
+        delay = new Long(1000);
     }
 
     public static ProtocolThread execute() throws IOException {
@@ -203,36 +203,36 @@ public class ProtocolConfig {
     /**
      * @return the delay
      */
-    public static int getDelay() {
+    public static Long getDelay() {
         return delay;
     }
 
     /**
      * @param aDelay the delay to set
      */
-    public static void setDelay(int aDelay) {
+    public static void setDelay(Long aDelay) {
         delay = aDelay;
     }
 
     public static void setDelay(String aDelay) {
-        delay = Integer.parseInt(aDelay);
+        delay = Long.parseLong(aDelay);
     }
 
     /**
      * @return the packetNo
      */
-    public static int getPacketNo() {
+    public static Long getPacketNo() {
         return packetNo;
     }
 
     /**
      * @param aPacketNo the packetNo to set
      */
-    public static void setPacketNo(int aPacketNo) {
+    public static void setPacketNo(Long aPacketNo) {
         packetNo = aPacketNo;
     }
     public static void setPacketNo(String aPacketNo) {
-        packetNo = Integer.parseInt(aPacketNo);
+        packetNo = Long.parseLong(aPacketNo);
     }
 
     /**

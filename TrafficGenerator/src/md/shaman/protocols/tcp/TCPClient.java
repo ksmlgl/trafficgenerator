@@ -13,11 +13,11 @@ public class TCPClient extends ProtocolThread {
     PrintStream ps = null;
 
     public static void main(String args[]) throws IOException {
-        TCPClient c = new TCPClient("192.168.140.14", 5000, "192.168.140.56", 5000, 1024, 1000, 1000);
+        TCPClient c = new TCPClient("192.168.140.14", 5000, "192.168.140.56", 5000, 1024, new Long(1000), new Long(1000));
         c.start();
     }
 
-    public TCPClient(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, int packetNo, int delay) throws IOException {
+    public TCPClient(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, Long packetNo, Long delay) throws IOException {
         this.ipPort = ipPort;
         this.nicPort = nicPort;
         this.delay = delay;

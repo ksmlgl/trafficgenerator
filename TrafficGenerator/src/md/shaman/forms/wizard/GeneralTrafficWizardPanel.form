@@ -106,7 +106,7 @@
     <Component class="javax.swing.JSpinner" name="packetNoSpinner">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="100" minimum="-1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+          <SpinnerModel initial="100" minimum="-1" numberType="java.lang.Long" stepSize="1" type="number"/>
         </Property>
         <Property name="name" type="java.lang.String" value="packetNoSpinner" noResource="true"/>
       </Properties>
@@ -117,7 +117,7 @@
     <Component class="javax.swing.JSpinner" name="packetDelaySpinner">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="1000" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+          <SpinnerModel initial="1000" minimum="1" numberType="java.lang.Long" stepSize="1" type="number"/>
         </Property>
         <Property name="name" type="java.lang.String" value="packetDelaySpinner" noResource="true"/>
       </Properties>

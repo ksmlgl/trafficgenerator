@@ -20,7 +20,7 @@ public class ProtocolThread extends Thread {
     protected int nicPort;//Network Interface Card port
     protected long packetNo = 0;//How meny packets need to send
     protected long packetSendReceive = 0; //How meny packets are Send/Receive {Statistic}
-    protected  int packetSize;//Packet Size
+    protected int packetSize;//Packet Size
     protected long trafficSize;//Calculate Send/Receive Traffic {Statistic}
     protected long delay;//Delay between packets
     protected boolean randomMessage = true;
