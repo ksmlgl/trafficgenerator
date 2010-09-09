@@ -19,7 +19,7 @@ public class EchoClient extends ProtocolThread {
     public static void main(String[] args) {
         ProtocolThread e = null;
         try {
-            e = new EchoClient("192.168.140.14", 5000, "192.168.140.25", 5000, 1024, 1000, 1000);
+            e = new EchoClient("192.168.140.14", 5000, "192.168.140.25", 5000, 1024, new Long(1000), new Long(1000));
         } catch (IOException ex) {
             Logger.getLogger(EchoClient.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -32,7 +32,7 @@ public class EchoClient extends ProtocolThread {
         System.out.println(pt.getClass());
     }
 
-    public EchoClient(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, int packetNo, int delay) throws IOException {
+    public EchoClient(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, Long packetNo, Long delay) throws IOException {
         this.ipPort = ipPort;
         this.nicPort = nicPort;
         this.delay = delay;

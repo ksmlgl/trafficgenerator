@@ -17,7 +17,7 @@ public class BroadcastServer extends ProtocolThread {
     public static void main(String args[]) throws Exception {
     } // main
 
-    public BroadcastServer(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, int packetNo, int delay) throws IOException {
+    public BroadcastServer(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, Long packetNo, Long delay) throws IOException {
         this.ipPort = ipPort;
         this.nicPort = nicPort;
         this.packetNo = packetNo;
