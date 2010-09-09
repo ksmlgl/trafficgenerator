@@ -25,11 +25,26 @@ public class ProtocolThread extends Thread {
     protected long delay;//Delay between packets
     protected boolean randomMessage = true;
 
+    /**
+     * Reset Protocol Statistics
+     */
     public void resetStatistic()
     {
         packetSendReceive = 0;
         trafficSize = 0;
     }
+
+    /*
+     * Pause Protocol Thread
+     */
+    public void pause(){}
+
+    /*
+     * Restart Protocol Thread
+     */
+    public void restart(){}
+
+    
 
     /**
      * @return the type
