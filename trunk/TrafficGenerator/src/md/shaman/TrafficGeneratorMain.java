@@ -60,6 +60,19 @@ public class TrafficGeneratorMain extends FrameView {
         t.start();
     }
 
+
+    @Action
+    public void StartAll(){
+        for(ProtocolThread pt : ptMap.values())
+        {
+            if(!pt.isAlive())
+                pt.start();
+        }
+    }
+    @Action
+    public void Stop(){
+    }
+    
     @Action
     public void showWizard() {
         JFrame mainFrame = TrafficGeneratorApp.getApplication().getMainFrame();
@@ -151,6 +164,8 @@ public class TrafficGeneratorMain extends FrameView {
         playButton = new javax.swing.JButton();
         pauseButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
+        protocolPopupMenu = new javax.swing.JPopupMenu();
+        stopMenuItem = new javax.swing.JMenuItem();
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -201,7 +216,7 @@ public class TrafficGeneratorMain extends FrameView {
         processTable.setAutoCreateRowSorter(true);
         processTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {new Long(1), "asdasf", "asfa", "afa", "asf", "asf", null}
             },
             new String [] {
                 "PID", "ProtocolType", "IP:Port", "NIC:Port", "Progress", "Status", "Label"
@@ -215,8 +230,9 @@ public class TrafficGeneratorMain extends FrameView {
                 return types [columnIndex];
             }
         });
-        processTable.setColumnSelectionAllowed(true);
+        processTable.setComponentPopupMenu(protocolPopupMenu);
         processTable.setName("processTable"); // NOI18N
+        processTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         processTable.setShowHorizontalLines(false);
         processTable.setShowVerticalLines(false);
         processTable.getTableHeader().setReorderingAllowed(false);
@@ -392,6 +408,7 @@ public class TrafficGeneratorMain extends FrameView {
         jSeparator2.setName("jSeparator2"); // NOI18N
         toolBar.add(jSeparator2);
 
+        playButton.setAction(actionMap.get("StartAll")); // NOI18N
         playButton.setIcon(resourceMap.getIcon("playButton.icon")); // NOI18N
         playButton.setText(resourceMap.getString("playButton.text")); // NOI18N
         playButton.setToolTipText(resourceMap.getString("playButton.toolTipText")); // NOI18N
@@ -417,6 +434,14 @@ public class TrafficGeneratorMain extends FrameView {
         stopButton.setName("stopButton"); // NOI18N
         stopButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         toolBar.add(stopButton);
+
+        protocolPopupMenu.setName("protocolPopupMenu"); // NOI18N
+
+        stopMenuItem.setAction(actionMap.get("Stop")); // NOI18N
+        stopMenuItem.setIcon(resourceMap.getIcon("stopMenuItem.icon")); // NOI18N
+        stopMenuItem.setText(resourceMap.getString("stopMenuItem.text")); // NOI18N
+        stopMenuItem.setName("stopMenuItem"); // NOI18N
+        protocolPopupMenu.add(stopMenuItem);
 
         setComponent(componentPanel);
         setMenuBar(menuBar);
@@ -476,10 +501,12 @@ public class TrafficGeneratorMain extends FrameView {
     private javax.swing.JButton pauseButton;
     private javax.swing.JButton playButton;
     private javax.swing.JTable processTable;
+    private javax.swing.JPopupMenu protocolPopupMenu;
     private javax.swing.JLabel protocolTypeLabel;
     private javax.swing.JLabel protocolTypeValue;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JButton stopButton;
+    private javax.swing.JMenuItem stopMenuItem;
     private javax.swing.JMenuItem systemPreferencesMenuItem;
     private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JToolBar toolBar;
