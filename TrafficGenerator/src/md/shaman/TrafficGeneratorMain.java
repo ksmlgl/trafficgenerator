@@ -71,6 +71,9 @@ public class TrafficGeneratorMain extends FrameView {
     }
     @Action
     public void Stop(){
+        int ir[] = processTable.getSelectedRows();
+        for(int i = 0;i<ir.length;i++)
+            System.out.println(ir[i]);
     }
     
     @Action
@@ -164,7 +167,7 @@ public class TrafficGeneratorMain extends FrameView {
         playButton = new javax.swing.JButton();
         pauseButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
-        protocolPopupMenu = new javax.swing.JPopupMenu();
+        processPopupMenu = new javax.swing.JPopupMenu();
         stopMenuItem = new javax.swing.JMenuItem();
 
         menuBar.setName("menuBar"); // NOI18N
@@ -230,9 +233,9 @@ public class TrafficGeneratorMain extends FrameView {
                 return types [columnIndex];
             }
         });
-        processTable.setComponentPopupMenu(protocolPopupMenu);
+        processTable.setComponentPopupMenu(processPopupMenu);
         processTable.setName("processTable"); // NOI18N
-        processTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        processTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         processTable.setShowHorizontalLines(false);
         processTable.setShowVerticalLines(false);
         processTable.getTableHeader().setReorderingAllowed(false);
@@ -435,13 +438,13 @@ public class TrafficGeneratorMain extends FrameView {
         stopButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         toolBar.add(stopButton);
 
-        protocolPopupMenu.setName("protocolPopupMenu"); // NOI18N
+        processPopupMenu.setName("processPopupMenu"); // NOI18N
 
         stopMenuItem.setAction(actionMap.get("Stop")); // NOI18N
         stopMenuItem.setIcon(resourceMap.getIcon("stopMenuItem.icon")); // NOI18N
         stopMenuItem.setText(resourceMap.getString("stopMenuItem.text")); // NOI18N
         stopMenuItem.setName("stopMenuItem"); // NOI18N
-        protocolPopupMenu.add(stopMenuItem);
+        processPopupMenu.add(stopMenuItem);
 
         setComponent(componentPanel);
         setMenuBar(menuBar);
@@ -500,8 +503,8 @@ public class TrafficGeneratorMain extends FrameView {
     private javax.swing.JLabel nicPortValue;
     private javax.swing.JButton pauseButton;
     private javax.swing.JButton playButton;
+    private javax.swing.JPopupMenu processPopupMenu;
     private javax.swing.JTable processTable;
-    private javax.swing.JPopupMenu protocolPopupMenu;
     private javax.swing.JLabel protocolTypeLabel;
     private javax.swing.JLabel protocolTypeValue;
     private javax.swing.JPanel statusPanel;
