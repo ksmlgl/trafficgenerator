@@ -46,7 +46,7 @@ public class TrafficGeneratorMain extends FrameView {
                         Thread.sleep(Config.getGeneralRefrash());
                         DefaultTableModel dtm = (DefaultTableModel) processTable.getModel();
                         for(int i = 0; i<dtm.getRowCount(); i++){
-                            ProtocolThread pt = ptMap.get((Long)dtm.getValueAt(i, 0));
+                            ProtocolThread pt = ptMap.get(dtm.getValueAt(i, 0));
                             //Progress
                             dtm.setValueAt(pt.getPacketSendReceive(), i, 4);
                             //Status
@@ -87,6 +87,23 @@ public class TrafficGeneratorMain extends FrameView {
             if(!pt.isAlive())
                 pt.start();
         }
+    }
+    @Action
+    public void Remove()
+    {
+        for(int rw : processTable.getSelectedRows())
+        {
+            Long key = (Long) processTable.getValueAt(rw, 0);
+            ProtocolThread pt = ptMap.get(key);
+            pt.exit();
+            ((DefaultTableModel)processTable.getModel()).removeRow(rw);
+            ptMap.remove(key);
+        }
+    }
+
+    @Action
+    public void showProperties()
+    {
     }
     @Action
     public void showWizard() {
@@ -182,6 +199,10 @@ public class TrafficGeneratorMain extends FrameView {
         processPopupMenu = new javax.swing.JPopupMenu();
         startMenuItem = new javax.swing.JMenuItem();
         stopMenuItem = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        removeMenuItem = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        propertiesMenuItem = new javax.swing.JMenuItem();
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -232,7 +253,7 @@ public class TrafficGeneratorMain extends FrameView {
         processTable.setAutoCreateRowSorter(true);
         processTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {new Long(1), "asdasf", "asfa", "afa", "asf", "asf", null}
+
             },
             new String [] {
                 "PID", "ProtocolType", "IP:Port", "NIC:Port", "Progress", "Status", "Label"
@@ -464,6 +485,22 @@ public class TrafficGeneratorMain extends FrameView {
         stopMenuItem.setName("stopMenuItem"); // NOI18N
         processPopupMenu.add(stopMenuItem);
 
+        jSeparator3.setName("jSeparator3"); // NOI18N
+        processPopupMenu.add(jSeparator3);
+
+        removeMenuItem.setAction(actionMap.get("Remove")); // NOI18N
+        removeMenuItem.setText(resourceMap.getString("removeMenuItem.text")); // NOI18N
+        removeMenuItem.setName("removeMenuItem"); // NOI18N
+        processPopupMenu.add(removeMenuItem);
+
+        jSeparator4.setName("jSeparator4"); // NOI18N
+        processPopupMenu.add(jSeparator4);
+
+        propertiesMenuItem.setAction(actionMap.get("showProperties")); // NOI18N
+        propertiesMenuItem.setText(resourceMap.getString("propertiesMenuItem.text")); // NOI18N
+        propertiesMenuItem.setName("propertiesMenuItem"); // NOI18N
+        processPopupMenu.add(propertiesMenuItem);
+
         setComponent(componentPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
@@ -513,6 +550,8 @@ public class TrafficGeneratorMain extends FrameView {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JPanel logPanel;
@@ -523,8 +562,10 @@ public class TrafficGeneratorMain extends FrameView {
     private javax.swing.JButton playButton;
     private javax.swing.JPopupMenu processPopupMenu;
     private javax.swing.JTable processTable;
+    private javax.swing.JMenuItem propertiesMenuItem;
     private javax.swing.JLabel protocolTypeLabel;
     private javax.swing.JLabel protocolTypeValue;
+    private javax.swing.JMenuItem removeMenuItem;
     private javax.swing.JMenuItem startMenuItem;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JButton stopButton;

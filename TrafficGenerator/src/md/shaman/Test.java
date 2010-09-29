@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.lang.Thread.State;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import md.shaman.protocols.Protocol;
