@@ -63,7 +63,7 @@ public class GeneralTrafficWizardPanel extends javax.swing.JPanel {
         packetDataSizeSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1024), Integer.valueOf(1), null, Integer.valueOf(1)));
         packetDataSizeSpinner.setName("packetDataSizeSpinner"); // NOI18N
 
-        packetNoSpinner.setModel(new javax.swing.SpinnerNumberModel(Long.valueOf(100L), Long.valueOf(-1L), null, Long.valueOf(1L)));
+        packetNoSpinner.setModel(new javax.swing.SpinnerNumberModel(Long.valueOf(100L), Long.valueOf(0L), null, Long.valueOf(1L)));
         packetNoSpinner.setName("packetNoSpinner"); // NOI18N
 
         packetDelaySpinner.addChangeListener(bitrateCalculatorChangeListener);

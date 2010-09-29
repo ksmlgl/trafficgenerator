@@ -28,6 +28,7 @@ public class TCPServer extends ProtocolThread {
     }
 
     public void exit() {
+        stop();
         try {
             // Close Socket Connection
             sock.close();
@@ -36,8 +37,6 @@ public class TCPServer extends ProtocolThread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        stop();
-
     }
 
     public void run() {

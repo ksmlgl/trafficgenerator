@@ -70,12 +70,24 @@ public class TrafficGeneratorMain extends FrameView {
         }
     }
     @Action
-    public void Stop(){
-        int ir[] = processTable.getSelectedRows();
-        for(int i = 0;i<ir.length;i++)
-            System.out.println(ir[i]);
+    public void StopAll(){
+        for(ProtocolThread pt : ptMap.values())
+            pt.stop();
     }
-    
+    @Action
+    public void Stop(){
+        for(int rw : processTable.getSelectedRows())
+            ptMap.get(processTable.getValueAt(rw, 0)).stop();
+    }
+    @Action
+    public void Start(){
+        for(int rw : processTable.getSelectedRows())
+        {
+            ProtocolThread pt = ptMap.get(processTable.getValueAt(rw, 0));
+            if(!pt.isAlive())
+                pt.start();
+        }
+    }
     @Action
     public void showWizard() {
         JFrame mainFrame = TrafficGeneratorApp.getApplication().getMainFrame();
@@ -168,6 +180,7 @@ public class TrafficGeneratorMain extends FrameView {
         pauseButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
         processPopupMenu = new javax.swing.JPopupMenu();
+        startMenuItem = new javax.swing.JMenuItem();
         stopMenuItem = new javax.swing.JMenuItem();
 
         menuBar.setName("menuBar"); // NOI18N
@@ -440,6 +453,11 @@ public class TrafficGeneratorMain extends FrameView {
 
         processPopupMenu.setName("processPopupMenu"); // NOI18N
 
+        startMenuItem.setAction(actionMap.get("Start")); // NOI18N
+        startMenuItem.setText(resourceMap.getString("startMenuItem.text")); // NOI18N
+        startMenuItem.setName("startMenuItem"); // NOI18N
+        processPopupMenu.add(startMenuItem);
+
         stopMenuItem.setAction(actionMap.get("Stop")); // NOI18N
         stopMenuItem.setIcon(resourceMap.getIcon("stopMenuItem.icon")); // NOI18N
         stopMenuItem.setText(resourceMap.getString("stopMenuItem.text")); // NOI18N
@@ -507,6 +525,7 @@ public class TrafficGeneratorMain extends FrameView {
     private javax.swing.JTable processTable;
     private javax.swing.JLabel protocolTypeLabel;
     private javax.swing.JLabel protocolTypeValue;
+    private javax.swing.JMenuItem startMenuItem;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JButton stopButton;
     private javax.swing.JMenuItem stopMenuItem;

@@ -37,15 +37,14 @@ public class BroadcastServer extends ProtocolThread {
     }
 
     public void exit() {
-        socket.close();
         stop();
-
+        socket.close();
     }
 
     public void run() {
         SecureRandom random = new SecureRandom();
-        while (packetSendReceive != packetNo) {
             try {
+                do{
                 //data = random.generateSeed(packetSize);
                 Thread.sleep(delay);
                 System.out.println("Sending ");
@@ -55,12 +54,12 @@ public class BroadcastServer extends ProtocolThread {
                 // Sends the packet
                 socket.send(packet);
                 packetSendReceive++;
+                }while (packetSendReceive != packetNo);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
     }
 } // class BroadcastServer
 

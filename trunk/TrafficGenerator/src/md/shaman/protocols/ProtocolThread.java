@@ -38,7 +38,10 @@ public class ProtocolThread extends Thread {
      * Pause Protocol Thread
      */
     public void pause(){}
-
+    /*
+     * Exit Protocol Thread
+     */
+    public void exit(){}
     /*
      * Restart Protocol Thread
      */

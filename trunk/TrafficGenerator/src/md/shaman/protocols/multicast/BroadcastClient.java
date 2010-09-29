@@ -29,9 +29,8 @@ public class BroadcastClient extends ProtocolThread {
     }
 
     public void exit() {
-        socket.close();
         stop();
-
+        socket.close();
     }
 
     public void run() {

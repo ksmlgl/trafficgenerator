@@ -49,9 +49,8 @@ public class EchoClient extends ProtocolThread {
     }
 
     public void exit() {
-        socket.disconnect();
-        socket.close();
         stop();
+        socket.close();
     }
 
     public void pause() {
@@ -68,12 +67,12 @@ public class EchoClient extends ProtocolThread {
 
         try {
             // sends the packet
-            while (packetSendReceive != packetNo) {
+            do{
                 Thread.sleep(delay);
                 socket.send(packet);
                 packetSendReceive++;
                 System.out.println("send");
-            }
+            }while (packetSendReceive != packetNo);
         } catch (IOException ie) {
             System.out.println("Could not Send :" + ie.getMessage());
             System.exit(0);

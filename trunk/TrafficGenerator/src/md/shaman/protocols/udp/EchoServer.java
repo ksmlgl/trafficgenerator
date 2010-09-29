@@ -31,10 +31,10 @@ public class EchoServer extends ProtocolThread {
         }
         socket = new DatagramSocket(this.nicPort, this.ipAddress);
     }
-
+    
     public void exit() {
-        socket.close();
         stop();
+        socket.close();
     }
 
     public void run() {
