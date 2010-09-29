@@ -34,14 +34,13 @@ public class TCPClient extends ProtocolThread {
     }
 
     public void exit() {
+        stop();
         // Close Socket form Client side
         try {
             socket.close();
         } catch (IOException ie) {
             System.out.println(" Close Error   :" + ie.getMessage());
         }
-        stop();
-
     }
 
     public void run() {
@@ -50,11 +49,11 @@ public class TCPClient extends ProtocolThread {
         SecureRandom random = new SecureRandom();
 
         try {
-            while (packetSendReceive != packetNo) {
+            do{
                 Thread.sleep(delay);
                 socket.getOutputStream().write(random.generateSeed(packetSize));
                 packetSendReceive++;
-            }
+            }while (packetSendReceive != packetNo);
         } catch (IOException e) {
             System.out.println("IOException " + e);
         } catch (InterruptedException e) {

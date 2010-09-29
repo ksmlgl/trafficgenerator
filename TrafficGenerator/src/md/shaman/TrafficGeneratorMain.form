@@ -480,6 +480,15 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
+        <MenuItem class="javax.swing.JMenuItem" name="startMenuItem">
+          <Properties>
+            <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+              <action class="md.shaman.TrafficGeneratorMain" id="Start" methodName="Start"/>
+            </Property>
+            <Property name="text" type="java.lang.String" resourceKey="startMenuItem.text"/>
+            <Property name="name" type="java.lang.String" value="startMenuItem" noResource="true"/>
+          </Properties>
+        </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="stopMenuItem">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
