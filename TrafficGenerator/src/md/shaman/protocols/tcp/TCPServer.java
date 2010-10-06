@@ -11,16 +11,13 @@ public class TCPServer extends ProtocolThread {
     ServerSocket sersock;
     Socket sock;
 
-    public static void main(String args[]) throws IOException {
-        TCPServer s = new TCPServer("192.168.140.56", 5000);
-        s.start();
-    }
-
-    public TCPServer(String nicAddress, int nicPort) throws IOException {
+    public TCPServer(String ipAddress, int ipPort, String nicAddress, int nicPort) throws IOException {
+        this.ipPort = ipPort;//Deprication
         this.nicPort = nicPort;
         this.type = Protocol.Type.TCP;
         this.direction = Protocol.Direction.RECEIVE;
         try {
+            this.ipAddress = InetAddress.getByName(ipAddress);//Deprication
             this.nicAddress = InetAddress.getByName(nicAddress);
         } catch (UnknownHostException e) {
         }

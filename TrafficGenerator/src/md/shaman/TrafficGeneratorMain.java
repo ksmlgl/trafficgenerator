@@ -131,7 +131,12 @@ public class TrafficGeneratorMain extends FrameView {
                     pt.start();
                     System.out.println("Process is started");
                 }
-                Object[] rowData = {pt.getId(), pt.getType(), pt.getIpAddress().toString().substring(1) + ":" + pt.getIpPort(), pt.getNicAddress().toString().substring(1) + ":" + pt.getNicPort(), pt.getPacketSendReceive(), pt.getState(), ""};
+                Object[] rowData = {pt.getId(),
+                pt.getType(),
+                pt.getIpAddress().toString().substring(1) + ":" + pt.getIpPort(),
+                pt.getNicAddress().toString().substring(1) + ":" + pt.getNicPort(),
+                pt.getPacketSendReceive(),
+                pt.getState(), ""};
                 ((DefaultTableModel) processTable.getModel()).addRow(rowData);
             } catch (IOException ex) {
             }
