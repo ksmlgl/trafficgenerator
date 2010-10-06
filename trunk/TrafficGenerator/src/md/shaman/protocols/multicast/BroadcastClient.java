@@ -14,7 +14,8 @@ public class BroadcastClient extends ProtocolThread {
     public static void main(String args[]) throws Exception {
     } // main
 
-    public BroadcastClient(String ipAddress, String nicAddress, int nicPort) throws IOException {
+    public BroadcastClient(String ipAddress, int ipPort, String nicAddress, int nicPort) throws IOException {
+        this.ipPort = ipPort;//Deprication
         this.nicPort = nicPort;
         this.type = Type.MULTICAST;
         this.direction = Direction.RECEIVE;

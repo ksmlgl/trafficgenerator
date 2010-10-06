@@ -67,11 +67,11 @@ public class ProtocolConfig {
             case RECEIVE: {
                 switch (type) {
                     case UDP:
-                        return new EchoServer(nicAddress, nicPort);
+                        return new EchoServer(ipAddress, ipPort,nicAddress, nicPort);
                     case TCP:
-                        return new TCPServer(nicAddress, nicPort);
+                        return new TCPServer(ipAddress, ipPort,nicAddress, nicPort);
                     case MULTICAST:
-                        return new BroadcastClient(ipAddress, nicAddress, nicPort);
+                        return new BroadcastClient(ipAddress, ipPort,nicAddress, nicPort);
                 }
             }
         }

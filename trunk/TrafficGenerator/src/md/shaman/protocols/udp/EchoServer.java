@@ -12,20 +12,13 @@ public class EchoServer extends ProtocolThread {
     DatagramPacket packet;
     DatagramSocket socket;
 
-    @SuppressWarnings("deprecation")
-    public static void main(String args[]) throws InterruptedException, SocketException, IOException {
-        EchoServer es = new EchoServer("127.0.0.1", 5000);
-        es.start();
-        es.sleep(1000);
-        es.exit();
-        System.out.println("3");
-    }
-
-    public EchoServer(String nicAddress, int nicPort) throws IOException {
+    public EchoServer(String ipAddress, int ipPort, String nicAddress, int nicPort) throws IOException {
+        this.ipPort = ipPort;//Deprication
         this.nicPort = nicPort;
         this.type = Type.UDP;
         this.direction = Direction.RECEIVE;
         try {
+            this.ipAddress = InetAddress.getByName(ipAddress);//Deprication
             this.nicAddress = InetAddress.getByName(nicAddress);
         } catch (UnknownHostException e) {
         }
