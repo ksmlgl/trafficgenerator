@@ -484,6 +484,7 @@
             </Property>
             <Property name="icon" type="javax.swing.Icon" resourceKey="stopMenuItem.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="stopMenuItem.text"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="stopMenuItem" noResource="true"/>
           </Properties>
         </MenuItem>

@@ -482,6 +482,7 @@ public class TrafficGeneratorMain extends FrameView {
         stopMenuItem.setAction(actionMap.get("Stop")); // NOI18N
         stopMenuItem.setIcon(resourceMap.getIcon("stopMenuItem.icon")); // NOI18N
         stopMenuItem.setText(resourceMap.getString("stopMenuItem.text")); // NOI18N
+        stopMenuItem.setEnabled(false);
         stopMenuItem.setName("stopMenuItem"); // NOI18N
         processPopupMenu.add(stopMenuItem);
 
