@@ -32,7 +32,7 @@ public class EchoClient extends ProtocolThread {
         System.out.println(pt.getClass());
     }
 
-    public EchoClient(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, Long packetNo, Long delay) throws IOException {
+    public EchoClient(String ipAddress, int ipPort, String nicAddress, int nicPort, int packetSize, Long packetNo, Long delay) throws IOException{
         this.ipPort = ipPort;
         this.nicPort = nicPort;
         this.delay = delay;

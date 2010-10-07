@@ -1,14 +1,19 @@
 package md.shaman.protocols;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+
 public class Protocol {
 
     public enum Type {
+
         UDP,
         TCP,
         MULTICAST
     }
 
-    public enum Direction{
+    public enum Direction {
+
         SEND,
         RECEIVE
     }
@@ -18,6 +23,13 @@ public class Protocol {
     }
 
     public static boolean isInetAddressPort(String str) {
-        return str.matches("\\d+");
+        if (str.matches("\\d+")) {
+            if (1024 < Integer.parseInt(str)) {
+                if (65535 > Integer.parseInt(str)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
