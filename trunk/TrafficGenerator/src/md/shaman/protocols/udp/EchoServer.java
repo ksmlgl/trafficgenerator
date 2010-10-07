@@ -22,7 +22,7 @@ public class EchoServer extends ProtocolThread {
             this.nicAddress = InetAddress.getByName(nicAddress);
         } catch (UnknownHostException e) {
         }
-        socket = new DatagramSocket(this.nicPort, this.ipAddress);
+        socket = new DatagramSocket(this.nicPort, this.nicAddress);
     }
     
     public void exit() {
