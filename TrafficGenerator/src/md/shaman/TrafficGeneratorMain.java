@@ -129,6 +129,7 @@ public class TrafficGeneratorMain extends FrameView {
                 ptMap.put(pt.getId(), pt);
                 if (ProtocolConfig.isStartNow()) {
                     pt.start();
+                    ProtocolConfig.setStartNow(false);
                     System.out.println("Process is started");
                 }
                 Object[] rowData = {pt.getId(),
@@ -139,6 +140,7 @@ public class TrafficGeneratorMain extends FrameView {
                 pt.getState(), ""};
                 ((DefaultTableModel) processTable.getModel()).addRow(rowData);
             } catch (IOException ex) {
+                System.out.println(ex);
             }
         }
     }
