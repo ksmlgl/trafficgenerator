@@ -52,7 +52,7 @@ public class ProtocolConfig {
         delay = new Long(1000);
     }
 
-    public static ProtocolThread execute() throws IOException {
+    public static ProtocolThread execute() throws IOException{
         switch (direction) {
             case SEND: {
                 switch (type) {

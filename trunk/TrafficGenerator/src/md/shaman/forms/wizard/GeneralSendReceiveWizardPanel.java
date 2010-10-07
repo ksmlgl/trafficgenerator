@@ -65,12 +65,15 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(md.shaman.TrafficGeneratorApp.class).getContext().getResourceMap(GeneralSendReceiveWizardPanel.class);
         ipLabel.setText(resourceMap.getString("ipLabel.text")); // NOI18N
+        ipLabel.setToolTipText(resourceMap.getString("ipLabel.toolTipText")); // NOI18N
         ipLabel.setName("ipLabel"); // NOI18N
 
         nicLabel.setText(resourceMap.getString("nicLabel.text")); // NOI18N
+        nicLabel.setToolTipText(resourceMap.getString("nicLabel.toolTipText")); // NOI18N
         nicLabel.setName("nicLabel"); // NOI18N
 
         ipTextField.setText(resourceMap.getString("ipTextField.text")); // NOI18N
+        ipTextField.setToolTipText(resourceMap.getString("ipTextField.toolTipText")); // NOI18N
         ipTextField.setName("ipTextField"); // NOI18N
         ipTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -78,11 +81,14 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
             }
         });
 
+        nicComboBox.setToolTipText(resourceMap.getString("nicComboBox.toolTipText")); // NOI18N
         nicComboBox.setName("nicComboBox"); // NOI18N
 
         ipPortLabel.setText(resourceMap.getString("ipPortLabel.text")); // NOI18N
+        ipPortLabel.setToolTipText(resourceMap.getString("ipPortLabel.toolTipText")); // NOI18N
         ipPortLabel.setName("ipPortLabel"); // NOI18N
 
+        ipPortTextField.setToolTipText(resourceMap.getString("ipPortTextField.toolTipText")); // NOI18N
         ipPortTextField.setName("ipPortTextField"); // NOI18N
         ipPortTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -91,9 +97,11 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
         });
 
         nicPortLabel.setText(resourceMap.getString("nicPortLabel.text")); // NOI18N
+        nicPortLabel.setToolTipText(resourceMap.getString("nicPortLabel.toolTipText")); // NOI18N
         nicPortLabel.setName("nicPortLabel"); // NOI18N
 
         nicPortTextField.setText(resourceMap.getString("nicPortTextField.text")); // NOI18N
+        nicPortTextField.setToolTipText(resourceMap.getString("nicPortTextField.toolTipText")); // NOI18N
         nicPortTextField.setName("nicPortTextField"); // NOI18N
         nicPortTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -122,22 +130,19 @@ public class GeneralSendReceiveWizardPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ipLabel)
-                            .addComponent(ipPortLabel))
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ipPortTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                            .addComponent(ipTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(nicPortLabel)
                         .addGap(306, 306, 306))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(nicLabel)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nicComboBox, 0, 215, Short.MAX_VALUE)
-                            .addComponent(nicPortTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))))
+                            .addComponent(ipLabel)
+                            .addComponent(ipPortLabel)
+                            .addComponent(nicLabel))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nicPortTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                            .addComponent(nicComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 277, Short.MAX_VALUE)
+                            .addComponent(ipPortTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                            .addComponent(ipTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ipAlertLabel)

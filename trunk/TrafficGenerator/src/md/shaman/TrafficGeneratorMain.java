@@ -140,7 +140,8 @@ public class TrafficGeneratorMain extends FrameView {
                 pt.getState(), ""};
                 ((DefaultTableModel) processTable.getModel()).addRow(rowData);
             } catch (IOException ex) {
-                System.out.println(ex);
+                //ERROR MESSAGE
+                JOptionPane.showMessageDialog(mainFrame, ex.getMessage(), "Error Message", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

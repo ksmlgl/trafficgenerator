@@ -23,26 +23,21 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ipLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="ipPortLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ipPortTextField" pref="215" max="32767" attributes="1"/>
-                          <Component id="ipTextField" alignment="0" pref="215" max="32767" attributes="1"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <Component id="nicPortLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="306" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="nicLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nicComboBox" pref="215" max="32767" attributes="1"/>
-                          <Component id="nicPortTextField" alignment="0" pref="215" max="32767" attributes="1"/>
+                          <Component id="ipLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ipPortLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="nicLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="nicPortTextField" alignment="1" pref="277" max="32767" attributes="1"/>
+                          <Component id="nicComboBox" alignment="1" pref="277" max="32767" attributes="1"/>
+                          <Component id="ipPortTextField" pref="277" max="32767" attributes="1"/>
+                          <Component id="ipTextField" alignment="1" pref="277" max="32767" attributes="1"/>
                       </Group>
                   </Group>
               </Group>
@@ -97,18 +92,21 @@
     <Component class="javax.swing.JLabel" name="ipLabel">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="ipLabel.text"/>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="ipLabel.toolTipText"/>
         <Property name="name" type="java.lang.String" value="ipLabel" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="nicLabel">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="nicLabel.text"/>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="nicLabel.toolTipText"/>
         <Property name="name" type="java.lang.String" value="nicLabel" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="ipTextField">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="ipTextField.text"/>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="ipTextField.toolTipText"/>
         <Property name="name" type="java.lang.String" value="ipTextField" noResource="true"/>
       </Properties>
       <Events>
@@ -123,6 +121,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="nicComboBox.toolTipText"/>
         <Property name="name" type="java.lang.String" value="nicComboBox" noResource="true"/>
       </Properties>
       <AuxValues>
@@ -132,11 +131,13 @@
     <Component class="javax.swing.JLabel" name="ipPortLabel">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="ipPortLabel.text"/>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="ipPortLabel.toolTipText"/>
         <Property name="name" type="java.lang.String" value="ipPortLabel" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="ipPortTextField">
       <Properties>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="ipPortTextField.toolTipText"/>
         <Property name="name" type="java.lang.String" value="ipPortTextField" noResource="true"/>
       </Properties>
       <Events>
@@ -149,12 +150,14 @@
     <Component class="javax.swing.JLabel" name="nicPortLabel">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="nicPortLabel.text"/>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="nicPortLabel.toolTipText"/>
         <Property name="name" type="java.lang.String" value="nicPortLabel" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="nicPortTextField">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="nicPortTextField.text"/>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="nicPortTextField.toolTipText"/>
         <Property name="name" type="java.lang.String" value="nicPortTextField" noResource="true"/>
       </Properties>
       <Events>

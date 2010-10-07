@@ -8,6 +8,8 @@ package md.shaman;
 import java.io.IOException;
 import java.lang.Thread.State;
 import java.net.InetAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.UnknownHostException;
 import java.util.Locale;
 import java.util.logging.Level;
