@@ -129,7 +129,7 @@ public class GeneralTrafficWizardPanel extends javax.swing.JPanel {
     ChangeListener  bitrateCalculatorChangeListener  = new ChangeListener () {
 
         public void stateChanged(ChangeEvent e) {
-            Double d = (0.0+(Integer)packetDataSizeSpinner.getValue())/(Integer)packetDelaySpinner.getValue();
+            Double d = (0.0+(Integer)packetDataSizeSpinner.getValue())/(Long)packetDelaySpinner.getValue();
             trafficEstimateValueLabel.setText(Unit.CapacityConvertor(d)+"ps");
         }
     };
